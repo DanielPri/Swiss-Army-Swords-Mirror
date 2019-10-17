@@ -8,6 +8,9 @@ public class ManaBar : MonoBehaviour
     int maxHealth;
     int index;
 
+    float nextTimer = 0.0F;
+    float timer = 2.0F;
+
     SpriteRenderer[] barFilled; // Array of portions of the sword bar
 
     void Start() {
@@ -17,7 +20,28 @@ public class ManaBar : MonoBehaviour
     }
 
     void Update() {
-        
+        if (Time.time > nextTimer) {
+            nextTimer = Time.time + timer;
+            DecreaseMana(1); // Testing the mana bar
+        }
+    }
+
+    public void IncreaseMana(int indexPosition) {
+        for (int i = 0; i < indexPosition; i++) {
+            if (index < maxHealth) { 
+                barFilled[index].enabled = true;
+                index++;
+            }
+        }
+    }
+
+    public void DecreaseMana(int indexPosition) {
+        for (int i = 0; i < indexPosition; i++) {
+            if (index >= 0) { 
+                barFilled[index].enabled = false;
+                index--;
+            }
+        }
     }
 
 }
