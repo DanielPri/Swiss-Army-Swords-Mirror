@@ -2,42 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManaBar : MonoBehaviour
-{
+public class HitpointBar : MonoBehaviour {
     [SerializeField]
-    int maxMana;
+    int maxHealth;
     int index;
 
     float nextTimer = 0.0F;
-    float timer = 2.0F;
+    float timer = 1.5F;
 
     SpriteRenderer[] barFilled; // Array of portions of the sword bar
 
     void Start() {
         barFilled = transform.Find("BarFilled").GetComponentsInChildren<SpriteRenderer>();
-        maxMana = barFilled.Length;
+        maxHealth = barFilled.Length;
         index = barFilled.Length - 1;
     }
 
     void Update() {
         if (Time.time > nextTimer) {
             nextTimer = Time.time + timer;
-            DecreaseMana(1); // Testing the mana bar
+            DecreaseHitpoint(1); // Testing the Hitpoint bar
         }
     }
 
-    public void IncreaseMana(int indexPosition) {
+    public void IncreaseHitpoint(int indexPosition) {
         for (int i = 0; i < indexPosition; i++) {
-            if (index < maxMana) { 
+            if (index < maxHealth) {
                 barFilled[index].enabled = true;
                 index++;
             }
         }
     }
 
-    public void DecreaseMana(int indexPosition) {
+    public void DecreaseHitpoint(int indexPosition) {
         for (int i = 0; i < indexPosition; i++) {
-            if (index >= 0) { 
+            if (index >= 0) {
                 barFilled[index].enabled = false;
                 index--;
             }
