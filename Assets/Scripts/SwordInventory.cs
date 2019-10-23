@@ -6,6 +6,18 @@ public class SwordInventory : MonoBehaviour
 {
     [SerializeField]
     GameObject InventoryPrefab = null;
+    [SerializeField]
+    GameObject RegularSwordPrefab = null;
+    [SerializeField]
+    GameObject FlameSwordPrefab = null;
+    [SerializeField]
+    GameObject IceSwordPrefab = null;
+    [SerializeField]
+    GameObject BrickSwordPrefab = null;
+    [SerializeField]
+    GameObject LightSwordPrefab = null;
+    [SerializeField]
+    GameObject GuitarSwordPrefab = null;
 
     public List<GameObject> inventoryList = new List<GameObject>(); // Keep track of the inventory
     int index; // Should be put in a state file to keep track of it
@@ -36,13 +48,33 @@ public class SwordInventory : MonoBehaviour
         Vector3 newPosition;
         if (inventoryList.Count == 0) { // Initialize
             newPosition = position;
+            ShowSword(inventoryList.Count, position);
         }
         else { // Add new
             float newPositionX = position.x + inventoryDistance * inventoryList.Count;
             newPosition = new Vector3(newPositionX, position.y, position.z);
+            ShowSword(inventoryList.Count, newPosition);
         }
         GameObject slot = Instantiate(InventoryPrefab, newPosition, Quaternion.identity) as GameObject;
         inventoryList.Add(slot);
+    }
+
+    private void ShowSword(int number, Vector3 pos) {
+        // We have to find the order of the swords we are getting
+        GameObject swordPrefab = null;
+        if (number == 0)
+            swordPrefab = RegularSwordPrefab;
+        if (number == 1) // Fire sword
+            swordPrefab = FlameSwordPrefab;
+        if (number == 2) // Brick Sword
+            swordPrefab = BrickSwordPrefab;
+        if (number == 3) // Ice sword
+            swordPrefab = IceSwordPrefab;
+        if (number == 4) // Light sword
+            swordPrefab = LightSwordPrefab;
+        if (number == 5) // Guitar sword
+            swordPrefab = GuitarSwordPrefab;
+        Instantiate(swordPrefab, pos, Quaternion.identity);
     }
 
     /* Controlling UI of the inventory */
@@ -51,9 +83,10 @@ public class SwordInventory : MonoBehaviour
             open = true;
             inventoryList[index].GetComponent<SpriteRenderer>().color = Color.red;
         }
-        if (Input.GetButtonUp("SwordTab") && open) { // Closing tab
+        if (Input.GetButtonUp("SwordTab") && open) { // Closing tab and green color to show sword equiped
             open = false;
-            inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+            Color color = new Color(0.368F, 0.96F, 0.13F);
+            inventoryList[index].GetComponent<SpriteRenderer>().color = color;
         }
         if (open && Input.GetButtonDown("SwordSelection")) {
             inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
