@@ -19,6 +19,10 @@ public class SwordInventory : MonoBehaviour
     [SerializeField]
     GameObject GuitarSwordPrefab = null;
 
+    AudioSource inventoryToggleSound;
+    AudioSource equipSound;
+    AudioSource selectSound;
+
     public List<GameObject> inventoryList = new List<GameObject>(); // Keep track of the inventory
     int index; // Should be put in a state file to keep track of it
     bool added = false; // For test
@@ -31,6 +35,11 @@ public class SwordInventory : MonoBehaviour
         AddSlot();
         index = 0;
         open = false;
+        // Audio
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        inventoryToggleSound = audioSources[0];
+        equipSound = audioSources[1];
+        selectSound = audioSources[2];
     }
 
     void Update() {
@@ -82,11 +91,13 @@ public class SwordInventory : MonoBehaviour
         if (Input.GetButtonDown("SwordTab") && !open) { // Opening Tab
             open = true;
             inventoryList[index].GetComponent<SpriteRenderer>().color = Color.red;
+            inventoryToggleSound.Play();
         }
         if (Input.GetButtonUp("SwordTab") && open) { // Closing tab and green color to show sword equiped
             open = false;
             Color color = new Color(0.368F, 0.96F, 0.13F);
             inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+            equipSound.Play();
         }
         if (open && Input.GetButtonDown("SwordSelection")) {
             inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
@@ -94,6 +105,7 @@ public class SwordInventory : MonoBehaviour
             if (index == inventoryList.Count)
                 index = 0;
             inventoryList[index].GetComponent<SpriteRenderer>().color = Color.red;
+            selectSound.Play();
         }
     }
 
