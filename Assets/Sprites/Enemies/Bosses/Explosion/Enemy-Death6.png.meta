@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 8cdd0528e186e4307b224fd381a03207
+guid: a7636ac782f137849b21d14b3bdbccef
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: mist-forest-background-tiles_0
-    21300002: mist-forest-background-tiles_1
-    21300004: mist-forest-background-tiles_2
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -43,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -85,71 +82,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: mist-forest-background-tiles_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a71c02c028ab40aabe1ceddf932f01e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mist-forest-background-tiles_1
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 16
-        width: 128
-        height: 37
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69c42c7ec87ec43fe8baab6737a652e7
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mist-forest-background-tiles_2
-      rect:
-        serializedVersion: 2
-        x: 195
-        y: 16
-        width: 90
-        height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f73d6d453ecb41399f487ba74316467
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: e98b36197fc17fc48b61006e0032c224
     vertices: []
     indices: 
     edges: []
