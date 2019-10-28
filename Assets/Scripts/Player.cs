@@ -8,29 +8,38 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpForce = 50;
 
     bool moving;
-    public bool grounded;
+    bool grounded;
     Rigidbody2D player;
     
     
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
+        ground = GameObject.Find("Ground");
         moving = false;
-        grounded = true;
+        grounded = false;
     }
 
     void Update()
     {
-        //PlayerGrounded();
         MovePlayer();
     }
 
-    /*private void PlayerGrounded()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        float radius = GetComponent<CapsuleCollider2D>().size.x * 0.9f;
-        Vector3 pos = transform.position + Vector3.up * (radius * 0.9f);
-        grounded = Physics.CheckSphere(pos, radius, 0);
-    }*/
+        if (col.tag == "Ground")
+        {
+            grounded = true;
+        }
+    }
+    
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Ground")
+        {
+            grounded = false;
+        }
+    }
 
     private void MovePlayer()
     {
