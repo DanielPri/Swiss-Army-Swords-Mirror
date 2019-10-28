@@ -1230,11 +1230,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227739346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.63, y: -2.25, z: 0}
+  m_LocalPosition: {x: -8.63, y: -2.32, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &284435979
 GameObject:
@@ -5229,6 +5229,12 @@ PrefabInstance:
       propertyPath: speed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114734099624031064, guid: 9546449501ec0b045b5415db9b706def,
+        type: 3}
+      propertyPath: PrefabProjectile
+      value: 
+      objectReference: {fileID: 1304778187103121423, guid: a276585c978a0af419b3cede62148447,
+        type: 3}
     - target: {fileID: 2555847598869820920, guid: 9546449501ec0b045b5415db9b706def,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5267,7 +5273,7 @@ PrefabInstance:
     - target: {fileID: 2555847598869820920, guid: 9546449501ec0b045b5415db9b706def,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2555847598869820920, guid: 9546449501ec0b045b5415db9b706def,
         type: 3}
@@ -6090,7 +6096,7 @@ Transform:
   m_LocalScale: {x: 131.82436, y: 13.322532, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2055539737
 BoxCollider2D:
