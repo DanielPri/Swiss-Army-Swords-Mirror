@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         moving = false;
         grounded = false;
     }
