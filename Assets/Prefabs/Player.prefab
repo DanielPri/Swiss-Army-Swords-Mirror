@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2110159222249153262}
   - component: {fileID: 2110159222249153259}
   - component: {fileID: 5320424679055043524}
+  - component: {fileID: 2004398545}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -117,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 3
   jumpForce: 300
-  grounded: 1
+  grounded: 0
 --- !u!70 &5320424679055043524
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +135,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.75, y: 1.1875}
   m_Direction: 0
+--- !u!58 &2004398545
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110159222249153263}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.6}
+  serializedVersion: 2
+  m_Radius: 0.35
