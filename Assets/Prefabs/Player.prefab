@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2110159222249153259}
   - component: {fileID: 5320424679055043524}
   - component: {fileID: 2004398545}
+  - component: {fileID: 2134897739894319513}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -118,7 +119,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 3
   jumpForce: 300
-  grounded: 0
 --- !u!70 &5320424679055043524
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -151,3 +151,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.6}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!95 &2134897739894319513
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110159222249153263}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aca19ad21a036e64aa39deb335e1a562, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

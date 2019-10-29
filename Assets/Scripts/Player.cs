@@ -7,8 +7,11 @@ public class Player : MonoBehaviour
     [SerializeField] float playerSpeed = 3;
     [SerializeField] float jumpForce = 50;
 
+    Animator animator;
+
     bool moving;
     bool grounded;
+    bool falling;
     Rigidbody2D player;
     
     
@@ -22,6 +25,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         MovePlayer();
+        CheckFalling();
+        // Update animator's variables
+        animator.SetBool("isMoving", moving);
+        animator.SetBool("isGrounded", grounded);
+        animator.SetBool("isFalling", falling);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -60,5 +68,10 @@ public class Player : MonoBehaviour
         {
             player.AddForce(Vector2.up * jumpForce);
         }
+    }
+
+    private void CheckFalling()
+    {
+        falling = player.velocity.y < 0.0f;
     }
 }
