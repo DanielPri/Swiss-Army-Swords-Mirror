@@ -45,8 +45,8 @@ public class Boss : Enemy {
             }
         } else {
             // Follow the player
-            Vector2 target = playerPosition.position;
-            transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            Vector2 target = playerPosition.position - transform.position;
+            transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
             FaceDirection(target);
         }
     }
@@ -63,7 +63,7 @@ public class Boss : Enemy {
             GameObject projectileObject = Instantiate(PrefabProjectile, transform.position, Quaternion.identity) as GameObject;
             Projectile projectile = projectileObject.GetComponent<Projectile>();
             projectile.SetDirection(GetFacingDirection());
-            Destroy(projectile, introDuration);
+            Destroy(projectileObject, projectileDuration);
         }
     }
 
@@ -103,9 +103,9 @@ public class Boss : Enemy {
         base.OnDestroy();
     }
 
-    void OnTriggerEnter2D(Collider2D collider) {
+    void OnCollisionEnter2D(Collision2D col) {
         // Will be used later once we have a player attacking the boss
-        if (collider.gameObject.name == "SwordSlash") {
+        if (col.collider.gameObject.name == "SwordSlash") {
             hitpointBar.DecreaseBossHitpoint(7);
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2555847598869820923}
   - component: {fileID: 2555847598869820922}
   - component: {fileID: 114734099624031064}
-  - component: {fileID: 58676178662789898}
+  - component: {fileID: 6441126134916193895}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -114,8 +114,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
---- !u!58 &58676178662789898
-CircleCollider2D:
+  PrefabBossIntro: {fileID: 0}
+  PrefabProjectile: {fileID: 0}
+--- !u!61 &6441126134916193895
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,9 +126,19 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02839613, y: 0.053128242}
+  m_Offset: {x: -0.011908054, y: -0.008244038}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.31, y: 0.44}
+    newSize: {x: 0.31, y: 0.44}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.13847542
+  m_Size: {x: 0.25320816, y: 0.40885592}
+  m_EdgeRadius: 0
