@@ -9,6 +9,7 @@ public class Boss : Enemy {
     GameObject PrefabProjectile = null;
 
     BossBar hitpointBar;
+    Rigidbody2D rigidbody;
     Transform playerPosition;
     Vector2 facingDirection;
 
@@ -24,9 +25,10 @@ public class Boss : Enemy {
     public override void Start() {
         base.Start();
         hitpointBar = GameObject.Find("BossLifeBar").GetComponent<BossBar>();
+        rigidbody = GetComponent<Rigidbody2D>();
+        playerPosition = GameObject.Find("Player").GetComponent<Transform>();
         transform.localScale = new Vector3(0, 0, 0); // Hide for the intro
         MorphAnimation();
-        playerPosition = GameObject.Find("PlayerTest").GetComponent<Transform>();
         isSpawned = true;
     }
 
@@ -47,7 +49,7 @@ public class Boss : Enemy {
             // Follow the player
             Vector2 target = playerPosition.position - transform.position;
             transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
-            FaceDirection(target);
+            FaceDirection(-playerPosition.right);
         }
     }
 
@@ -105,8 +107,8 @@ public class Boss : Enemy {
 
     void OnCollisionEnter2D(Collision2D col) {
         // Will be used later once we have a player attacking the boss
-        if (col.collider.gameObject.name == "SwordSlash") {
-            hitpointBar.DecreaseBossHitpoint(7);
+        if (col.collider.gameObject.name == "Player") {
+            rigidbody.velocity = Vector2.zero;
         }
     }
 }
