@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManaBar : MonoBehaviour
+public class BossBar : MonoBehaviour
 {
     [SerializeField]
-    int maxMana;
+    int maxBossHitpoint;
     int index;
 
     float nextTimer = 0.0F;
@@ -15,27 +15,23 @@ public class ManaBar : MonoBehaviour
 
     void Start() {
         barFilled = transform.Find("BarFilled").GetComponentsInChildren<SpriteRenderer>();
-        maxMana = barFilled.Length;
+        maxBossHitpoint = barFilled.Length;
         index = barFilled.Length - 1;
     }
 
     void Update() {
-        if (Time.time > nextTimer) {
-            nextTimer = Time.time + timer;
-            DecreaseMana(1); // Testing the mana bar
-        }
     }
 
-    public void IncreaseMana(int indexPosition) {
+    public void IncreaseBossHitpoint(int indexPosition) {
         for (int i = 0; i < indexPosition; i++) {
-            if (index < maxMana) { 
+            if (index < maxBossHitpoint) { 
                 barFilled[index].enabled = true;
                 index++;
             }
         }
     }
 
-    public void DecreaseMana(int indexPosition) {
+    public void DecreaseBossHitpoint(int indexPosition) {
         for (int i = 0; i < indexPosition; i++) {
             if (index >= 0) { 
                 barFilled[index].enabled = false;
