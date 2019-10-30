@@ -26,9 +26,9 @@ public class Player : MonoBehaviour
     {
         MovePlayer();
         CheckFalling();
-        playerAnimator.SetBool("moving", moving);
-        playerAnimator.SetBool("grounded", grounded);
-        playerAnimator.SetBool("falling", falling);
+        playerAnimator.SetBool("isMoving", moving);
+        playerAnimator.SetBool("isGrounded", grounded);
+        playerAnimator.SetBool("isFalling", falling);
     }
 
     void OnTriggerEnter2D(Collider2D col)
