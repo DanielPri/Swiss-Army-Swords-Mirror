@@ -113,5 +113,8 @@ public class Boss : Enemy {
         if (col.gameObject.name == "Regular Sword") {
             hitpointBar.DecreaseBossHitpoint(5);
         }
+        if (col.gameObject.name == "Player") {
+            // Have to make the boss stop moving here
+        }
     }
 }

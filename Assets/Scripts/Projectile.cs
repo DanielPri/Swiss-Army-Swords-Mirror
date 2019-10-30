@@ -19,4 +19,14 @@ public class Projectile : MonoBehaviour {
         Quaternion rotation3D = direction == Vector2.right ? Quaternion.LookRotation(Vector3.forward) : Quaternion.LookRotation(Vector3.back);
         sprite.rotation = rotation3D;
     }
+
+    void OnTriggerEnter2D(Collider2D col) {
+        // Will be used later once we have a player attacking the boss
+        HitpointBar playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
+        if (col.gameObject.name == "Player") {
+            playerHPBar.DecreaseHitpoint(5);
+            Destroy(gameObject);
+        }
+    }
+
 }
