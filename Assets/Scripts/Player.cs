@@ -4,33 +4,31 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float playerSpeed = 3;
-    [SerializeField] float jumpForce = 50;
-
-    Animator animator;
+    [SerializeField] float playerSpeed;
+    [SerializeField] float jumpForce;
 
     bool moving;
     bool grounded;
     bool falling;
     Rigidbody2D player;
-    
-    
+    Animator playerAnimator;
+
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
         moving = false;
         grounded = false;
+        falling = false;
     }
 
     void Update()
     {
         MovePlayer();
         CheckFalling();
-        // Update animator's variables
-        animator.SetBool("isMoving", moving);
-        animator.SetBool("isGrounded", grounded);
-        animator.SetBool("isFalling", falling);
+        playerAnimator.SetBool("moving", moving);
+        playerAnimator.SetBool("grounded", grounded);
+        playerAnimator.SetBool("falling", falling);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -40,7 +38,7 @@ public class Player : MonoBehaviour
             grounded = true;
         }
     }
-    
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.tag == "Ground")
@@ -55,13 +53,13 @@ public class Player : MonoBehaviour
         if (Input.GetButton("Left"))
         {
             transform.Translate(-Vector2.right * playerSpeed * Time.deltaTime);
-            GetComponent<SpriteRenderer>().flipX = true;
+            transform.localScale = new Vector2(-1, 1);
             moving = true;
         }
         if (Input.GetButton("Right"))
         {
             transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
-            GetComponent<SpriteRenderer>().flipX = false;
+            transform.localScale = new Vector2(1, 1);
             moving = true;
         }
 
