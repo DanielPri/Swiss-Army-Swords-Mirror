@@ -40,4 +40,8 @@ public class BossBar : MonoBehaviour
         }
     }
 
+    public int GetHP() {
+        return index;
+    }
+
 }

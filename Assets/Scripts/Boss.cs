@@ -36,6 +36,8 @@ public class Boss : Enemy {
         projectileFrequency = Random.Range(1, 7);
         HandleTimers();
         HandleProjectiles();
+        if (hitpointBar.GetHP() < 1)
+            Die();
     }
 
     private void HandleTimers() {
@@ -94,6 +96,7 @@ public class Boss : Enemy {
     public override void Die() {
         base.Die();
         MorphAnimation();
+        Destroy(gameObject);
         // Show some UI here maybe after a boss ?
     }
 
@@ -105,10 +108,10 @@ public class Boss : Enemy {
         base.OnDestroy();
     }
 
-    void OnCollisionEnter2D(Collision2D col) {
+    void OnTriggerEnter2D(Collider2D col) {
         // Will be used later once we have a player attacking the boss
-        if (col.collider.gameObject.name == "Player") {
-            rigidbody.velocity = Vector2.zero;
+        if (col.gameObject.name == "Regular Sword") {
+            hitpointBar.DecreaseBossHitpoint(5);
         }
     }
 }
