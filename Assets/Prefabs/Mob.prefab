@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  DieParticlePrefab: {fileID: 5652333090943574520, guid: e21a4a9877625f24d840d156cebe1ba7,
+    type: 3}
 --- !u!95 &6763962299271684526
 Animator:
   serializedVersion: 3

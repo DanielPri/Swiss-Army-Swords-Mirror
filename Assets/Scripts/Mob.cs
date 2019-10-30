@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mob : Enemy {
+    [SerializeField]
+    GameObject DieParticlePrefab = null;
+
     Rigidbody2D rigidbody;
     SpriteRenderer hurtColor;
 
@@ -46,7 +49,9 @@ public class Mob : Enemy {
     }
 
     public override void Die() {
+        GameObject particles = Instantiate(DieParticlePrefab, transform.position, Quaternion.identity) as GameObject;
         Destroy(gameObject);
+        Destroy(particles, 1.0F);
     }
 
     public override void SetSpeed(float number) {
