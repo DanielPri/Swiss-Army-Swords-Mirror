@@ -14,13 +14,22 @@ public class Sword : MonoBehaviour
     void Update()
     {
         Attack();
+        Ability();
     }
 
     private void Attack()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Fire1"))
         {
             swordAnimator.SetTrigger("attack");
+        }
+    }
+
+    private void Ability()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+            swordAnimator.SetTrigger("ability");
         }
     }
 }
