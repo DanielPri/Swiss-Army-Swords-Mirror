@@ -39,6 +39,17 @@ public class Player : MonoBehaviour
         {
             grounded = true;
         }
+        
+    }
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Lever")
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                col.GetComponent<LeverDoorController>().toggle();
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
