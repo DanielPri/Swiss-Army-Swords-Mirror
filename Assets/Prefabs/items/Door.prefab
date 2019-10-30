@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 430937262349414847}
   - component: {fileID: 3691850982011439881}
   - component: {fileID: 7375035601407649215}
+  - component: {fileID: 2145187367}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -117,7 +118,7 @@ Animator:
   m_GameObject: {fileID: 8094136747792536355}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b4ff5300ce8533f4bae38ab2efad794b, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -126,3 +127,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2145187367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8094136747792536355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33963e87b7be95e49a8ad732419204e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorClosed: 1
