@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d562fbe060ae52458167aba76150a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1.5
   PrefabBossIntro: {fileID: 3239902107653306859, guid: baa9d5c9856add949afb7a9dc44c997a,
     type: 3}
   PrefabProjectile: {fileID: 1304778187103121423, guid: a276585c978a0af419b3cede62148447,
