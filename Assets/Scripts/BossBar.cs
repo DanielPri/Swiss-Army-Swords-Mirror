@@ -6,6 +6,7 @@ public class BossBar : MonoBehaviour
 {
     [SerializeField]
     int maxBossHitpoint;
+    [SerializeField]
     int index;
 
     float nextTimer = 0.0F;
@@ -13,35 +14,53 @@ public class BossBar : MonoBehaviour
 
     SpriteRenderer[] barFilled; // Array of portions of the sword bar
 
-    void Start() {
+    void Start()
+    {
         barFilled = transform.Find("BarFilled").GetComponentsInChildren<SpriteRenderer>();
         maxBossHitpoint = barFilled.Length;
         index = barFilled.Length - 1;
     }
 
-    void Update() {
+    void Update()
+    {
+        DestroyHealthBar();
     }
 
-    public void IncreaseBossHitpoint(int indexPosition) {
-        for (int i = 0; i < indexPosition; i++) {
-            if (index < maxBossHitpoint) { 
+    public void IncreaseBossHitpoint(int indexPosition)
+    {
+        for (int i = 0; i < indexPosition; i++)
+        {
+            if (index < maxBossHitpoint)
+            { 
                 barFilled[index].enabled = true;
                 index++;
             }
         }
     }
 
-    public void DecreaseBossHitpoint(int indexPosition) {
-        for (int i = 0; i < indexPosition; i++) {
-            if (index >= 0) { 
+    public void DecreaseBossHitpoint(int indexPosition)
+    {
+        for (int i = 0; i < indexPosition; i++)
+        {
+            if (index >= 0)
+            { 
                 barFilled[index].enabled = false;
                 index--;
             }
         }
     }
 
-    public int GetHP() {
+    public int GetHP()
+    {
         return index;
+    }
+
+    private void DestroyHealthBar()
+    {
+        if (index < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
