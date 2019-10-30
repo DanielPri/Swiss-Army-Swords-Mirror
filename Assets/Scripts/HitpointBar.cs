@@ -19,10 +19,6 @@ public class HitpointBar : MonoBehaviour {
     }
 
     void Update() {
-        if (Time.time > nextTimer) {
-            nextTimer = Time.time + timer;
-            DecreaseHitpoint(1); // Testing the Hitpoint bar
-        }
     }
 
     public void IncreaseHitpoint(int indexPosition) {
