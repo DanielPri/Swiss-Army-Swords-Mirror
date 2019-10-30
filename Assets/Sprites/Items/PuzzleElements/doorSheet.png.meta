@@ -1,9 +1,13 @@
 fileFormatVersion: 2
-guid: 28520d52ebc3a4a78a0a42e618c1c22d
+guid: 1d564d055f9608b4bbfa3565d52a2638
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Trees_0
-    21300002: Trees_1
+    21300000: doorSheet_0
+    21300002: doorSheet_1
+    21300004: doorSheet_2
+    21300006: doorSheet_3
+    21300008: doorSheet_4
+    21300010: doorSheet_5
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -33,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -65,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -76,7 +80,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -86,41 +90,121 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Trees_0
+      name: doorSheet_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 0
-        width: 57
-        height: 77
+        x: 0
+        y: 32
+        width: 12
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b9da40c4f2e8407c9024120cf19bdcd
+      spriteID: 4564939657fecf442af0e01cd634ef31
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trees_1
+      name: doorSheet_1
       rect:
         serializedVersion: 2
-        x: 167
-        y: 0
-        width: 62
-        height: 108
+        x: 15
+        y: 32
+        width: 12
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 311639020d2664314a5a8bd8dfc52534
+      spriteID: 5772370f903c0f44093552ee680021c9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doorSheet_2
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 32
+        width: 12
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68fae1f673af5c845816767fbef67550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doorSheet_3
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 33
+        width: 12
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e70f88b39316bf042857b1f60aa55add
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doorSheet_4
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 33
+        width: 12
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d913fc5c7140f43468031e29c74f622b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doorSheet_5
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 33
+        width: 9
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c383fdc01bb3ea34bba06629c1ad328e
       vertices: []
       indices: 
       edges: []
@@ -128,7 +212,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 1a518385173348941ac5d89001ecedd0
     vertices: []
     indices: 
     edges: []
