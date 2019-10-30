@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float playerSpeed = 3;
-    [SerializeField] float jumpForce = 50;
+    [SerializeField] float playerSpeed;
+    [SerializeField] float jumpForce;
 
-    bool moving;
-    bool grounded;
+    public bool moving;
+    public bool grounded;
     Rigidbody2D player;
-    
+    Animator playerAnimator;
     
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
         moving = false;
         grounded = false;
     }
@@ -22,6 +23,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         MovePlayer();
+        playerAnimator.SetBool("moving", moving);
+        playerAnimator.SetBool("grounded", grounded);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -46,13 +49,13 @@ public class Player : MonoBehaviour
         if (Input.GetButton("Left"))
         {
             transform.Translate(-Vector2.right * playerSpeed * Time.deltaTime);
-            GetComponent<SpriteRenderer>().flipX = true;
+            transform.localScale = new Vector2(-1, 1);
             moving = true;
         }
         if (Input.GetButton("Right"))
         {
             transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
-            GetComponent<SpriteRenderer>().flipX = false;
+            transform.localScale = new Vector2(1, 1);
             moving = true;
         }
 
