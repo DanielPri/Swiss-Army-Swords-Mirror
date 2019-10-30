@@ -9,6 +9,7 @@ public class Boss : Enemy {
     GameObject PrefabProjectile = null;
 
     BossBar hitpointBar;
+    HitpointBar playerHPBar;
     Rigidbody2D rigidbody;
     Transform playerPosition;
     Vector2 facingDirection;
@@ -24,6 +25,7 @@ public class Boss : Enemy {
 
     public override void Start() {
         base.Start();
+        playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
         hitpointBar = GameObject.Find("BossLifeBar").GetComponent<BossBar>();
         rigidbody = GetComponent<Rigidbody2D>();
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
@@ -114,6 +116,7 @@ public class Boss : Enemy {
             hitpointBar.DecreaseBossHitpoint(5);
         }
         if (col.gameObject.name == "Player") {
+            rigidbody.velocity = Vector2.zero;
             // Have to make the boss stop moving here
         }
     }
