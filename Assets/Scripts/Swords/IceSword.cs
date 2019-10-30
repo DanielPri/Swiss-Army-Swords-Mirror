@@ -19,7 +19,7 @@ public class IceSword : Sword
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if (collision.tag == "Enemy" && IsAttacking) // Maybe check HP of monsters...
+        if (collision.tag == "Enemy") // Maybe check HP of monsters... gotta check it's attacking too.
         {
             Vector3 currentPos = collision.gameObject.transform.position;
             Destroy(collision.gameObject);

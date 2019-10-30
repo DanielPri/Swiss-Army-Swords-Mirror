@@ -34,11 +34,6 @@ public class Sword : MonoBehaviour
             SecondaryAttack();
         }
 
-        // Check if animator is playing.
-        if (!swordAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack"))
-        { 
-            IsAttacking = false;
-        }
     }
 
     public virtual void PrimaryAttack()
