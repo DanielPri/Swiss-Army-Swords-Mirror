@@ -14,6 +14,12 @@ public class Boss : Enemy {
     Transform playerPosition;
     Vector2 facingDirection;
 
+    SpriteRenderer hurtColor;
+
+    bool isHurt;
+    float hurtTimer = 0.0F;
+    float hurtDuration = 2.0F;
+
     float projectileDuration = 3.0F;
     float projectileSpeed = 2.0F;
 
@@ -27,6 +33,7 @@ public class Boss : Enemy {
         base.Start();
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
         hitpointBar = GameObject.Find("BossLifeBar").GetComponent<BossBar>();
+        hurtColor = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
         transform.localScale = new Vector3(0, 0, 0); // Hide for the intro
@@ -54,6 +61,14 @@ public class Boss : Enemy {
             Vector2 target = playerPosition.position - transform.position;
             transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
             FaceDirection(-playerPosition.right);
+        }
+        if (isHurt) {
+            hurtTimer += Time.deltaTime;
+            if (hurtTimer >= hurtDuration) {
+                isHurt = false;
+                hurtTimer = 0.0f;
+            }
+            Hurt();
         }
     }
 
@@ -95,6 +110,12 @@ public class Boss : Enemy {
         return facingDirection;
     }
 
+    public void Hurt() {
+        Color firstColor = new Color(1F, 0F, 0F, 0.7F);
+        Color secondColor = new Color(1F, 1F, 1F, 1F);
+        hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
+    }
+
     public override void Die() {
         base.Die();
         MorphAnimation();
@@ -113,6 +134,7 @@ public class Boss : Enemy {
     void OnTriggerEnter2D(Collider2D col) {
         // Will be used later once we have a player attacking the boss
         if (col.gameObject.name == "Regular Sword") {
+            isHurt = true;
             hitpointBar.DecreaseBossHitpoint(5);
         }
         if (col.gameObject.name == "Player") {
