@@ -21,10 +21,16 @@ public class Sword : MonoBehaviour
     {
         swordAnimator = GetComponent<Animator>();
     }
-    
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        Attack();
+        Ability();
+    }
+
+    private void Attack()
+    {
+        if (Input.GetButtonDown("Fire1"))
         {
             PrimaryAttack();
         }
@@ -42,12 +48,11 @@ public class Sword : MonoBehaviour
         swordAnimator.SetTrigger("attack");
     }
 
-    public virtual void SecondaryAttack()
-    { }
-
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+    private void Ability()
     {
-        
+        if (Input.GetButtonDown("Fire2"))
+        {
+            swordAnimator.SetTrigger("ability");
+        }
     }
-
 }
