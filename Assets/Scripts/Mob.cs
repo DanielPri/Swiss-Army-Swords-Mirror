@@ -14,11 +14,15 @@ public class Mob : Enemy {
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
 
+    AudioSource hitSound;
+
     public override void Start() {
         base.Start();
         rigidbody = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
         movingRight = true;
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        hitSound = audioSources[0];
     }
 
     public override void Update() {
@@ -76,6 +80,7 @@ public class Mob : Enemy {
             // attacked even if the sword is not moving on the player (will do it later once Sword.cs is not
             // being edited by someone else
             isHurt = true;
+            hitSound.Play();
             easyMobHP--;
         }
     }

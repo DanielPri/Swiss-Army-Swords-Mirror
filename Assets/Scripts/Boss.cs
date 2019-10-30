@@ -29,6 +29,9 @@ public class Boss : Enemy {
     float nextProjectileSpawn = 0.0F;
     bool isSpawned;
 
+    AudioSource projectileSound;
+    AudioSource morphSound;
+
     public override void Start() {
         base.Start();
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
@@ -37,8 +40,11 @@ public class Boss : Enemy {
         rigidbody = GetComponent<Rigidbody2D>();
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
         transform.localScale = new Vector3(0, 0, 0); // Hide for the intro
-        MorphAnimation();
         isSpawned = true;
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        projectileSound = audioSources[0];
+        morphSound = audioSources[1];
+        MorphAnimation();
     }
 
     public override void Update() {
@@ -84,12 +90,14 @@ public class Boss : Enemy {
             GameObject projectileObject = Instantiate(PrefabProjectile, transform.position, Quaternion.identity) as GameObject;
             Projectile projectile = projectileObject.GetComponent<Projectile>();
             projectile.SetDirection(GetFacingDirection());
+            projectileSound.Play();
             Destroy(projectileObject, projectileDuration);
         }
     }
 
     private void MorphAnimation() {
         GameObject morph = Instantiate(PrefabBossIntro, transform.position, Quaternion.identity) as GameObject;
+        morphSound.Play();
         Destroy(morph, introDuration);
     }
 
