@@ -6,28 +6,32 @@ public class Door : MonoBehaviour
 {
     [SerializeField] bool doorClosed = true;
     Collider2D doorCollider;
+    Animator animator;
     void Start() {
+        animator = GetComponent<Animator>();
         doorCollider = GetComponent<Collider2D>();
-        colliderChange();
+        changeDoorPhysics();
     }
+
+
+
     public void toggle() {
 
         doorClosed = !doorClosed;
-
-        //animateDoor
-        colliderChange();
-
-
+        changeDoorPhysics();
     }
 
-    void colliderChange() {
+    void changeDoorPhysics() {
         if (doorClosed)
         {
             doorCollider.enabled = true;
+            animator.SetBool("doorClosed", true);
         }
         else
         {
             doorCollider.enabled = false;
+            animator.SetBool("doorClosed", false);
         }
     }
+
 }
