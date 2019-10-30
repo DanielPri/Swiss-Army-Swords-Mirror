@@ -67,6 +67,9 @@ public class Mob : Enemy {
             // Hurt anim + sound also
         }
         if (col.gameObject.name == "Regular Sword" && easyMobHP != 0) {
+            // Not complete: we have to check if the sword is animated as well here otherwise the mob gets
+            // attacked even if the sword is not moving on the player (will do it later once Sword.cs is not
+            // being edited by someone else
             isHurt = true;
             easyMobHP--;
         }
