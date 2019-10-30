@@ -3,15 +3,27 @@ using System.Collections;
 
 public class IceSword : Sword
 {
-    // Use this for initialization
-    void Start()
-    {
+    public GameObject iceCubePrefab;
 
+    public override void Start()
+    {
+        base.Start();
+        base.swordType = SwordType.ICE;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void PrimaryAttack()
     {
+        base.PrimaryAttack();
+    }
 
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+
+        if (collision.tag.Equals("Enemy") && IsAttacking) // Maybe check HP of monsters...
+        {
+            Destroy(collision.gameObject);
+            Instantiate(iceCubePrefab);
+        }
     }
 }
