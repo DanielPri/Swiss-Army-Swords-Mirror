@@ -6,12 +6,12 @@ public class Sword : MonoBehaviour
 {
     Animator swordAnimator;
     SwordType _swordType;
-    bool isAttacking;
+
+    public bool isAttacking;
 
     public enum SwordType
     {
-        REGULAR,
-        ICE
+        REGULAR, ICE, BRICK
     }
 
     public SwordType swordType { get { return _swordType; } set { _swordType = value; } }
@@ -28,8 +28,15 @@ public class Sword : MonoBehaviour
         {
             PrimaryAttack();
         }
-        else
+
+        if (Input.GetMouseButtonDown(1))
         {
+            SecondaryAttack();
+        }
+
+        // Check if animator is playing.
+        if (!swordAnimator.GetCurrentAnimatorStateInfo(0).IsName("attack"))
+        { 
             IsAttacking = false;
         }
     }
@@ -39,6 +46,9 @@ public class Sword : MonoBehaviour
         IsAttacking = true;
         swordAnimator.SetTrigger("attack");
     }
+
+    public virtual void SecondaryAttack()
+    { }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {

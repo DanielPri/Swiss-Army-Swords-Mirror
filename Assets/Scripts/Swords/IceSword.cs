@@ -19,11 +19,11 @@ public class IceSword : Sword
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-
-        if (collision.tag.Equals("Enemy") && IsAttacking) // Maybe check HP of monsters...
+        if (collision.tag == "Enemy" && IsAttacking) // Maybe check HP of monsters...
         {
+            Vector3 currentPos = collision.gameObject.transform.position;
             Destroy(collision.gameObject);
-            Instantiate(iceCubePrefab);
+            Instantiate(iceCubePrefab, currentPos, Quaternion.identity);
         }
     }
 }
