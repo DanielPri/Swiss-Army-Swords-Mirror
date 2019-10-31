@@ -108,13 +108,13 @@ public class Boss : Enemy {
         // Opposite to the player
         if (transform.position.x < playerPosition.x)
         {
-            Vector3 newScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            Vector2 newScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
             transform.localScale = newScale;
             facingDirection = transform.right;
         }
         else
         {
-            Vector3 newScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            Vector2 newScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
             transform.localScale = newScale;
             facingDirection = -transform.right;
         }
@@ -157,8 +157,19 @@ public class Boss : Enemy {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Collide");
+        if (col.gameObject.name == "Player")
+        {
+            if (col.gameObject.transform.position.y >= transform.position.y)
+            {
+                rigidbody.velocity = Vector2.zero;
+                Vector2 forceDirection = new Vector2(facingDirection.x, 1.0f) * 3.5f;
+                Rigidbody2D playerRigidBody = col.gameObject.GetComponent<Rigidbody2D>();
+                playerRigidBody.velocity = Vector2.zero;
+                playerRigidBody.AddForce(forceDirection, ForceMode2D.Impulse);
+            }
+        }
     }
+
 }
