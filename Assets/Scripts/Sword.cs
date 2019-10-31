@@ -30,12 +30,6 @@ public class Sword : MonoBehaviour
 
     void Update()
     {
-        Attack();
-        Ability();
-    }
-
-    public virtual void Attack()
-    {
         if (Input.GetButtonDown("Fire1") && damaging == false)
         {
             damaging = true;
@@ -52,14 +46,21 @@ public class Sword : MonoBehaviour
                 damaging = false;
             }
         }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            swordAnimator.SetTrigger("ability");
+            Ability();
+        }
+    }
+
+    public virtual void Attack()
+    {
     }
 
     public virtual void Ability()
     {
-        if (Input.GetButtonDown("Fire2"))
-        {
-            swordAnimator.SetTrigger("ability");
-        }
+
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
