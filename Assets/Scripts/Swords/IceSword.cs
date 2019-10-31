@@ -21,7 +21,7 @@ public class IceSword : Sword
         base.OnTriggerEnter2D(collision);
         if (collision.tag == "Enemy") // Maybe check HP of monsters... gotta check it's attacking too.
         {
-           Mob mob = collision.gameObject.GetComponent<Mob>();
+            Mob mob = collision.gameObject.GetComponent<Mob>();
             mob.isFrozen = true;
             if (mob.easyMobHP == 0)
             {
