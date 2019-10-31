@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -28,11 +29,18 @@ public class Player : MonoBehaviour
         falling = false;
     }
 
+    public void ChangeToBossScene() {
+        if (Input.GetButtonDown("ToBoss")) {
+            SceneManager.LoadScene("PlayerBossInteraction");
+        }
+    }
+
     void Update()
     {
         MovePlayer();
         CheckFalling();
         SwitchSwords();
+        ChangeToBossScene();
         playerAnimator.SetBool("isMoving", moving);
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
