@@ -11,7 +11,8 @@ public class Mob : Enemy {
     Rigidbody2D rigidbody;
     SpriteRenderer hurtColor;
 
-    int easyMobHP = 2;
+    public int easyMobHP = 2;
+    public bool isFrozen;
     bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
@@ -36,7 +37,7 @@ public class Mob : Enemy {
         else
             transform.Translate(-Vector2.right * speed * Time.deltaTime);
         HandleTimers();
-        if (easyMobHP == 0)
+        if (easyMobHP == 0 && !isFrozen)
             Die();
     }
 
