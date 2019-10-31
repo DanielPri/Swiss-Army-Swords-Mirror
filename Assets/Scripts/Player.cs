@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
 
+    bool pickingUpSword;
     bool moving;
     bool grounded;
     bool falling;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isMoving", moving);
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
+        playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -39,7 +41,25 @@ public class Player : MonoBehaviour
         {
             grounded = true;
         }
-        
+        if (col.gameObject.name.Contains("SwordDrop") && !pickingUpSword)
+        {
+            // Hide the player's held sword
+            SpriteRenderer heldSwordSR = new SpriteRenderer();
+            SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
+            // GetComponentsInChildren includes the parent object, so if the parent object exists
+            // Then we've found a proper child component i.e. the held sword
+            foreach (SpriteRenderer sr in srs)
+                if (sr.gameObject.transform.parent != null)
+                    heldSwordSR = sr;
+            if (heldSwordSR != null)
+                heldSwordSR.enabled = false; // Hide it
+            pickingUpSword = true;
+            moving = false;
+            col.gameObject.transform.localPosition = new Vector2(transform.position.x, transform.position.y + 1);
+            col.gameObject.GetComponentInChildren<Animator>().enabled = false;
+            StartCoroutine(WaitAndPickup(col.gameObject, heldSwordSR));
+        }
+
     }
     void OnTriggerStay2D(Collider2D col)
     {
@@ -60,27 +80,56 @@ public class Player : MonoBehaviour
         }
     }
 
+    private IEnumerator WaitAndPickup(GameObject swordGO, SpriteRenderer heldSwordSR)
+    {
+        // Will force a wait before the player can continue playing
+        // Mainly so there's a pick-up animation that's held for 2 seconds
+        // before the sword is added to the inventory and they can continue
+        yield return StartCoroutine(HandleSwordPickup(swordGO, heldSwordSR));
+    }
+
+    private IEnumerator HandleSwordPickup(GameObject swordGO, SpriteRenderer heldSwordSR)
+    {
+        yield return new WaitForSeconds(2.0f); // Will hold the pose for 2 seconds.
+
+        // After this timer, add the new sword to the inventory
+        SwordInventory si = GameObject.FindObjectOfType<SwordInventory>();
+        if (si != null)
+        {
+            si.AddSlot(SwordId(swordGO));
+            Destroy(swordGO);
+        }
+        // Stop the animation and make the player's original sword reappear in their hand
+        if (heldSwordSR != null)
+            heldSwordSR.enabled = true;
+        pickingUpSword = false;
+    }
+
     private void MovePlayer()
     {
         moving = false;
-        if (Input.GetButton("Left"))
+        if (!pickingUpSword)
         {
-            transform.Translate(-Vector2.right * playerSpeed * Time.deltaTime);
-            transform.localScale = new Vector2(-1, 1);
-            facingDirection = -transform.right;
-            moving = true;
-        }
-        if (Input.GetButton("Right"))
-        {
-            transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
-            transform.localScale = new Vector2(1, 1);
-            facingDirection = transform.right;
-            moving = true;
-        }
+            if (Input.GetButton("Left"))
+            {
+                transform.Translate(-Vector2.right * playerSpeed * Time.deltaTime);
+                transform.localScale = new Vector2(-1, 1);
+                facingDirection = -transform.right;
+                moving = true;
+            }
+            if (Input.GetButton("Right"))
+            {
+                transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
+                transform.localScale = new Vector2(1, 1);
+                facingDirection = transform.right;
+                moving = true;
+            }
 
-        if (grounded && Input.GetButtonDown("Jump"))
-        {
-            player.AddForce(Vector2.up * jumpForce);
+            if (grounded && Input.GetButtonDown("Jump"))
+            {
+                player.AddForce(Vector2.up * jumpForce);
+            }
+
         }
     }
 
@@ -92,5 +141,21 @@ public class Player : MonoBehaviour
     public Vector2 GetFacingDirection()
     {
         return facingDirection;
+    }
+
+    private int SwordId(GameObject sword)
+    {
+        string name = sword.name;
+        if (name.Contains("Flame"))
+            return 1;
+        if (name.Contains("Brick"))
+            return 2;
+        if (name.Contains("Ice"))
+            return 3;
+        if (name.Contains("Light"))
+            return 4;
+        if (name.Contains("Guitar"))
+            return 5;
+        return 0;
     }
 }
