@@ -29,7 +29,6 @@ public class Boss : Enemy {
     float projectileFrequency = 0.0F;
     float nextProjectileSpawn = 0.0F;
     bool isSpawned;
-    bool hittingPlayer = false;
 
     AudioSource projectileSound;
     AudioSource morphSound;
@@ -67,13 +66,10 @@ public class Boss : Enemy {
             }
         } else {
             // Follow the player
-            if (!hittingPlayer)
-            {
-                Vector2 target = playerPosition.position - transform.position;
-                transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
-                playerGO = GameObject.Find("Player").GetComponent<Player>();
-                FaceDirection(playerGO.transform.position);
-            }
+            Vector2 target = playerPosition.position - transform.position;
+            transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
+            playerGO = GameObject.Find("Player").GetComponent<Player>();
+            FaceDirection(playerGO.transform.position);
         }
         if (isHurt) {
             hurtTimer += Time.deltaTime;
