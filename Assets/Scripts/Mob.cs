@@ -6,10 +6,13 @@ public class Mob : Enemy {
     [SerializeField]
     GameObject DieParticlePrefab = null;
 
+    HitpointBar playerHPBar;
+    Sword sword;
     Rigidbody2D rigidbody;
     SpriteRenderer hurtColor;
 
     int easyMobHP = 2;
+    bool move;
     bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
@@ -18,18 +21,24 @@ public class Mob : Enemy {
 
     public override void Start() {
         base.Start();
+        playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
+        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         rigidbody = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
+        move = true;
         movingRight = true;
         AudioSource[] audioSources = GetComponents<AudioSource>();
         hitSound = audioSources[0];
     }
 
     public override void Update() {
-        if (movingRight)
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-        else
-            transform.Translate(-Vector2.right * speed * Time.deltaTime);
+        if(move)
+        {
+            if (movingRight)
+                transform.Translate(Vector2.right * speed * Time.deltaTime);
+            else
+                transform.Translate(-Vector2.right * speed * Time.deltaTime);
+        }
         HandleTimers();
         if (easyMobHP == 0)
             Die();
@@ -71,17 +80,27 @@ public class Mob : Enemy {
             GetComponent<SpriteRenderer>().flipX = movingRight;
             movingRight = !movingRight;
         }
-        if (col.tag == "Player") {
-            // Will decrease the HP bar of player once it is on the same scene
-            // Hurt anim + sound also
-        }
-        if (col.gameObject.name == "Regular Sword" && easyMobHP != 0) {
-            // Not complete: we have to check if the sword is animated as well here otherwise the mob gets
-            // attacked even if the sword is not moving on the player (will do it later once Sword.cs is not
-            // being edited by someone else
+        if (col.tag == "Sword" && easyMobHP != 0 && sword.attacking) {
             isHurt = true;
             hitSound.Play();
             easyMobHP--;
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            // playerHPBar.DecreaseHitpoint(1);
+            move = false;
+        }
+
+    }
+    public void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            move = true;
         }
     }
 }

@@ -12,12 +12,14 @@ public class Boss : Enemy {
     HitpointBar playerHPBar;
     Rigidbody2D rigidbody;
     Player playerGO;
+    Sword sword;
     Transform playerPosition;
     Vector2 facingDirection;
 
     SpriteRenderer hurtColor;
 
     bool isHurt;
+    public bool move;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
 
@@ -41,8 +43,10 @@ public class Boss : Enemy {
         rigidbody = GetComponent<Rigidbody2D>();
         playerGO = GameObject.Find("Player").GetComponent<Player>();
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
+        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         transform.localScale = new Vector3(0, 0, 0); // Hide for the intro
         isSpawned = true;
+        move = true;
         AudioSource[] audioSources = GetComponents<AudioSource>();
         projectileSound = audioSources[0];
         morphSound = audioSources[1];
@@ -58,18 +62,24 @@ public class Boss : Enemy {
     }
 
     private void HandleTimers() {
-        if (isSpawned) {
+        if (isSpawned)
+        {
             spawnedTimer += Time.deltaTime;
-            if (spawnedTimer > introDuration) {
+            if (spawnedTimer > introDuration)
+            {
                 isSpawned = false;
                 transform.localScale = new Vector3(7, 7, 7); // Spawn after the intro
             }
-        } else {
-            // Follow the player
-            Vector2 target = playerPosition.position - transform.position;
-            transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
-            playerGO = GameObject.Find("Player").GetComponent<Player>();
-            FaceDirection(playerGO.transform.position);
+        }
+        else {
+            if(move)
+            {
+                // Follow the player
+                Vector2 target = playerPosition.position - transform.position;
+                transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
+                playerGO = GameObject.Find("Player").GetComponent<Player>();
+                FaceDirection(playerGO.transform.position);
+            }
         }
         if (isHurt) {
             hurtTimer += Time.deltaTime;
@@ -132,6 +142,7 @@ public class Boss : Enemy {
 
     public override void Die() {
         base.Die();
+        hitpointBar.index = -1;
         MorphAnimation();
         Destroy(gameObject);
         // Show some UI here maybe after a boss ?
@@ -146,19 +157,17 @@ public class Boss : Enemy {
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        // Will be used later once we have a player attacking the boss
-        if (col.gameObject.name == "Regular Sword") {
+        if (col.tag == "Sword" && sword.attacking)
+        {
             isHurt = true;
             hitpointBar.DecreaseBossHitpoint(5);
-        }
-        if (col.gameObject.name == "Player") {
-            rigidbody.velocity = Vector2.zero;
-            // Have to make the boss stop moving here
         }
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+        // playerHPBar.DecreaseHitpoint(1);
+        move = false;
         if (col.gameObject.name == "Player")
         {
             if (col.gameObject.transform.position.y >= transform.position.y)
@@ -169,7 +178,12 @@ public class Boss : Enemy {
                 playerRigidBody.velocity = Vector2.zero;
                 playerRigidBody.AddForce(forceDirection, ForceMode2D.Impulse);
             }
-        }
+    }
+    public void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.name == "Player")
+        {
+            move = true;      }
     }
 
 }

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    float attackDelay;
     Animator swordAnimator;
     SwordType _swordType;
 
-    public bool isAttacking;
+    public bool attacking;
 
     public enum SwordType
     {
@@ -15,10 +16,11 @@ public class Sword : MonoBehaviour
     }
 
     public SwordType swordType { get { return _swordType; } set { _swordType = value; } }
-    public bool IsAttacking { get { return isAttacking; } set { isAttacking = value; } }
 
     public virtual void Start()
     {
+        attackDelay = 0.33f;
+        attacking = false;
         swordAnimator = GetComponent<Animator>();
     }
 
@@ -28,31 +30,36 @@ public class Sword : MonoBehaviour
         Ability();
     }
 
-    private void Attack()
+    public virtual void Attack()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && attacking == false)
         {
-            PrimaryAttack();
+            attacking = true;
+            swordAnimator.SetTrigger("attack");
+            attackDelay = 0.33f;
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (attacking)
         {
-            SecondaryAttack();
+            attackDelay -= Time.deltaTime;
+
+            if (attackDelay <= 0f)
+            {
+                attacking = false;
+            }
         }
-
     }
 
-    public virtual void PrimaryAttack()
-    {
-        IsAttacking = true;
-        swordAnimator.SetTrigger("attack");
-    }
-
-    private void Ability()
+    public virtual void Ability()
     {
         if (Input.GetButtonDown("Fire2"))
         {
             swordAnimator.SetTrigger("ability");
         }
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+
     }
 }

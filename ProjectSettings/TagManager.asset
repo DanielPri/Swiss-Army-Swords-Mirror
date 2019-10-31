@@ -9,6 +9,7 @@ TagManager:
   - EnemyZone
   - Lever
   - Enemy
+  - Sword
   layers:
   - Default
   - TransparentFX
