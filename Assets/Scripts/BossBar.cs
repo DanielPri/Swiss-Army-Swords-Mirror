@@ -7,7 +7,7 @@ public class BossBar : MonoBehaviour
     [SerializeField]
     int maxBossHitpoint;
     [SerializeField]
-    int index;
+    public int index;
 
     float nextTimer = 0.0F;
     float timer = 2.0F;
