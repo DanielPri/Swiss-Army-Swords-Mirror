@@ -113,7 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e4a121149a2c48e69e8537432c66e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAttacking: 0
+  damageDealt: 1
+  damaging: 0
   iceCubePrefab: {fileID: 6506788799937779940, guid: 98f8b70b2393d4c51914dbd61fa0677e,
     type: 3}
 --- !u!61 &-6223484279944677788
@@ -126,7 +127,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.34296632, y: 0.09386501}

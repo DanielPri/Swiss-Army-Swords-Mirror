@@ -43,7 +43,6 @@ public class Boss : Enemy {
         playerRigidBody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         playerGO = GameObject.Find("Player").GetComponent<Player>();
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
-        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         transform.localScale = new Vector3(0, 0, 0); // Hide for the intro
         isSpawned = true;
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -52,7 +51,9 @@ public class Boss : Enemy {
         MorphAnimation();
     }
 
-    public override void Update() {
+    public override void Update()
+    {
+        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         projectileFrequency = Random.Range(1, 7);
         HandleTimers();
         HandleProjectiles();

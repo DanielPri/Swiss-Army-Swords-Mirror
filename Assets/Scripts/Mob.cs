@@ -21,7 +21,6 @@ public class Mob : Enemy {
     public override void Start() {
         base.Start();
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
-        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         rigidbody = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
         movingRight = true;
@@ -29,7 +28,9 @@ public class Mob : Enemy {
         hitSound = audioSources[0];
     }
 
-    public override void Update() {
+    public override void Update()
+    {
+        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         if (movingRight)
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         else
