@@ -32,7 +32,7 @@ public class SwordInventory : MonoBehaviour
     float inventoryDistance = 1.7F;
 
     void Start() {
-        AddSlot();
+        AddSlot(0);
         index = 0;
         open = false;
         // Audio
@@ -43,17 +43,12 @@ public class SwordInventory : MonoBehaviour
     }
 
     void Update() {
-        if (Time.time > 1 && !added) {
-            AddSlot();
-            AddSlot();
-            added = true;
-        }
         ControlInventory();
         EquipWeapon();
     }
 
     /* Handles the addition of inventory once new sword obtained */
-    public void AddSlot() {
+    public void AddSlot(int swordNumber) {
         Vector3 newPosition;
         if (inventoryList.Count == 0) { // Initialize
             newPosition = position;
@@ -62,7 +57,7 @@ public class SwordInventory : MonoBehaviour
         else { // Add new
             float newPositionX = position.x + inventoryDistance * inventoryList.Count;
             newPosition = new Vector3(newPositionX, position.y, position.z);
-            ShowSword(inventoryList.Count, newPosition);
+            ShowSword(swordNumber, newPosition);
         }
         GameObject slot = Instantiate(InventoryPrefab, newPosition, Quaternion.identity) as GameObject;
         inventoryList.Add(slot);
