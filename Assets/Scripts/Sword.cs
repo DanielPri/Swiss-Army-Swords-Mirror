@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    float attackDelay;
+    [SerializeField] int damageDealt = 1;
+    // How quickly enemy takes damage
+    float damageDelay;
     Animator swordAnimator;
     SwordType _swordType;
 
-    public bool attacking;
+    public bool damaging;
 
     public enum SwordType
     {
@@ -19,8 +21,8 @@ public class Sword : MonoBehaviour
 
     public virtual void Start()
     {
-        attackDelay = 0.33f;
-        attacking = false;
+        damageDelay = 0.02f * damageDealt;
+        damaging = false;
         swordAnimator = GetComponent<Animator>();
     }
 
@@ -32,20 +34,20 @@ public class Sword : MonoBehaviour
 
     public virtual void Attack()
     {
-        if (Input.GetButtonDown("Fire1") && attacking == false)
+        if (Input.GetButtonDown("Fire1") && damaging == false)
         {
-            attacking = true;
+            damaging = true;
             swordAnimator.SetTrigger("attack");
-            attackDelay = 0.33f;
+            damageDelay = 0.02f * damageDealt;
         }
 
-        if (attacking)
+        if (damaging)
         {
-            attackDelay -= Time.deltaTime;
+            damageDelay -= Time.deltaTime;
 
-            if (attackDelay <= 0f)
+            if (damageDelay <= 0f)
             {
-                attacking = false;
+                damaging = false;
             }
         }
     }

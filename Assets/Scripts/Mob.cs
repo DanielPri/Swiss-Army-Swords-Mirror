@@ -12,7 +12,6 @@ public class Mob : Enemy {
     SpriteRenderer hurtColor;
 
     int easyMobHP = 2;
-    bool move;
     bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
@@ -25,20 +24,16 @@ public class Mob : Enemy {
         sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         rigidbody = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
-        move = true;
         movingRight = true;
         AudioSource[] audioSources = GetComponents<AudioSource>();
         hitSound = audioSources[0];
     }
 
     public override void Update() {
-        if(move)
-        {
-            if (movingRight)
-                transform.Translate(Vector2.right * speed * Time.deltaTime);
-            else
-                transform.Translate(-Vector2.right * speed * Time.deltaTime);
-        }
+        if (movingRight)
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+        else
+            transform.Translate(-Vector2.right * speed * Time.deltaTime);
         HandleTimers();
         if (easyMobHP == 0)
             Die();
@@ -80,7 +75,17 @@ public class Mob : Enemy {
             GetComponent<SpriteRenderer>().flipX = movingRight;
             movingRight = !movingRight;
         }
-        if (col.tag == "Sword" && easyMobHP != 0 && sword.attacking) {
+        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging) {
+            isHurt = true;
+            hitSound.Play();
+            easyMobHP--;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging)
+        {
             isHurt = true;
             hitSound.Play();
             easyMobHP--;
@@ -91,8 +96,8 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            // playerHPBar.DecreaseHitpoint(1);
-            move = false;
+            playerHPBar.DecreaseHitpoint(1);
+            rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
     }
@@ -100,7 +105,7 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            move = true;
+            rigidbody.constraints = RigidbodyConstraints2D.None;
         }
     }
 }
