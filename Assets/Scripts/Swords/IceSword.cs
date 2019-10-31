@@ -11,9 +11,9 @@ public class IceSword : Sword
         base.swordType = SwordType.ICE;
     }
 
-    public override void PrimaryAttack()
+    public override void Attack()
     {
-        base.PrimaryAttack();
+        base.Attack();
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)

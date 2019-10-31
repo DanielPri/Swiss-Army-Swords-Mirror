@@ -6,6 +6,8 @@ public class Mob : Enemy {
     [SerializeField]
     GameObject DieParticlePrefab = null;
 
+    HitpointBar playerHPBar;
+    Sword sword;
     Rigidbody2D rigidbody;
     SpriteRenderer hurtColor;
 
@@ -18,6 +20,7 @@ public class Mob : Enemy {
 
     public override void Start() {
         base.Start();
+        playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
         rigidbody = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
         movingRight = true;
@@ -25,7 +28,9 @@ public class Mob : Enemy {
         hitSound = audioSources[0];
     }
 
-    public override void Update() {
+    public override void Update()
+    {
+        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         if (movingRight)
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         else
@@ -71,17 +76,37 @@ public class Mob : Enemy {
             GetComponent<SpriteRenderer>().flipX = movingRight;
             movingRight = !movingRight;
         }
-        if (col.tag == "Player") {
-            // Will decrease the HP bar of player once it is on the same scene
-            // Hurt anim + sound also
-        }
-        if (col.gameObject.name == "Regular Sword" && easyMobHP != 0) {
-            // Not complete: we have to check if the sword is animated as well here otherwise the mob gets
-            // attacked even if the sword is not moving on the player (will do it later once Sword.cs is not
-            // being edited by someone else
+        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging) {
             isHurt = true;
             hitSound.Play();
             easyMobHP--;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging)
+        {
+            isHurt = true;
+            hitSound.Play();
+            easyMobHP--;
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            playerHPBar.DecreaseHitpoint(1);
+            rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+    }
+    public void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            rigidbody.constraints = RigidbodyConstraints2D.None;
         }
     }
 }

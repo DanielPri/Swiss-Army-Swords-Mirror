@@ -33,7 +33,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 81964463}
+  - {fileID: 304245302850143824}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,6 +120,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 3
   jumpForce: 500
+  regularSword: {fileID: 1259724284567249357, guid: 3ffc26d83172b56449bc7b7c4c1a3cce,
+    type: 3}
+  iceSword: {fileID: 2481465405127036349, guid: c5e9eb9995725a049807c2739367d700,
+    type: 3}
+  brickSword: {fileID: 5823025324512359413, guid: cfedee4750971eb4d9297f9bed6f55c2,
+    type: 3}
 --- !u!70 &5320424679055043524
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,18 +177,13 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &1259724284632419427
+--- !u!1001 &1532233146335405980
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 2110159222249153260}
     m_Modifications:
-    - target: {fileID: 1259724284567249357, guid: 3ffc26d83172b56449bc7b7c4c1a3cce,
-        type: 3}
-      propertyPath: m_Name
-      value: Regular Sword
-      objectReference: {fileID: 0}
     - target: {fileID: 1259724284567249356, guid: 3ffc26d83172b56449bc7b7c4c1a3cce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -238,11 +239,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1259724284567249357, guid: 3ffc26d83172b56449bc7b7c4c1a3cce,
+        type: 3}
+      propertyPath: m_Name
+      value: Regular Sword
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ffc26d83172b56449bc7b7c4c1a3cce, type: 3}
---- !u!4 &81964463 stripped
+--- !u!4 &304245302850143824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1259724284567249356, guid: 3ffc26d83172b56449bc7b7c4c1a3cce,
     type: 3}
-  m_PrefabInstance: {fileID: 1259724284632419427}
+  m_PrefabInstance: {fileID: 1532233146335405980}
   m_PrefabAsset: {fileID: 0}

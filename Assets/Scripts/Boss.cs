@@ -9,9 +9,12 @@ public class Boss : Enemy {
     GameObject PrefabProjectile = null;
 
     BossBar hitpointBar;
+	BossLifeBarSpawner bossLifeBarSpawner;
     HitpointBar playerHPBar;
     Rigidbody2D rigidbody;
+    Rigidbody2D playerRigidBody;
     Player playerGO;
+    Sword sword;
     Transform playerPosition;
     Vector2 facingDirection;
 
@@ -36,9 +39,10 @@ public class Boss : Enemy {
     public override void Start() {
         base.Start();
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
-        hitpointBar = GameObject.Find("BossLifeBar").GetComponent<BossBar>();
+		bossLifeBarSpawner = GameObject.Find("BossLifeBarSpawner").GetComponent<BossLifeBarSpawner>();
         hurtColor = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
+        playerRigidBody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         playerGO = GameObject.Find("Player").GetComponent<Player>();
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
         transform.localScale = new Vector3(0, 0, 0); // Hide for the intro
@@ -49,22 +53,32 @@ public class Boss : Enemy {
         MorphAnimation();
     }
 
-    public override void Update() {
+    public override void Update()
+    {
+        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         projectileFrequency = Random.Range(1, 7);
         HandleTimers();
         HandleProjectiles();
-        if (hitpointBar.GetHP() < 1)
-            Die();
+		if (bossLifeBarSpawner.fightStart)
+            hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
+		if (hitpointBar != null) {
+			if (hitpointBar.GetHP() < 1)
+				Die();
+		}
     }
 
     private void HandleTimers() {
-        if (isSpawned) {
+        if (isSpawned)
+        {
             spawnedTimer += Time.deltaTime;
-            if (spawnedTimer > introDuration) {
+            if (spawnedTimer > introDuration)
+            {
                 isSpawned = false;
                 transform.localScale = new Vector3(7, 7, 7); // Spawn after the intro
             }
-        } else {
+        }
+        else
+        {
             // Follow the player
             Vector2 target = playerPosition.position - transform.position;
             transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
@@ -132,6 +146,7 @@ public class Boss : Enemy {
 
     public override void Die() {
         base.Die();
+        hitpointBar.index = -1;
         MorphAnimation();
         Destroy(gameObject);
         // Show some UI here maybe after a boss ?
@@ -145,15 +160,21 @@ public class Boss : Enemy {
         base.OnDestroy();
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
-        // Will be used later once we have a player attacking the boss
-        if (col.gameObject.name == "Regular Sword") {
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Sword" && sword.damaging)
+        {
             isHurt = true;
-            hitpointBar.DecreaseBossHitpoint(5);
+            hitpointBar.DecreaseBossHitpoint(2);
         }
-        if (col.gameObject.name == "Player") {
-            rigidbody.velocity = Vector2.zero;
-            // Have to make the boss stop moving here
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Sword" && sword.damaging)
+        {
+            isHurt = true;
+            hitpointBar.DecreaseBossHitpoint(2);
         }
     }
 
@@ -161,15 +182,11 @@ public class Boss : Enemy {
     {
         if (col.gameObject.name == "Player")
         {
-            if (col.gameObject.transform.position.y >= transform.position.y)
-            {
-                rigidbody.velocity = Vector2.zero;
-                Vector2 forceDirection = new Vector2(facingDirection.x, 1.0f) * 3.5f;
-                Rigidbody2D playerRigidBody = col.gameObject.GetComponent<Rigidbody2D>();
-                playerRigidBody.velocity = Vector2.zero;
-                playerRigidBody.AddForce(forceDirection, ForceMode2D.Impulse);
-            }
+            playerHPBar.DecreaseHitpoint(1);
+            
+            // Boss knocks back player upon collision
+            Vector2 forceDirection = new Vector2(facingDirection.x, 1.0f) * 2f;
+            playerRigidBody.AddForce(forceDirection, ForceMode2D.Impulse);
         }
     }
-
 }

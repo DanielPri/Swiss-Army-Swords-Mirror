@@ -11,14 +11,14 @@ public class BrickSword : Sword
         base.swordType = SwordType.BRICK;
     }
 
-    public override void PrimaryAttack()
+    public override void Attack()
     {
-        base.PrimaryAttack();
+        base.Attack();
     }
 
-    public override void SecondaryAttack()
+    public override void Ability()
     {
-        base.SecondaryAttack();
+        base.Ability();
         float dist = 1.5f;
         Vector3 dir = new Vector3(0, -1, 0);
         Vector3 offSet = transform.position + new Vector3(2, 0, 0);
@@ -32,8 +32,7 @@ public class BrickSword : Sword
             Instantiate(brickWallPrefab, new Vector2(rayHit.point.x, rayHit.point.y - 0.5f), Quaternion.identity);
         }
     }
-
-
+    
     public override void OnTriggerEnter2D(Collider2D collision)
     {
       
