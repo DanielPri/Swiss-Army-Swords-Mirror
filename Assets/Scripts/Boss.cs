@@ -7,8 +7,6 @@ public class Boss : Enemy {
     GameObject PrefabBossIntro = null;
     [SerializeField]
     GameObject PrefabProjectile = null;
-    [SerializeField]
-    GameObject bossLifeBar;
 
     BossBar hitpointBar;
     HitpointBar playerHPBar;
@@ -33,7 +31,6 @@ public class Boss : Enemy {
     float projectileFrequency = 0.0F;
     float nextProjectileSpawn = 0.0F;
     bool isSpawned;
-    bool fightStart;
 
     AudioSource projectileSound;
     AudioSource morphSound;
@@ -59,12 +56,9 @@ public class Boss : Enemy {
         projectileFrequency = Random.Range(1, 7);
         HandleTimers();
         HandleProjectiles();
-        if (fightStart)
-        {
             hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
-            if (hitpointBar.GetHP() < 1)
-                Die();
-        }
+        if (hitpointBar.GetHP() < 1)
+            Die();
     }
 
     private void HandleTimers() {
@@ -162,15 +156,6 @@ public class Boss : Enemy {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Player")
-        {
-            if (fightStart == false)
-            {
-                Instantiate(bossLifeBar, new Vector2(-1, -7), Quaternion.identity, GameObject.Find("UI Canvas").transform);
-                fightStart = true;
-            }
-        }
-
         if (col.tag == "Sword" && sword.damaging)
         {
             isHurt = true;
