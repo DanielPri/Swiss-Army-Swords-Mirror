@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossLifeBarSpawner : MonoBehaviour
 {
     [SerializeField] GameObject bossLifeBar;
-    bool fightStart;
+    public bool fightStart;
 
     void Start()
     {

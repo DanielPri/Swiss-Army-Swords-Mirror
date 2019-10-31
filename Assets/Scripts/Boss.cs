@@ -9,6 +9,7 @@ public class Boss : Enemy {
     GameObject PrefabProjectile = null;
 
     BossBar hitpointBar;
+	BossLifeBarSpawner bossLifeBarSpawner;
     HitpointBar playerHPBar;
     Rigidbody2D rigidbody;
     Rigidbody2D playerRigidBody;
@@ -38,6 +39,7 @@ public class Boss : Enemy {
     public override void Start() {
         base.Start();
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
+		bossLifeBarSpawner = GameObject.Find("BossLifeBarSpawner").GetComponent<BossLifeBarSpawner>();
         hurtColor = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         playerRigidBody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
@@ -57,9 +59,12 @@ public class Boss : Enemy {
         projectileFrequency = Random.Range(1, 7);
         HandleTimers();
         HandleProjectiles();
+		if (bossLifeBarSpawner.fightStart)
             hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
-        if (hitpointBar.GetHP() < 1)
-            Die();
+		if (hitpointBar != null) {
+			if (hitpointBar.GetHP() < 1)
+				Die();
+		}
     }
 
     private void HandleTimers() {
