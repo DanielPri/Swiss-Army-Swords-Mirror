@@ -115,7 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealt: 1
   damaging: 0
-  brickWallPrefab: {fileID: 0}
+  brickWallPrefab: {fileID: 7634464128312065455, guid: 1ec7a92922fc04cf09d068a813ab20bf,
+    type: 3}
 --- !u!61 &61677549369606958
 BoxCollider2D:
   m_ObjectHideFlags: 0

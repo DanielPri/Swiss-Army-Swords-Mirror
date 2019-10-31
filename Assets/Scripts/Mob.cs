@@ -11,7 +11,7 @@ public class Mob : Enemy {
     Rigidbody2D rigidbody;
     SpriteRenderer hurtColor;
 
-    int easyMobHP = 2;
+    public int easyMobHP = 2;
     bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;

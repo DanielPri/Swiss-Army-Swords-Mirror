@@ -21,9 +21,14 @@ public class IceSword : Sword
         base.OnTriggerEnter2D(collision);
         if (collision.tag == "Enemy") // Maybe check HP of monsters... gotta check it's attacking too.
         {
-            Vector3 currentPos = collision.gameObject.transform.position;
-            Destroy(collision.gameObject);
-            Instantiate(iceCubePrefab, currentPos, Quaternion.identity);
+           Mob mob = collision.gameObject.GetComponent<Mob>();                
+                
+            if (mob.easyMobHP < 1)
+            {
+                Vector3 currentPos = collision.gameObject.transform.position;
+                Destroy(collision.gameObject);
+                Instantiate(iceCubePrefab, currentPos, Quaternion.identity);
+            }
         }
     }
 }
