@@ -19,22 +19,43 @@ public class BrickSword : Sword
     public override void Ability()
     {
         base.Ability();
-        float dist = 1.5f;
-        Vector3 dir = new Vector3(0, -1, 0);
-        Vector3 offSet = transform.position + new Vector3(2, 0, 0);
+        GenerateWallBrickOnRayCast();
+    }
 
-        //edit: to draw ray also//
-        RaycastHit2D rayHit = Physics2D.Raycast(offSet, dir * dist);
-        Debug.DrawRay(offSet, dir * dist, Color.green);
+    private void GenerateWallBrickOnRayCast()
+    {
+        float dist = 3f;
+        Vector3 facingDirection = player.GetFacingDirection();
+        Vector3 offSet;
 
-        if (rayHit.collider)
+        if (facingDirection.x < 0)
         {
-            Instantiate(brickWallPrefab, new Vector2(rayHit.point.x, rayHit.point.y - 0.5f), Quaternion.identity);
+            offSet = transform.position + new Vector3(-2, 0, 0);
+        }
+        else
+        {
+            offSet = transform.position + new Vector3(2, 0, 0);
+        }
+
+        Vector3 dir = new Vector3(0, -1, 0);
+        RaycastHit2D[] hit;
+        hit = Physics2D.RaycastAll(offSet, dir * dist);
+
+        foreach (RaycastHit2D rayHit in hit)
+        {
+            if (rayHit.collider) // Check that it only hits a ground
+            {
+                if (rayHit.collider.tag == "Ground")
+                {
+                    Instantiate(brickWallPrefab, new Vector2(rayHit.point.x, rayHit.point.y), Quaternion.identity);
+                    break;
+                }
+            }
         }
     }
-    
+
     public override void OnTriggerEnter2D(Collider2D collision)
     {
-      
+
     }
 }

@@ -9,6 +9,7 @@ public class Sword : MonoBehaviour
     float damageDelay;
     Animator swordAnimator;
     SwordType _swordType;
+    protected Player player;
 
     public bool damaging;
 
@@ -24,6 +25,7 @@ public class Sword : MonoBehaviour
         damageDelay = 0.02f * damageDealt;
         damaging = false;
         swordAnimator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
