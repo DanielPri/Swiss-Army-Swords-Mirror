@@ -31,7 +31,7 @@ public class BossBar : MonoBehaviour
         for (int i = 0; i < indexPosition; i++)
         {
             if (index < maxBossHitpoint)
-            { 
+            {
                 barFilled[index].enabled = true;
                 index++;
             }
@@ -43,7 +43,7 @@ public class BossBar : MonoBehaviour
         for (int i = 0; i < indexPosition; i++)
         {
             if (index >= 0)
-            { 
+            {
                 barFilled[index].enabled = false;
                 index--;
             }
