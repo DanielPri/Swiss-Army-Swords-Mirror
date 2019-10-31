@@ -27,7 +27,8 @@ public class SwordInventory : MonoBehaviour
     int index; // Should be put in a state file to keep track of it
     bool added = false; // For test
 
-    Vector3 position = new Vector3(-8.65F, 4.08F, 0F);
+    //TODO: Remove this hardcoded position
+    Vector3 position = new Vector3(-12.03F, 1.34F, 0F);
     bool open; // The inventory state
     float inventoryDistance = 1.7F;
 
@@ -55,11 +56,12 @@ public class SwordInventory : MonoBehaviour
             ShowSword(inventoryList.Count, position);
         }
         else { // Add new
-            float newPositionX = position.x + inventoryDistance * inventoryList.Count;
+            float newPositionX = inventoryList[inventoryList.Count - 1].transform.position.x + inventoryDistance;
             newPosition = new Vector3(newPositionX, position.y, position.z);
             ShowSword(swordNumber, newPosition);
         }
         GameObject slot = Instantiate(InventoryPrefab, newPosition, Quaternion.identity) as GameObject;
+        slot.transform.parent = gameObject.transform;
         inventoryList.Add(slot);
     }
 
@@ -78,7 +80,8 @@ public class SwordInventory : MonoBehaviour
             swordPrefab = LightSwordPrefab;
         if (number == 5) // Guitar sword
             swordPrefab = GuitarSwordPrefab;
-        Instantiate(swordPrefab, pos, Quaternion.identity);
+        var newSword = Instantiate(swordPrefab, pos, Quaternion.identity);
+        newSword.transform.parent = gameObject.transform;
     }
 
     /* Controlling UI of the inventory */
