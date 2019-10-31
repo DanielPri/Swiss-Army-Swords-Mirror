@@ -9,6 +9,7 @@ public class Sword : MonoBehaviour
     float damageDelay;
     Animator swordAnimator;
     SwordType _swordType;
+    protected Player player;
 
     public bool damaging;
 
@@ -24,21 +25,14 @@ public class Sword : MonoBehaviour
         damageDelay = 0.02f * damageDealt;
         damaging = false;
         swordAnimator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
     {
-        Attack();
-        Ability();
-    }
-
-    public virtual void Attack()
-    {
         if (Input.GetButtonDown("Fire1") && damaging == false)
         {
-            damaging = true;
-            swordAnimator.SetTrigger("attack");
-            damageDelay = 0.02f * damageDealt;
+            Attack();
         }
 
         if (damaging)
@@ -50,14 +44,23 @@ public class Sword : MonoBehaviour
                 damaging = false;
             }
         }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Ability();
+        }
+    }
+
+    public virtual void Attack()
+    {
+        damaging = true;
+        swordAnimator.SetTrigger("attack");
+        damageDelay = 0.02f * damageDealt;
     }
 
     public virtual void Ability()
     {
-        if (Input.GetButtonDown("Fire2"))
-        {
-            swordAnimator.SetTrigger("ability");
-        }
+        swordAnimator.SetTrigger("ability");
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
