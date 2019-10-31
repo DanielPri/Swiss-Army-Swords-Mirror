@@ -7,6 +7,8 @@ TagManager:
   - Platform
   - Ground
   - EnemyZone
+  - Lever
+  - Enemy
   layers:
   - Default
   - TransparentFX

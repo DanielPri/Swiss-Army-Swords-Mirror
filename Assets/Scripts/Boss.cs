@@ -11,6 +11,7 @@ public class Boss : Enemy {
     BossBar hitpointBar;
     HitpointBar playerHPBar;
     Rigidbody2D rigidbody;
+    Player playerGO;
     Transform playerPosition;
     Vector2 facingDirection;
 
@@ -38,6 +39,7 @@ public class Boss : Enemy {
         hitpointBar = GameObject.Find("BossLifeBar").GetComponent<BossBar>();
         hurtColor = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
+        playerGO = GameObject.Find("Player").GetComponent<Player>();
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
         transform.localScale = new Vector3(0, 0, 0); // Hide for the intro
         isSpawned = true;
@@ -66,7 +68,8 @@ public class Boss : Enemy {
             // Follow the player
             Vector2 target = playerPosition.position - transform.position;
             transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
-            FaceDirection(-playerPosition.right);
+            playerGO = GameObject.Find("Player").GetComponent<Player>();
+            FaceDirection(playerGO.transform.position);
         }
         if (isHurt) {
             hurtTimer += Time.deltaTime;
@@ -101,16 +104,19 @@ public class Boss : Enemy {
         Destroy(morph, introDuration);
     }
 
-    private void FaceDirection(Vector2 direction) {
+    private void FaceDirection(Vector3 playerPosition) {
         // Opposite to the player
-        facingDirection = direction;
-        if (direction == Vector2.right) {
+        if (transform.position.x < playerPosition.x)
+        {
             Vector3 newScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             transform.localScale = newScale;
+            facingDirection = transform.right;
         }
-        else {
+        else
+        {
             Vector3 newScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             transform.localScale = newScale;
+            facingDirection = -transform.right;
         }
     }
 
@@ -149,5 +155,10 @@ public class Boss : Enemy {
             rigidbody.velocity = Vector2.zero;
             // Have to make the boss stop moving here
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collide");
     }
 }

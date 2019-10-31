@@ -12,11 +12,13 @@ public class Player : MonoBehaviour
     bool falling;
     Rigidbody2D player;
     Animator playerAnimator;
+    Vector2 facingDirection;
 
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+        facingDirection = transform.right;
         moving = false;
         grounded = false;
         falling = false;
@@ -37,6 +39,17 @@ public class Player : MonoBehaviour
         {
             grounded = true;
         }
+        
+    }
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Lever")
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                col.GetComponent<LeverDoorController>().toggle();
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -54,12 +67,14 @@ public class Player : MonoBehaviour
         {
             transform.Translate(-Vector2.right * playerSpeed * Time.deltaTime);
             transform.localScale = new Vector2(-1, 1);
+            facingDirection = -transform.right;
             moving = true;
         }
         if (Input.GetButton("Right"))
         {
             transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
             transform.localScale = new Vector2(1, 1);
+            facingDirection = transform.right;
             moving = true;
         }
 
@@ -72,5 +87,10 @@ public class Player : MonoBehaviour
     private void CheckFalling()
     {
         falling = player.velocity.y < 0.0f;
+    }
+
+    public Vector2 GetFacingDirection()
+    {
+        return facingDirection;
     }
 }
