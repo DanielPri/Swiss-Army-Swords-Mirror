@@ -32,9 +32,7 @@ public class Sword : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && damaging == false)
         {
-            damaging = true;
-            swordAnimator.SetTrigger("attack");
-            damageDelay = 0.02f * damageDealt;
+            Attack();
         }
 
         if (damaging)
@@ -49,18 +47,20 @@ public class Sword : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2"))
         {
-            swordAnimator.SetTrigger("ability");
             Ability();
         }
     }
 
     public virtual void Attack()
     {
+        damaging = true;
+        swordAnimator.SetTrigger("attack");
+        damageDelay = 0.02f * damageDealt;
     }
 
     public virtual void Ability()
     {
-
+        swordAnimator.SetTrigger("ability");
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
