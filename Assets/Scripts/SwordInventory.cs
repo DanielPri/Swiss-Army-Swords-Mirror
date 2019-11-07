@@ -57,7 +57,9 @@ public class SwordInventory : MonoBehaviour
         }
         else { // Add new
             float newPositionX = inventoryList[inventoryList.Count - 1].transform.position.x + inventoryDistance;
-            newPosition = new Vector3(newPositionX, position.y, position.z);
+            float newPositionY = inventoryList[inventoryList.Count - 1].transform.position.y;
+            float newPositionZ = inventoryList[inventoryList.Count - 1].transform.position.z;
+            newPosition = new Vector3(newPositionX, newPositionY, newPositionZ);
             ShowSword(swordNumber, newPosition);
         }
         GameObject slot = Instantiate(InventoryPrefab, newPosition, Quaternion.identity) as GameObject;
