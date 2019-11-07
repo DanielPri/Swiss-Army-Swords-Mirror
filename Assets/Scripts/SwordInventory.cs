@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordInventory : MonoBehaviour
-{
+public class SwordInventory : MonoBehaviour {
     [SerializeField]
     GameObject InventoryPrefab = null;
     [SerializeField]
@@ -26,9 +25,6 @@ public class SwordInventory : MonoBehaviour
     public List<GameObject> inventoryList = new List<GameObject>(); // Keep track of the inventory
     int index; // Should be put in a state file to keep track of it
     bool added = false; // For test
-
-    //TODO: Remove this hardcoded position
-    Vector3 position = new Vector3(-12.03F, 1.34F, 0F);
     bool open; // The inventory state
     float inventoryDistance = 1.7F;
 
@@ -50,17 +46,17 @@ public class SwordInventory : MonoBehaviour
 
     /* Handles the addition of inventory once new sword obtained */
     public void AddSlot(int swordNumber) {
-        Vector3 newPosition;
-        if (inventoryList.Count == 0) { // Initialize
-            newPosition = position;
+        Vector3 position = new Vector3(-12.03F, 1.34F, 0F); // Initial position for first sword
+        if (inventoryList.Count == 0) // Initialize
             ShowSword(inventoryList.Count, position);
-        }
         else { // Add new
             float newPositionX = inventoryList[inventoryList.Count - 1].transform.position.x + inventoryDistance;
-            newPosition = new Vector3(newPositionX, position.y, position.z);
-            ShowSword(swordNumber, newPosition);
+            float newPositionY = inventoryList[inventoryList.Count - 1].transform.position.y;
+            float newPositionZ = inventoryList[inventoryList.Count - 1].transform.position.z;
+            position = new Vector3(newPositionX, newPositionY, newPositionZ);
+            ShowSword(swordNumber, position);
         }
-        GameObject slot = Instantiate(InventoryPrefab, newPosition, Quaternion.identity) as GameObject;
+        GameObject slot = Instantiate(InventoryPrefab, position, Quaternion.identity) as GameObject;
         slot.transform.parent = gameObject.transform;
         inventoryList.Add(slot);
     }
