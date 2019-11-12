@@ -6,7 +6,7 @@ public class LightSword : Sword
     public GameObject lightLaserPrefab;
     public ParticleSystem particleLight = null;
     public Light light = null;
-    Player player = null;
+
     float projectileDuration = 4.0F;
 
     public override void Start() {
@@ -38,7 +38,6 @@ public class LightSword : Sword
         projectileLaser.SetDirection(player.GetFacingDirection());
         //Add sound for laser later
         Destroy(laser, projectileDuration);
-        
     }
 
     public override void OnTriggerEnter2D(Collider2D collision) {
