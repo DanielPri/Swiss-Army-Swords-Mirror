@@ -7,6 +7,7 @@ public class LightSword : Sword
     public ParticleSystem particleLight = null;
     public Light light = null;
 
+    bool laserOn;
     float projectileDuration = 4.0F;
 
     public override void Start() {
@@ -27,9 +28,17 @@ public class LightSword : Sword
 
     public override void Ability() {
         base.Ability();
-        // Light torch
-        particleLight.Play();
-        light.enabled = true;
+        // Light torch toggle on/off
+        if (!laserOn) {
+            particleLight.Play();
+            light.enabled = true;
+            laserOn = true;
+        }
+        else {
+            particleLight.Stop();
+            light.enabled = false;
+            laserOn = false;
+        }
     }
 
     public void ShootLaser() {

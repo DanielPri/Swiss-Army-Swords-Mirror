@@ -123,6 +123,8 @@ MonoBehaviour:
   speed: 6
   rigidbody: {fileID: 0}
   sprite: {fileID: 0}
+  ParticlesPrefab: {fileID: 2657431640700696230, guid: 1a0f8698b179995488c6ad31534a1ab6,
+    type: 3}
 --- !u!50 &50111935104929424
 Rigidbody2D:
   serializedVersion: 4

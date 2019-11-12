@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Laser : Projectile {
+    [SerializeField]
+    GameObject ParticlesPrefab = null;
 
     SpriteRenderer effectColor;
+
+    bool destroyed;
 
     public override void Awake() {
         base.Awake();
@@ -13,6 +17,9 @@ public class Laser : Projectile {
 
     void Update() {
         LaserEffect();
+
+        if (destroyed)
+            Destroyed();
     }
 
     public override void SetDirection(Vector2 direction) {
@@ -26,7 +33,16 @@ public class Laser : Projectile {
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-
+        if (col.gameObject.tag == "Enemy") {
+            Mob mob = col.gameObject.GetComponent<Mob>();
+            mob.Hurt();
+            destroyed = true;
+        }
     }
 
+    public void Destroyed() {
+        GameObject particles = Instantiate(ParticlesPrefab, transform.position, Quaternion.identity) as GameObject;
+        Destroy(gameObject);
+        Destroy(particles, 2.0F);
+    }
 }

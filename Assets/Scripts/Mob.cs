@@ -56,6 +56,8 @@ public class Mob : Enemy {
         Color firstColor = new Color(1F, 0F, 0F, 0.7F);
         Color secondColor = new Color(1F, 1F, 1F, 1F);
         hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
+        hitSound.Play();
+        easyMobHP--;
     }
 
     public override void Die() {
@@ -77,21 +79,14 @@ public class Mob : Enemy {
             GetComponent<SpriteRenderer>().flipX = movingRight;
             movingRight = !movingRight;
         }
-        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging) {
+        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging)
             isHurt = true;
-            hitSound.Play();
-            easyMobHP--;
-        }
     }
 
     private void OnTriggerStay2D(Collider2D col)
     {
         if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging)
-        {
             isHurt = true;
-            hitSound.Play();
-            easyMobHP--;
-        }
     }
 
     public void OnCollisionEnter2D(Collision2D col)
