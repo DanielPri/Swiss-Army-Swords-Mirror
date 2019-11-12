@@ -4852,6 +4852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealt: 1
   damaging: 0
-  lightLaserPrefab: {fileID: 0}
+  lightLaserPrefab: {fileID: 767728173935966677, guid: cea35163316bb884b98c9145da5e0565,
+    type: 3}
   particleLight: {fileID: 0}
   light: {fileID: 0}
