@@ -105,7 +105,7 @@ public class Boss : Enemy {
     private void Shoot() {
         if (!isSpawned) {
             GameObject projectileObject = Instantiate(PrefabProjectile, transform.position, Quaternion.identity) as GameObject;
-            Projectile projectile = projectileObject.GetComponent<Projectile>();
+            BossSpell projectile = projectileObject.GetComponent<BossSpell>();
             projectile.SetDirection(GetFacingDirection());
             projectileSound.Play();
             Destroy(projectileObject, projectileDuration);
