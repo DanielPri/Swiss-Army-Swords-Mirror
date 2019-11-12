@@ -15,7 +15,7 @@ public class Sword : MonoBehaviour
 
     public enum SwordType
     {
-        REGULAR, ICE, BRICK
+        REGULAR, ICE, BRICK, LIGHT
     }
 
     public SwordType swordType { get { return _swordType; } set { _swordType = value; } }

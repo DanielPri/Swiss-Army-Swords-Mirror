@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3746487507584398555}
   - component: {fileID: 3746487507584398532}
   - component: {fileID: 3746487507584398533}
-  - component: {fileID: 2527146174382974683}
+  - component: {fileID: 114672163394558542}
   m_Layer: 0
   m_Name: Light Sword
   m_TagString: Sword
@@ -100,7 +100,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2527146174382974683
+--- !u!114 &114672163394558542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3746487507584398554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3722a6d0e9eb643b512f9c95d55c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 50fed40aa1ea5064382d1240c89e990b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAttacking: 0
+  damageDealt: 1
+  damaging: 0
+  lightLaserPrefab: {fileID: 0}
