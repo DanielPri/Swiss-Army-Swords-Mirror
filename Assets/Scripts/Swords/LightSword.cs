@@ -7,6 +7,7 @@ public class LightSword : Sword
     public ParticleSystem particleLight = null;
     public Light light = null;
 
+    float lightIntensity, minimumIntensity = 2.0F, maximumIntensity = 6.0F;
     bool laserOn;
     float projectileDuration = 4.0F;
 
@@ -34,6 +35,9 @@ public class LightSword : Sword
             // Make enemies do something towards the light later
             light.enabled = true;
             laserOn = true;
+            // Random light intensity (need a diffuse background to see it)
+            lightIntensity = Random.Range(minimumIntensity, maximumIntensity);
+            light.intensity = lightIntensity;
         }
         else {
             particleLight.Stop();
