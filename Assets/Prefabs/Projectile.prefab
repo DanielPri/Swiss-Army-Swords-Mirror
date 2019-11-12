@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1304778187103121408}
   - component: {fileID: 1304778187103121409}
   - component: {fileID: 1304778187103121422}
-  - component: {fileID: 114659613644135646}
+  - component: {fileID: 114199223008405416}
   - component: {fileID: 50677010171839312}
   - component: {fileID: 61985048148900360}
   m_Layer: 0
@@ -102,7 +102,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114659613644135646
+--- !u!114 &114199223008405416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,10 +111,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1304778187103121423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53ddec5024e0c6f45831377fbe2451c2, type: 3}
+  m_Script: {fileID: 11500000, guid: e726f23d9ae46a742812b7cc6b6dddab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  rigidbody: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!50 &50677010171839312
 Rigidbody2D:
   serializedVersion: 4

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 895920813013005802}
   - component: {fileID: 6854120707601518451}
+  - component: {fileID: 114548937181562762}
   m_Layer: 0
   m_Name: LightSword
   m_TagString: Untagged
@@ -79,3 +80,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &114548937181562762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8693405059967222643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab94b698bb692da4fb9477ae8fd6e536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 6
+  rigidbody: {fileID: 0}
+  sprite: {fileID: 0}
