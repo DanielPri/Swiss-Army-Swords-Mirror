@@ -31,6 +31,7 @@ public class LightSword : Sword
         // Light torch toggle on/off
         if (!laserOn) {
             particleLight.Play();
+            // Make enemies do something towards the light later
             light.enabled = true;
             laserOn = true;
         }
