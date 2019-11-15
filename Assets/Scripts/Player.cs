@@ -15,9 +15,11 @@ public class Player : MonoBehaviour
     bool moving;
     bool grounded;
     bool falling;
+    private bool isHurt;
     Rigidbody2D player;
     Animator playerAnimator;
     Vector2 facingDirection;
+
 
     void Start()
     {
@@ -29,8 +31,10 @@ public class Player : MonoBehaviour
         falling = false;
     }
 
-    public void ChangeToBossScene() {
-        if (Input.GetButtonDown("ToBoss")) {
+    public void ChangeToBossScene()
+    {
+        if (Input.GetButtonDown("ToBoss"))
+        {
             SceneManager.LoadScene("PlayerBossInteraction");
         }
     }
@@ -155,6 +159,17 @@ public class Player : MonoBehaviour
         return facingDirection;
     }
 
+    public bool IsHurt
+    {
+        get { return isHurt; }
+        set { isHurt = value; }
+    }
+
+    public Rigidbody2D PlayerRigidBody()
+    {
+        return player;
+    }
+
     private void SwitchSwords()
     {
         if (Input.GetKeyDown("tab"))
@@ -169,7 +184,7 @@ public class Player : MonoBehaviour
                 if (facingDirection == (Vector2)(-transform.right))
                 {
                     Instantiate(iceSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }                
+                }
             }
             if (transform.GetChild(0).name == "Ice Sword")
             {
@@ -233,7 +248,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
     private int SwordId(GameObject sword)
     {
         string name = sword.name;
@@ -250,3 +265,4 @@ public class Player : MonoBehaviour
         return 0;
     }
 }
+

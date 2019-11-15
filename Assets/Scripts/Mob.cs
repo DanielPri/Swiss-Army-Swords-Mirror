@@ -6,7 +6,6 @@ public class Mob : Enemy {
     [SerializeField]
     GameObject DieParticlePrefab = null;
 
-    HitpointBar playerHPBar;
     Sword sword;
     Rigidbody2D rigidbody;
     SpriteRenderer hurtColor;
@@ -21,7 +20,6 @@ public class Mob : Enemy {
 
     public override void Start() {
         base.Start();
-        playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
         rigidbody = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
         movingRight = true;
@@ -93,7 +91,6 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            playerHPBar.DecreaseHitpoint(1);
             rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
