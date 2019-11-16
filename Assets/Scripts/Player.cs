@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     bool moving;
     bool grounded;
     bool falling;
-    bool attacking;
     Rigidbody2D player;
     Animator playerAnimator;
     Animator swordAnimator;
@@ -25,7 +24,6 @@ public class Player : MonoBehaviour
     {
         player = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        swordAnimator = GetComponentsInChildren<Animator>()[1];
         facingDirection = transform.right;
         moving = false;
         grounded = false;
@@ -48,12 +46,6 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
         playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
-        string curSword = transform.GetChild(0).name.Split(' ')[0];
-        string curSwordAttack = curSword + "Attack";
-        //if (swordAnimator.)
-        //{
-
-        //}
     }
 
     void OnTriggerEnter2D(Collider2D col)

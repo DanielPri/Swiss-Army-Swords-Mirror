@@ -8,14 +8,11 @@ public class Sword : MonoBehaviour
     // How quickly enemy takes damage
     float damageDelay;
     Animator swordAnimator;
-    Animator playerAnimator;
     SwordType _swordType;
     protected Player player;
 
     public bool damaging;
-
-    bool isPlayerIdle = true;
-
+    
     public enum SwordType
     {
         REGULAR, ICE, BRICK
@@ -28,21 +25,11 @@ public class Sword : MonoBehaviour
         damageDelay = 0.02f * damageDealt;
         damaging = false;
         swordAnimator = GetComponent<Animator>();
-        swordAnimator.SetBool("playerIdle", isPlayerIdle);
-        playerAnimator = GetComponentsInParent<Animator>()[1]; // sword is at index 0, player at 1
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
     {
-        if (playerAnimator.GetBool("isMoving"))
-        {
-            isPlayerIdle = false;
-        } else
-        {
-            isPlayerIdle = true;
-        }
-
         if (Input.GetButtonDown("Fire1") && damaging == false)
         {
             Attack();
