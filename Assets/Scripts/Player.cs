@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
         playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
+        playerAnimator.SetBool("isHurt", isHurt);
     }
 
     void OnTriggerEnter2D(Collider2D col)
