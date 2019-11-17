@@ -348,6 +348,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2110159222249153260}
     m_Modifications:
+    - target: {fileID: 1259724284567249357, guid: 3ffc26d83172b56449bc7b7c4c1a3cce,
+        type: 3}
+      propertyPath: m_Name
+      value: Regular Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 1259724284567249356, guid: 3ffc26d83172b56449bc7b7c4c1a3cce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -402,11 +407,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1259724284567249357, guid: 3ffc26d83172b56449bc7b7c4c1a3cce,
-        type: 3}
-      propertyPath: m_Name
-      value: Regular Sword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ffc26d83172b56449bc7b7c4c1a3cce, type: 3}
