@@ -12,7 +12,7 @@ public class Sword : MonoBehaviour
     protected Player player;
 
     public bool damaging;
-
+    
     public enum SwordType
     {
         REGULAR, ICE, BRICK, LIGHT

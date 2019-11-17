@@ -62,7 +62,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -121,6 +120,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 3
   jumpForce: 500
+  regularSword: {fileID: 6959369121555538119, guid: c8c9050b361cd405a859fb02c233ca62,
+    type: 3}
+  iceSword: {fileID: 7345538674731272077}
+  brickSword: {fileID: 2431233271523654466, guid: bb7a1183a01a34356a924bf4f3383c0e,
+    type: 3}
 --- !u!70 &7671096619045275986
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
