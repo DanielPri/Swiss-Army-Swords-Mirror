@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
     {
         player = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        facingDirection = transform.right;
         moving = false;
         grounded = false;
         falling = false;
@@ -160,77 +159,45 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown("tab"))
         {
-            if (transform.GetChild(0).name == "Regular Sword")
+            if (transform.name == "Player")
             {
-                Destroy(GameObject.Find("Regular Sword"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(iceSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
+                GameObject newPlayer = Instantiate(iceSword, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
                 if (facingDirection == (Vector2)(-transform.right))
                 {
-                    Instantiate(iceSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }                
+                    newPlayer.transform.localScale = new Vector2(-1, 1);
+                    newPlayer.GetComponent<Player>().facingDirection = new Vector2(-1, 0);
+                }
+                Destroy(GameObject.Find("Player"));
             }
-            if (transform.GetChild(0).name == "Ice Sword")
+            if (transform.name == "Player Regular Sword(Clone)")
             {
-                Destroy(GameObject.Find("Ice Sword"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(brickSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
+                GameObject newPlayer = Instantiate(iceSword, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
                 if (facingDirection == (Vector2)(-transform.right))
                 {
-                    Instantiate(brickSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
+                    newPlayer.transform.localScale = new Vector2(-1, 1);
+                    newPlayer.GetComponent<Player>().facingDirection = new Vector2(-1, 0);
                 }
+                Destroy(GameObject.Find("Player Regular Sword(Clone)"));
             }
-            if (transform.GetChild(0).name == "Brick Sword")
+            if (transform.name == "Player Ice Sword(Clone)")
             {
-                Destroy(GameObject.Find("Brick Sword"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(regularSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
+                GameObject newPlayer = Instantiate(brickSword, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
                 if (facingDirection == (Vector2)(-transform.right))
                 {
-                    Instantiate(regularSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
+                    newPlayer.transform.localScale = new Vector2 (-1, 1);
+                    newPlayer.GetComponent<Player>().facingDirection = new Vector2(-1, 0);
                 }
+                Destroy(GameObject.Find("Player Ice Sword(Clone)"));
             }
-            if (transform.GetChild(0).name == "Regular Sword(Clone)")
+            if (transform.name == "Player Brick Sword(Clone)")
             {
-                Destroy(GameObject.Find("Regular Sword(Clone)"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(iceSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
+                GameObject newPlayer = Instantiate(regularSword, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
                 if (facingDirection == (Vector2)(-transform.right))
                 {
-                    Instantiate(iceSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
+                    newPlayer.transform.localScale = new Vector2(-1, 1);
+                    newPlayer.GetComponent<Player>().facingDirection = new Vector2(-1, 0);
                 }
-            }
-            if (transform.GetChild(0).name == "Ice Sword(Clone)")
-            {
-                Destroy(GameObject.Find("Ice Sword(Clone)"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(brickSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-                if (facingDirection == (Vector2)(-transform.right))
-                {
-                    Instantiate(brickSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-            }
-            if (transform.GetChild(0).name == "Brick Sword(Clone)")
-            {
-                Destroy(GameObject.Find("Brick Sword(Clone)"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(regularSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-                if (facingDirection == (Vector2)(-transform.right))
-                {
-                    Instantiate(regularSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
+                Destroy(GameObject.Find("Player Brick Sword(Clone)"));
             }
         }
     }
