@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     Rigidbody2D player;
     Animator playerAnimator;
     Vector2 facingDirection;
+    HitpointBar hitpointBar;
 
 
     void Start()
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
         moving = false;
         grounded = false;
         falling = false;
+        hitpointBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>(); 
     }
 
     public void ChangeToBossScene()
