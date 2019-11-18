@@ -47,7 +47,8 @@ public class BrickSword : Sword
             {
                 if (rayHit.collider.tag == "Ground")
                 {
-                    Instantiate(brickWallPrefab, new Vector2(rayHit.point.x, rayHit.point.y), Quaternion.identity);
+                    GameObject BrickWall = Instantiate(brickWallPrefab, new Vector2(rayHit.point.x, rayHit.point.y), Quaternion.identity) as GameObject;
+					Destroy(BrickWall, 5.0F);
                     break;
                 }
             }
