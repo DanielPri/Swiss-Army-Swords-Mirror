@@ -22,15 +22,24 @@ public class MirrorEffect : MonoBehaviour {
 			collider.gameObject.GetComponent<Laser>().mirrorHit++;
         }
 		
-		if (collider.name == "Laser(Clone)" && gameObject.tag == "BrokenMirror" && collider.gameObject.GetComponent<Laser>().mirrorHit > 1) { // At least hit 2 mirrors
-			mirrorPuzzleSound.Play();
+		if (collider.name == "Laser(Clone)" && gameObject.tag == "BrokenMirror") {
             Destroy(collider.gameObject);
 			
-			// For level 3 --> spawns a mob as hint
-			if (gameObject.transform.position == new Vector3(50.65F, -3.89F, 0.0F)) {
+			// For level 3 (1st broken mirror) --> spawns a mob as hint
+			if (gameObject.transform.position == new Vector3(50.65F, -3.89F, 0.0F) && collider.gameObject.GetComponent<Laser>().mirrorHit > 1) { // At least hit 2 mirrors
+				mirrorPuzzleSound.Play();
 				GameObject mob = Instantiate(mobPrefab, new Vector3(50.65F, -5.22F, 0.0F), Quaternion.identity) as GameObject;
 				mob.transform.localScale = new Vector3(4.0F, 4.0F, 4.0F);
 			}
+			// For level 3 (2nd broken mirror) --> spawns 2 mobs as a bad hint ;)
+			if (gameObject.transform.position == new Vector3(66.7F, 1.84F, 0.0F)) { // No mirror hit needed
+				mirrorPuzzleSound.Play();
+				GameObject mob1 = Instantiate(mobPrefab, new Vector3(73.5F, 7.34F, 0.0F), Quaternion.identity) as GameObject;
+				mob1.transform.localScale = new Vector3(4.0F, 4.0F, 4.0F);
+				GameObject mob2 = Instantiate(mobPrefab, new Vector3(78.5F, 9.25F, 0.0F), Quaternion.identity) as GameObject;
+				mob2.transform.localScale = new Vector3(4.0F, 4.0F, 4.0F);
+			}
+			
 			collider.gameObject.GetComponent<Laser>().mirrorHit = 0; // We reset
         }
     }
