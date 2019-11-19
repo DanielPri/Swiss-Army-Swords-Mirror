@@ -6,11 +6,12 @@ public class Sword : MonoBehaviour
 {
     [SerializeField] int damageDealt = 1;
     // How quickly enemy takes damage
-    float damageDelay;
-    Animator swordAnimator;
+    protected Animator swordAnimator;
     SwordType _swordType;
-    protected Player player;
 
+    protected float damageDelay;
+    protected Player player;
+    protected bool isAbilityUsed;
     public bool damaging;
     
     public enum SwordType
