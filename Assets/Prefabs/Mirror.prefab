@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300040, guid: fd1efbfdf1789354098b3e3f77eb42eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b8b79fbae71a943b98f947b90c964c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mobPrefab: {fileID: 0}
 --- !u!82 &82035496077779012
 AudioSource:
   m_ObjectHideFlags: 0

@@ -39,6 +39,11 @@ public class MirrorEffect : MonoBehaviour {
 				GameObject mob2 = Instantiate(mobPrefab, new Vector3(78.5F, 9.25F, 0.0F), Quaternion.identity) as GameObject;
 				mob2.transform.localScale = new Vector3(4.0F, 4.0F, 4.0F);
 			}
+			// For level 3 (3nd broken mirror) --> hit the right mirror to destroy the broken mirror (must hit Mirror3 --> Mirror 4 --> Mirror5 --> Mirror6 --> Mirror7 --> Mirror8)
+			if (gameObject.transform.position == new Vector3(101.5F, 8.96F, 0.0F) && collider.gameObject.GetComponent<Laser>().mirrorHit > 5) { // at least 6 hit needed
+				mirrorPuzzleSound.Play();
+				Destroy(gameObject);
+			}
 			
 			collider.gameObject.GetComponent<Laser>().mirrorHit = 0; // We reset
         }
