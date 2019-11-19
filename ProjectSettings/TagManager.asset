@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - Sword
   - Lava
+  - Mirror
+  - BrokenMirror
   layers:
   - Default
   - TransparentFX
