@@ -8,6 +8,7 @@ public class LavaTile : MonoBehaviour {
 	
 	GameObject player = null;
 	Rigidbody2D  playerRigidbody = null;
+	GameObject fire = null;
 	SpriteRenderer fireFade = null;
 	bool touchingLava = false;
 	bool startForceTimer = false;
@@ -29,10 +30,10 @@ public class LavaTile : MonoBehaviour {
                 forceTimer = 0.0F;
 				startForceTimer = false;
 				// Give an effect to the fire
-				/*Color firstColor = new Color(0.03F, 0.2F, 0.7F, 1F);
+				Color firstColor = new Color(0.03F, 0.2F, 0.7F, 1F);
 				Color secondColor = new Color(1F, 1F, 1F, 0.1F);
 				fireFade = fire.GetComponent<SpriteRenderer>();
-				fireFade.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 2.0F, 1.0F));*/
+				fireFade.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 2.0F, 1.0F));
             }
 		}
 		// Some fire coming out of lava later here
@@ -40,7 +41,7 @@ public class LavaTile : MonoBehaviour {
 	
 	private void GenerateFire() {
 		Vector3 position = new Vector3(player.transform.position.x, player.transform.position.y - 1.0F, player.transform.position.z);
-		GameObject fire = Instantiate(PlayerTouchedPrefab, position, Quaternion.identity) as GameObject;
+		fire = Instantiate(PlayerTouchedPrefab, position, Quaternion.identity) as GameObject;
 		fire.transform.parent = player.transform;
 		Destroy(fire, touchedTime);
 	}
