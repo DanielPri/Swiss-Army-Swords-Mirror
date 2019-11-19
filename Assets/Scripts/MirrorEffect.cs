@@ -19,9 +19,10 @@ public class MirrorEffect : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider) {
         if (collider.name == "Laser(Clone)" && gameObject.tag == "Mirror") {
             collider.gameObject.GetComponent<Laser>().SetDirection(transform.right);
+			collider.gameObject.GetComponent<Laser>().mirrorHit++;
         }
 		
-		if (collider.name == "Laser(Clone)" && gameObject.tag == "BrokenMirror") {
+		if (collider.name == "Laser(Clone)" && gameObject.tag == "BrokenMirror" && collider.gameObject.GetComponent<Laser>().mirrorHit > 1) { // At least hit 2 mirrors
 			mirrorPuzzleSound.Play();
             Destroy(collider.gameObject);
 			
@@ -30,6 +31,7 @@ public class MirrorEffect : MonoBehaviour {
 				GameObject mob = Instantiate(mobPrefab, new Vector3(50.65F, -5.22F, 0.0F), Quaternion.identity) as GameObject;
 				mob.transform.localScale = new Vector3(4.0F, 4.0F, 4.0F);
 			}
+			collider.gameObject.GetComponent<Laser>().mirrorHit = 0; // We reset
         }
     }
 	
