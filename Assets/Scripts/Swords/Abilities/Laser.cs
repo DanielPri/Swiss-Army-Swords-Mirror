@@ -9,6 +9,7 @@ public class Laser : Projectile {
     SpriteRenderer effectColor;
 
     bool destroyed;
+	public int mirrorHit = 0; // Counts how many mirrors are hit for checks
 
     public override void Awake() {
         base.Awake();
