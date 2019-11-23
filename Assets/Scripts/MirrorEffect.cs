@@ -7,10 +7,12 @@ public class MirrorEffect : MonoBehaviour {
 	GameObject mobPrefab;
 	
 	AudioSource mirrorPuzzleSound; // For last target showing puzzle hint
+	AudioSource wrongMirrorPuzzleSound;
 
     void Start() {
 		AudioSource[] audioSources = GetComponents<AudioSource>();
         mirrorPuzzleSound = audioSources[0];
+		wrongMirrorPuzzleSound = audioSources[1];	 
     }
 
     void Update() {
@@ -45,8 +47,50 @@ public class MirrorEffect : MonoBehaviour {
 				Destroy(gameObject);
 			}
 			
+			// For level 3 (4th puzzle with broken mirrors) --> hit 1st, 3rd, 2nd & 4th from the left. If not good, spawn a flying mob sometimes randomly & reset
+			if (gameObject.transform.position == new Vector3(170.5F, 30.6F, 0.0F)) {
+				if (GameObject.Find("LevelPuzzles").GetComponent<GamePuzzles>().rightMirrorCounter == 0) {
+					RightMirror();
+				} else {
+					WrongMirror();
+				}
+			}
+			if (gameObject.name == "BrokenMirror5" && gameObject.transform.position == new Vector3(176.5F, 32.5F, 0.0F)) {
+				if (GameObject.Find("LevelPuzzles").GetComponent<GamePuzzles>().rightMirrorCounter == 1) {
+					RightMirror();
+				} else {
+					WrongMirror();
+				}
+			}
+			if (gameObject.name == "BrokenMirror4" && gameObject.transform.position == new Vector3(173.5F, 31.5F, 0.0F)) {
+				if (GameObject.Find("LevelPuzzles").GetComponent<GamePuzzles>().rightMirrorCounter == 2) {
+					RightMirror();
+				} else {
+					WrongMirror();
+				}
+			}
+			if (gameObject.name == "BrokenMirror6" && gameObject.transform.position == new Vector3(179.5F, 33.6F, 0.0F)) {
+				if (GameObject.Find("LevelPuzzles").GetComponent<GamePuzzles>().rightMirrorCounter == 3) {
+					RightMirror();
+					// Drop Flame Sword
+					GameObject flameSword = Instantiate(GameObject.Find("LevelPuzzles").GetComponent<GamePuzzles>().flameSwordDropPrefab, new Vector3(181.5F, 30.5F, 0.0F), Quaternion.identity) as GameObject;
+					// play right sound here
+				} else {
+					WrongMirror();
+				}
+			}
+			
 			collider.gameObject.GetComponent<Laser>().mirrorHit = 0; // We reset
         }
     }
 	
+	void RightMirror() {
+		GameObject.Find("LevelPuzzles").GetComponent<GamePuzzles>().rightMirrorCounter++;
+		mirrorPuzzleSound.Play();
+	}
+	
+	void WrongMirror() {
+		GameObject.Find("LevelPuzzles").GetComponent<GamePuzzles>().rightMirrorCounter = 0; // Wrong one
+		wrongMirrorPuzzleSound.Play();
+	}
 }
