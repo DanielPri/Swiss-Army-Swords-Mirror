@@ -119,6 +119,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2114924321}
     m_Modifications:
+    - target: {fileID: 5823025324512359413, guid: cfedee4750971eb4d9297f9bed6f55c2,
+        type: 3}
+      propertyPath: m_Name
+      value: Brick Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 5823025324512359412, guid: cfedee4750971eb4d9297f9bed6f55c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -173,11 +178,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823025324512359413, guid: cfedee4750971eb4d9297f9bed6f55c2,
-        type: 3}
-      propertyPath: m_Name
-      value: Brick Sword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfedee4750971eb4d9297f9bed6f55c2, type: 3}
@@ -271,12 +271,11 @@ MonoBehaviour:
   speed: 0
   player: {fileID: 1911803933}
   moveSpeed: 2
-  playerRange: 5
+  playerRange: 10
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
   playerInRange: 0
-  followOnAway: 0
 --- !u!50 &116768259
 Rigidbody2D:
   serializedVersion: 4
@@ -314,6 +313,44 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.155
+--- !u!108 &116768261
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116768254}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 20
+  m_Range: 1.2
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &118281021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4822,6 +4859,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8102392810267428240, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_Range
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74c6454bd7bb901439ad715e81729d41, type: 3}

@@ -4710,8 +4710,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.9965672, g: 1, b: 0.3443396, a: 1}
-  m_Intensity: 50
-  m_Range: 10
+  m_Intensity: 20
+  m_Range: 5
   m_SpotAngle: 13.3
   m_CookieSize: 10
   m_Shadows:
@@ -4856,3 +4856,4 @@ MonoBehaviour:
     type: 3}
   particleLight: {fileID: 0}
   light: {fileID: 0}
+  laserOn: 0
