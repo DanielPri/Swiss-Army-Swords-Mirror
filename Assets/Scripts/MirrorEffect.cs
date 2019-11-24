@@ -74,7 +74,7 @@ public class MirrorEffect : MonoBehaviour {
 					RightMirror();
 					// Drop Flame Sword
 					GameObject flameSword = Instantiate(GameObject.Find("LevelPuzzles").GetComponent<GamePuzzles>().flameSwordDropPrefab, new Vector3(181.5F, 30.5F, 0.0F), Quaternion.identity) as GameObject;
-					// play right sound here
+					Destroy(GameObject.Find("BrokenMirrorDoor2")); // Opens the door
 				} else {
 					WrongMirror();
 				}
