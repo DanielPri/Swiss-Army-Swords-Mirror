@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     bool moving;
     bool grounded;
     bool falling;
+    bool switchSwords;
     Rigidbody2D player;
     Animator playerAnimator;
     Animator swordAnimator;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
         moving = false;
         grounded = false;
         falling = false;
+        switchSwords = true;
 
         inventory = inventoryGO.GetComponent<SwordInventory>();
         swordPossessions.Add(0);
@@ -94,12 +96,20 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
         playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
+
+        // If active sword index ever exceeds sword count (by pressing tab in the wrong frame) set it to 0
+        if (activeSwordIndex + 1 > swords.Count)
+        {
+            activeSwordIndex = 0;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name.Contains("SwordDrop") && !pickingUpSword)
         {
+            // Cannot switch swords until inventory is updated
+            switchSwords = false;
             // Hide the player's held sword
             SpriteRenderer heldSwordSR = new SpriteRenderer();
             SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
@@ -157,6 +167,7 @@ public class Player : MonoBehaviour
             heldSwordSR.enabled = true;
         pickingUpSword = false;
         getInventorySwords(); // Get the inventory of swords again to account for new one
+        switchSwords = true; // Able to switch swords once inventory is updated
     }
 
     private void MovePlayer()
@@ -199,7 +210,7 @@ public class Player : MonoBehaviour
 
     private void SwitchSwords()
     {
-        if (Input.GetKeyDown("tab"))
+        if (Input.GetKeyDown("tab") && switchSwords == true)
         {
             if (swords.Count > 1) // Making sure the player has more than one sword
             {
@@ -218,6 +229,7 @@ public class Player : MonoBehaviour
                 swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
                 Debug.Log("Current sword is: " + swords[activeSwordIndex].name);
             }
+        
         }
     }
     
