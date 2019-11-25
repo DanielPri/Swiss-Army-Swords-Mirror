@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2110159222249153262}
   - component: {fileID: 2110159222249153259}
   - component: {fileID: 5320424679055043524}
-  - component: {fileID: 2004398545}
   - component: {fileID: 8848693168285777446}
   m_Layer: 0
   m_Name: Player
@@ -129,7 +128,9 @@ MonoBehaviour:
     type: 3}
   brickSword: {fileID: 2431233271523654466, guid: bb7a1183a01a34356a924bf4f3383c0e,
     type: 3}
-  facingDirection: {x: 0, y: 0}
+  platformLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!70 &5320424679055043524
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -146,22 +147,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.75, y: 1.1875}
   m_Direction: 0
---- !u!58 &2004398545
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110159222249153263}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.6}
-  serializedVersion: 2
-  m_Radius: 0.35
 --- !u!95 &8848693168285777446
 Animator:
   serializedVersion: 3
@@ -188,16 +173,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2110159222249153260}
     m_Modifications:
-    - target: {fileID: 2481465405127036349, guid: c5e9eb9995725a049807c2739367d700,
-        type: 3}
-      propertyPath: m_Name
-      value: Ice Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 2481465405127036349, guid: c5e9eb9995725a049807c2739367d700,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2481465405127036348, guid: c5e9eb9995725a049807c2739367d700,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -251,6 +226,16 @@ PrefabInstance:
     - target: {fileID: 2481465405127036348, guid: c5e9eb9995725a049807c2739367d700,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481465405127036349, guid: c5e9eb9995725a049807c2739367d700,
+        type: 3}
+      propertyPath: m_Name
+      value: Ice Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481465405127036349, guid: c5e9eb9995725a049807c2739367d700,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -503,16 +488,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2110159222249153260}
     m_Modifications:
-    - target: {fileID: 5823025324512359413, guid: cfedee4750971eb4d9297f9bed6f55c2,
-        type: 3}
-      propertyPath: m_Name
-      value: Brick Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 5823025324512359413, guid: cfedee4750971eb4d9297f9bed6f55c2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5823025324512359412, guid: cfedee4750971eb4d9297f9bed6f55c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -566,6 +541,16 @@ PrefabInstance:
     - target: {fileID: 5823025324512359412, guid: cfedee4750971eb4d9297f9bed6f55c2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823025324512359413, guid: cfedee4750971eb4d9297f9bed6f55c2,
+        type: 3}
+      propertyPath: m_Name
+      value: Brick Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823025324512359413, guid: cfedee4750971eb4d9297f9bed6f55c2,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

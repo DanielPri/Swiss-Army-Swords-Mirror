@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject regularSword;
     [SerializeField] GameObject iceSword;
     [SerializeField] GameObject brickSword;
+    [SerializeField] LayerMask platformLayerMask;
 
     bool pickingUpSword;
     bool moving;
@@ -19,11 +20,13 @@ public class Player : MonoBehaviour
     Animator playerAnimator;
     Animator swordAnimator;
     Vector2 facingDirection;
+    CapsuleCollider2D playerCollider;
 
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
         moving = false;
         grounded = false;
         falling = false;
@@ -37,6 +40,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        isGrounded();
         MovePlayer();
         CheckFalling();
         SwitchSwords();
@@ -49,10 +53,6 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Ground")
-        {
-            grounded = true;
-        }
         if (col.gameObject.name.Contains("SwordDrop") && !pickingUpSword)
         {
             // Hide the player's held sword
@@ -83,15 +83,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.tag == "Ground")
-        {
-            grounded = false;
-        }
-    }
-
+    
     private IEnumerator WaitAndPickup(GameObject swordGO, SpriteRenderer heldSwordSR)
     {
         // Will force a wait before the player can continue playing
@@ -216,5 +208,13 @@ public class Player : MonoBehaviour
         if (name.Contains("Guitar"))
             return 5;
         return 0;
+    }
+
+    private void isGrounded()
+    {
+        float extraHeightText = 1f;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, extraHeightText, platformLayerMask);
+
+        grounded = raycastHit.collider != null;
     }
 }
