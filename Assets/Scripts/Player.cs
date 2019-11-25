@@ -7,20 +7,24 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
-    [SerializeField] GameObject regularSword;
-    [SerializeField] GameObject iceSword;
-    [SerializeField] GameObject brickSword;
+    [SerializeField] GameObject inventoryGO;
     [SerializeField] LayerMask platformLayerMask;
 
     bool pickingUpSword;
     bool moving;
     bool grounded;
     bool falling;
+    bool switchSwords;
     Rigidbody2D player;
     Animator playerAnimator;
     Animator swordAnimator;
     Vector2 facingDirection;
     CapsuleCollider2D playerCollider;
+
+    SwordInventory inventory;
+    List<Transform> swords = new List<Transform>();
+    List<int> swordPossessions = new List<int>();
+    int activeSwordIndex;
 
     void Start()
     {
@@ -30,6 +34,49 @@ public class Player : MonoBehaviour
         moving = false;
         grounded = false;
         falling = false;
+        switchSwords = true;
+
+        inventory = inventoryGO.GetComponent<SwordInventory>();
+        swordPossessions.Add(0);
+        getInventorySwords();
+    }
+
+    private void getInventorySwords()
+    {
+        // Only have regular sword so set that as active
+        if (swordPossessions.Count == 1)
+        {
+            swords.Add(transform.GetChild(0));
+            activeSwordIndex = 0;
+            return;
+        }
+
+        // get all the sword prefabs within the player game object
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            // if sword is already in inventory, do not add it again
+            if (swordPossessions.Contains(i) && !swords.Contains(transform.GetChild(i)))
+            {
+                swords.Add(transform.GetChild(i));
+            }
+            if (transform.GetChild(i).gameObject.activeInHierarchy)
+            {
+                // Keep track of which sword in the array is active
+                activeSwordIndex = i;
+            }
+        }
+    }
+
+    private bool findSwordInInventory(Transform curSword)
+    {
+        foreach (GameObject sword in inventory.inventoryList)
+        {
+            string name = curSword.name.Replace(" ", "");
+            Debug.Log(name);
+            if (name == sword.name)
+                return true;
+        }
+        return false;
     }
 
     public void ChangeToBossScene() {
@@ -49,12 +96,20 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
         playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
+
+        // If active sword index ever exceeds sword count (by pressing tab in the wrong frame) set it to 0
+        if (activeSwordIndex + 1 > swords.Count)
+        {
+            activeSwordIndex = 0;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name.Contains("SwordDrop") && !pickingUpSword)
         {
+            // Cannot switch swords until inventory is updated
+            switchSwords = false;
             // Hide the player's held sword
             SpriteRenderer heldSwordSR = new SpriteRenderer();
             SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
@@ -67,8 +122,12 @@ public class Player : MonoBehaviour
                 heldSwordSR.enabled = false; // Hide it
             pickingUpSword = true;
             moving = false;
+            // Hold sword above head - sorta buggy when you jump and collect it
             col.gameObject.transform.localPosition = new Vector2(transform.position.x, transform.position.y + 1);
             col.gameObject.GetComponentInChildren<Animator>().enabled = false;
+
+            swordPossessions.Add(SwordId(col.gameObject));
+
             StartCoroutine(WaitAndPickup(col.gameObject, heldSwordSR));
         }
 
@@ -107,6 +166,8 @@ public class Player : MonoBehaviour
         if (heldSwordSR != null)
             heldSwordSR.enabled = true;
         pickingUpSword = false;
+        getInventorySwords(); // Get the inventory of swords again to account for new one
+        switchSwords = true; // Able to switch swords once inventory is updated
     }
 
     private void MovePlayer()
@@ -149,48 +210,26 @@ public class Player : MonoBehaviour
 
     private void SwitchSwords()
     {
-        if (Input.GetKeyDown("tab"))
+        if (Input.GetKeyDown("tab") && switchSwords == true)
         {
-            if (transform.name == "Player")
+            if (swords.Count > 1) // Making sure the player has more than one sword
             {
-                GameObject newPlayer = Instantiate(iceSword, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-                if (facingDirection == (Vector2)(-transform.right))
+                swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
+
+                // Switch to next sword
+                if (activeSwordIndex + 1 == swords.Count)
                 {
-                    newPlayer.transform.localScale = new Vector2(-1, 1);
-                    newPlayer.GetComponent<Player>().facingDirection = new Vector2(-1, 0);
+                    activeSwordIndex = 0;
                 }
-                Destroy(GameObject.Find("Player"));
-            }
-            if (transform.name == "Player Regular Sword(Clone)")
-            {
-                GameObject newPlayer = Instantiate(iceSword, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-                if (facingDirection == (Vector2)(-transform.right))
+                else
                 {
-                    newPlayer.transform.localScale = new Vector2(-1, 1);
-                    newPlayer.GetComponent<Player>().facingDirection = new Vector2(-1, 0);
+                    activeSwordIndex = activeSwordIndex + 1;
                 }
-                Destroy(GameObject.Find("Player Regular Sword(Clone)"));
+
+                swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
+                Debug.Log("Current sword is: " + swords[activeSwordIndex].name);
             }
-            if (transform.name == "Player Ice Sword(Clone)")
-            {
-                GameObject newPlayer = Instantiate(brickSword, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-                if (facingDirection == (Vector2)(-transform.right))
-                {
-                    newPlayer.transform.localScale = new Vector2 (-1, 1);
-                    newPlayer.GetComponent<Player>().facingDirection = new Vector2(-1, 0);
-                }
-                Destroy(GameObject.Find("Player Ice Sword(Clone)"));
-            }
-            if (transform.name == "Player Brick Sword(Clone)")
-            {
-                GameObject newPlayer = Instantiate(regularSword, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-                if (facingDirection == (Vector2)(-transform.right))
-                {
-                    newPlayer.transform.localScale = new Vector2(-1, 1);
-                    newPlayer.GetComponent<Player>().facingDirection = new Vector2(-1, 0);
-                }
-                Destroy(GameObject.Find("Player Brick Sword(Clone)"));
-            }
+        
         }
     }
     
