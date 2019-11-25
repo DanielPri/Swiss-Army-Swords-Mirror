@@ -48,7 +48,7 @@ public class LightSword : Sword
 
     public void ShootLaser() {
         GameObject laser = Instantiate(lightLaserPrefab, transform.position, Quaternion.identity) as GameObject;
-        Laser projectileLaser = laser.GetComponent<Laser>();
+        Projectile projectileLaser = laser.GetComponent<Projectile>();
         projectileLaser.SetDirection(player.GetFacingDirection());
         //Add sound for laser later
         Destroy(laser, projectileDuration);
