@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cobra : Enemy {
+public class Cobra : Enemy { // Has big HP, but is annoying since it is found in holes and gives lots of damage
 	Rigidbody2D rigidbody;
 	Animator cobraAnimator;
 	SpriteRenderer hurtColor;
@@ -137,7 +137,7 @@ public class Cobra : Enemy {
     public void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Player")
         {
-            playerHPBar.DecreaseHitpoint(7);
+            playerHPBar.DecreaseHitpoint(10);
             rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
