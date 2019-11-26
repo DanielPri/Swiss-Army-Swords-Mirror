@@ -123,16 +123,6 @@ public class Cobra : Enemy { // Has big HP, but is annoying since it is found in
     public override void OnDestroy() {
         base.OnDestroy();
     }
-	
-	void OnTriggerEnter2D(Collider2D col) {
-        if (col.tag == "Sword" && mediumHP != 0 && sword.damaging)
-            isHurt = true;
-    }
-
-    private void OnTriggerStay2D(Collider2D col)  {
-        if (col.tag == "Sword" && mediumHP != 0 && sword.damaging)
-            isHurt = true;
-    }
 
     public void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Player")
