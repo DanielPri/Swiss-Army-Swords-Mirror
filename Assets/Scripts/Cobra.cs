@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Cobra : Enemy {
+	Rigidbody2D rigidbody;
 	Animator cobraAnimator;
+	SpriteRenderer hurtColor;
 	bool idle;
 	bool moving;
     bool attacking;
     bool dieing;
 	public int mediumHP = 5;
-	SpriteRenderer hurtColor;
 	bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
+	float stateTimer = 2.0F;
 	
 	public int state = 1; // 1: idle, 2: moving left, 3: moving right, 4: attacking
 	
     public override  void Start() {
 		base.Start();
+		rigidbody = GetComponent<Rigidbody2D>();
         cobraAnimator = GetComponent<Animator>();
 		idle = true;
 		moving = false;
@@ -28,6 +31,7 @@ public class Cobra : Enemy {
     public override void Update() {
 		base.Update();
         HandleAnimations();
+		GenerateRandomState();
 		HandleMovement();
 		HandleTimers();
 		if (mediumHP == 0)
@@ -41,23 +45,29 @@ public class Cobra : Enemy {
         cobraAnimator.SetBool("isDieing", dieing);
 	}
 	
-	void HandleAttacking() { // Will have to make it so once near the snake, attack
-		if (state == 4)
-			attacking = true;
+	void GenerateRandomState() {
+		if (Time.time > stateTimer) {
+            stateTimer = Time.time + Random.Range(3, 6);
+			state = Random.Range(1, 5);
+		}
 	}
 	
 	void HandleMovement() {
 		if (state == 3 && !dieing) {
 			moving = true;
             transform.Translate(Vector2.right * speed * Time.deltaTime);
+			GetComponent<SpriteRenderer>().flipX = false;
         } else if (state == 2 && !dieing) {
 			moving = true;
             transform.Translate(-Vector2.right * speed * Time.deltaTime);
-		} else {
+			GetComponent<SpriteRenderer>().flipX = true;
+		} else if (state == 1 && !dieing) {
+			rigidbody.velocity = Vector2.zero;
 			moving = false;
 			idle = true;
+		} else if (state == 4 && !dieing) {
+			attacking = true;
 		}
-			
 	}
 	
 	private void HandleTimers() {
