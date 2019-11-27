@@ -9,6 +9,7 @@ public class Laser : Projectile {
     SpriteRenderer effectColor;
 
     bool destroyed;
+	public int mirrorHit = 0; // Counts how many mirrors are hit for checks
 
     public override void Awake() {
         base.Awake();
@@ -34,9 +35,16 @@ public class Laser : Projectile {
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Enemy") {
-            Mob mob = col.gameObject.GetComponent<Mob>();
-            mob.Hurt();
-            destroyed = true;
+			if (col.gameObject.name == "Mob(Clone)" || col.gameObject.name == "Mob") {
+				Mob mob = col.gameObject.GetComponent<Mob>();
+				mob.Hurt();
+				destroyed = true;
+			}
+			else if (col.gameObject.name == "FlyingMob(Clone)" || col.gameObject.name == "FlyingMob") {
+				FlyingMob mob = col.gameObject.GetComponent<FlyingMob>();
+				mob.Hurt();
+				destroyed = true;
+			}
         }
     }
 

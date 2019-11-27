@@ -48,6 +48,9 @@ public class Mob : Enemy {
             }
             Hurt();
         }
+        if (isFrozen) {
+            Freeze();
+        }
     }
 
     public void Hurt() {
@@ -56,6 +59,13 @@ public class Mob : Enemy {
         hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
         hitSound.Play();
         easyMobHP--;
+    }
+
+    public void Freeze()
+    {
+        Color firstColor = new Color(165F, 242F, 243F, 0.7F);
+        Color secondColor = new Color(1F, 1F, 1F, 1F);
+        hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
     }
 
     public override void Die() {

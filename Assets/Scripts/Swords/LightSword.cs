@@ -8,8 +8,8 @@ public class LightSword : Sword
     public Light light = null;
 
     float lightIntensity, minimumIntensity = 2.0F, maximumIntensity = 6.0F;
-    bool laserOn;
-    float projectileDuration = 4.0F;
+    public bool laserOn;
+    float projectileDuration = 10.0F;
 
     public override void Start() {
         base.Start();

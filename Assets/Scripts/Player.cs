@@ -7,30 +7,79 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
-    [SerializeField] GameObject regularSword;
-    [SerializeField] GameObject iceSword;
-    [SerializeField] GameObject brickSword;
+    [SerializeField] GameObject inventoryGO;
+    [SerializeField] LayerMask platformLayerMask;
 
     bool pickingUpSword;
     bool moving;
     bool grounded;
     bool falling;
     private bool isHurt;
+    bool switchSwords;
     Rigidbody2D player;
     Animator playerAnimator;
+    Animator swordAnimator;
     Vector2 facingDirection;
     HitpointBar hitpointBar;
+    CapsuleCollider2D playerCollider;
 
+    SwordInventory inventory;
+    List<Transform> swords = new List<Transform>();
+    List<int> swordPossessions = new List<int>();
+    int activeSwordIndex;
 
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        facingDirection = transform.right;
+        playerCollider = GetComponent<CapsuleCollider2D>();
         moving = false;
         grounded = false;
         falling = false;
+        switchSwords = true;
         hitpointBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>(); 
+
+        inventory = inventoryGO.GetComponent<SwordInventory>();
+        swordPossessions.Add(0);
+        getInventorySwords();
+    }
+
+    private void getInventorySwords()
+    {
+        // Only have regular sword so set that as active
+        if (swordPossessions.Count == 1)
+        {
+            swords.Add(transform.GetChild(0));
+            activeSwordIndex = 0;
+            return;
+        }
+
+        // get all the sword prefabs within the player game object
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            // if sword is already in inventory, do not add it again
+            if (swordPossessions.Contains(i) && !swords.Contains(transform.GetChild(i)))
+            {
+                swords.Add(transform.GetChild(i));
+            }
+            if (transform.GetChild(i).gameObject.activeInHierarchy)
+            {
+                // Keep track of which sword in the array is active
+                activeSwordIndex = i;
+            }
+        }
+    }
+
+    private bool findSwordInInventory(Transform curSword)
+    {
+        foreach (GameObject sword in inventory.inventoryList)
+        {
+            string name = curSword.name.Replace(" ", "");
+            Debug.Log(name);
+            if (name == sword.name)
+                return true;
+        }
+        return false;
     }
 
     public void ChangeToBossScene()
@@ -43,6 +92,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        isGrounded();
         MovePlayer();
         CheckFalling();
         SwitchSwords();
@@ -52,16 +102,19 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isFalling", falling);
         playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
         playerAnimator.SetBool("isHurt", isHurt);
+        // If active sword index ever exceeds sword count (by pressing tab in the wrong frame) set it to 0
+        if (activeSwordIndex + 1 > swords.Count)
+        {
+            activeSwordIndex = 0;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Ground")
-        {
-            grounded = true;
-        }
         if (col.gameObject.name.Contains("SwordDrop") && !pickingUpSword)
         {
+            // Cannot switch swords until inventory is updated
+            switchSwords = false;
             // Hide the player's held sword
             SpriteRenderer heldSwordSR = new SpriteRenderer();
             SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
@@ -74,8 +127,12 @@ public class Player : MonoBehaviour
                 heldSwordSR.enabled = false; // Hide it
             pickingUpSword = true;
             moving = false;
+            // Hold sword above head - sorta buggy when you jump and collect it
             col.gameObject.transform.localPosition = new Vector2(transform.position.x, transform.position.y + 1);
             col.gameObject.GetComponentInChildren<Animator>().enabled = false;
+
+            swordPossessions.Add(SwordId(col.gameObject));
+
             StartCoroutine(WaitAndPickup(col.gameObject, heldSwordSR));
         }
 
@@ -90,15 +147,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.tag == "Ground")
-        {
-            grounded = false;
-        }
-    }
-
+    
     private IEnumerator WaitAndPickup(GameObject swordGO, SpriteRenderer heldSwordSR)
     {
         // Will force a wait before the player can continue playing
@@ -122,6 +171,8 @@ public class Player : MonoBehaviour
         if (heldSwordSR != null)
             heldSwordSR.enabled = true;
         pickingUpSword = false;
+        getInventorySwords(); // Get the inventory of swords again to account for new one
+        switchSwords = true; // Able to switch swords once inventory is updated
     }
 
     private void MovePlayer()
@@ -175,80 +226,27 @@ public class Player : MonoBehaviour
 
     private void SwitchSwords()
     {
-        if (Input.GetKeyDown("tab"))
+        if (Input.GetKeyDown("tab") && switchSwords == true)
         {
-            if (transform.GetChild(0).name == "Regular Sword")
+            if (swords.Count > 1) // Making sure the player has more than one sword
             {
-                Destroy(GameObject.Find("Regular Sword"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(iceSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
+                swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
+
+                // Switch to next sword
+                if (activeSwordIndex + 1 == swords.Count)
                 }
-                if (facingDirection == (Vector2)(-transform.right))
                 {
-                    Instantiate(iceSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
+                    activeSwordIndex = 0;
                 }
+                else
+                {
+                    activeSwordIndex = activeSwordIndex + 1;
+                }
+
+                swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
+                Debug.Log("Current sword is: " + swords[activeSwordIndex].name);
             }
-            if (transform.GetChild(0).name == "Ice Sword")
-            {
-                Destroy(GameObject.Find("Ice Sword"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(brickSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-                if (facingDirection == (Vector2)(-transform.right))
-                {
-                    Instantiate(brickSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-            }
-            if (transform.GetChild(0).name == "Brick Sword")
-            {
-                Destroy(GameObject.Find("Brick Sword"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(regularSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-                if (facingDirection == (Vector2)(-transform.right))
-                {
-                    Instantiate(regularSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-            }
-            if (transform.GetChild(0).name == "Regular Sword(Clone)")
-            {
-                Destroy(GameObject.Find("Regular Sword(Clone)"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(iceSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-                if (facingDirection == (Vector2)(-transform.right))
-                {
-                    Instantiate(iceSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-            }
-            if (transform.GetChild(0).name == "Ice Sword(Clone)")
-            {
-                Destroy(GameObject.Find("Ice Sword(Clone)"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(brickSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-                if (facingDirection == (Vector2)(-transform.right))
-                {
-                    Instantiate(brickSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-            }
-            if (transform.GetChild(0).name == "Brick Sword(Clone)")
-            {
-                Destroy(GameObject.Find("Brick Sword(Clone)"));
-                if (facingDirection == (Vector2)(transform.right))
-                {
-                    Instantiate(regularSword, new Vector2(transform.position.x + 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-                if (facingDirection == (Vector2)(-transform.right))
-                {
-                    Instantiate(regularSword, new Vector2(transform.position.x - 0.1881f, transform.position.y - 0.1873f), Quaternion.identity, GameObject.Find("Player").transform);
-                }
-            }
+        
         }
     }
 
@@ -266,6 +264,14 @@ public class Player : MonoBehaviour
         if (name.Contains("Guitar"))
             return 5;
         return 0;
+    }
+
+    private void isGrounded()
+    {
+        float extraHeightText = 1f;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, extraHeightText, platformLayerMask);
+
+        grounded = raycastHit.collider != null;
     }
 }
 

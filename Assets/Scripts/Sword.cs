@@ -6,13 +6,17 @@ public class Sword : MonoBehaviour
 {
     [SerializeField] int damageDealt = 1;
     // How quickly enemy takes damage
-    float damageDelay;
-    Animator swordAnimator;
+    protected Animator swordAnimator;
+    protected BoxCollider2D swordCollider;
     SwordType _swordType;
+
+    [SerializeField]
+    protected float damageDuration = 0.2f;
+    protected float damageDelay;
     protected Player player;
-
+    protected bool isAbilityUsed;
     public bool damaging;
-
+    
     public enum SwordType
     {
         REGULAR, ICE, BRICK, LIGHT
@@ -22,10 +26,12 @@ public class Sword : MonoBehaviour
 
     public virtual void Start()
     {
-        damageDelay = 0.02f * damageDealt;
+        damageDelay = damageDuration * damageDealt;
         damaging = false;
         swordAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        swordCollider = player.GetComponentInChildren<BoxCollider2D>();
+        swordCollider.enabled = false;
     }
 
     void Update()
@@ -33,6 +39,7 @@ public class Sword : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && damaging == false)
         {
             Attack();
+            swordCollider.enabled = true;
         }
 
         if (damaging)
@@ -42,6 +49,7 @@ public class Sword : MonoBehaviour
             if (damageDelay <= 0f)
             {
                 damaging = false;
+                swordCollider.enabled = false;
             }
         }
 
@@ -55,7 +63,7 @@ public class Sword : MonoBehaviour
     {
         damaging = true;
         swordAnimator.SetTrigger("attack");
-        damageDelay = 0.02f * damageDealt;
+        damageDelay = damageDuration * damageDealt;
     }
 
     public virtual void Ability()
