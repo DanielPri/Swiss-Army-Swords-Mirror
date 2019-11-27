@@ -4,6 +4,9 @@ using System.Collections;
 public class IceSword : Sword
 {
     public GameObject iceCubePrefab;
+    [SerializeField]
+    GameObject freezeBall;
+    float projectileDuration = 10.0F;
 
     public override void Start()
     {
@@ -22,20 +25,8 @@ public class IceSword : Sword
         base.Ability();
         swordAnimator.SetTrigger("attack");
         isAbilityUsed = true;
-    }
 
-    public override void OnTriggerEnter2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision);
-        if (collision.tag == "Enemy" && isAbilityUsed) // Maybe check HP of monsters... gotta check it's attacking too.
-        {
-            Mob mob = collision.gameObject.GetComponent<Mob>();
-            mob.isFrozen = true;
-            Vector3 currentPos = collision.gameObject.transform.position;
-            GameObject prefab = Instantiate(iceCubePrefab, currentPos, Quaternion.identity);
-            StartCoroutine(Unfreeze(collision.gameObject, prefab));
-            mob.isFrozen = false;
-        }
+        ShootIceBall();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -43,16 +34,12 @@ public class IceSword : Sword
         isAbilityUsed = false;
     }
 
-    IEnumerator Unfreeze(GameObject gameObject, GameObject prefab)
+    public void ShootIceBall()
     {
-        Animator animator = prefab.GetComponent<Animator>();
-        gameObject.SetActive(false);
-        yield return new WaitForSeconds(8f);
-        animator.SetBool("isUnfrozen", true);
-        yield return new WaitForSeconds(2.51f);
-        Destroy(prefab);
-        gameObject.SetActive(true);
-        
+        GameObject iceBall = Instantiate(freezeBall, transform.position, Quaternion.identity) as GameObject;
+        FreezeBall projectileLaser = iceBall.GetComponent<FreezeBall>();
+        projectileLaser.SetDirection(player.GetFacingDirection());
+        Destroy(iceBall, projectileDuration);
     }
 }
 
