@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
     bool switchSwords;
     Rigidbody2D player;
     Animator playerAnimator;
-    Animator swordAnimator;
     Vector2 facingDirection;
     HitpointBar hitpointBar;
     CapsuleCollider2D playerCollider;
