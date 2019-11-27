@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5995905072530349055}
   - component: {fileID: 7340653364932301090}
   - component: {fileID: 7404574837399421660}
+  - component: {fileID: 7201975542595206506}
   m_Layer: 0
   m_Name: Cage
   m_TagString: Untagged
@@ -153,3 +154,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5711823, y: 1.891316}
   m_EdgeRadius: 0
+--- !u!95 &7201975542595206506
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261744497616319984}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
