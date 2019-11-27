@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2110159222249153262}
   - component: {fileID: 2110159222249153259}
   - component: {fileID: 5320424679055043524}
-  - component: {fileID: 2004398545}
   - component: {fileID: 8848693168285777446}
   m_Layer: 0
   m_Name: Player
@@ -34,8 +33,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 304245302850143824}
-  - {fileID: 4409136459181290521}
   - {fileID: 2282310571565715669}
+  - {fileID: 4409136459181290521}
   - {fileID: 2940905637657932286}
   - {fileID: 8678203411502833304}
   m_Father: {fileID: 0}
@@ -124,12 +123,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 3
   jumpForce: 500
-  regularSword: {fileID: 2110159222249153263}
-  iceSword: {fileID: 7345538674731272077, guid: 90f331d034639488cae44e3bd9cb263b,
+  inventoryGO: {fileID: 291965788272559412, guid: c354a0ed65326a043a6d10e13523077d,
     type: 3}
-  brickSword: {fileID: 2431233271523654466, guid: bb7a1183a01a34356a924bf4f3383c0e,
-    type: 3}
-  facingDirection: {x: 0, y: 0}
+  platformLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!70 &5320424679055043524
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -146,22 +144,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.75, y: 1.1875}
   m_Direction: 0
---- !u!58 &2004398545
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110159222249153263}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.6}
-  serializedVersion: 2
-  m_Radius: 0.35
 --- !u!95 &8848693168285777446
 Animator:
   serializedVersion: 3
@@ -316,7 +298,7 @@ PrefabInstance:
     - target: {fileID: 1534410554263774177, guid: 71868a707bf27d943b4e77a520b7c1e8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1534410554263774177, guid: 71868a707bf27d943b4e77a520b7c1e8,
         type: 3}
@@ -333,6 +315,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1534410554263774207, guid: 71868a707bf27d943b4e77a520b7c1e8,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ac7ae30a8bfa5e14b97c0529f581e596, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71868a707bf27d943b4e77a520b7c1e8, type: 3}
 --- !u!4 &2282310571565715669 stripped
@@ -551,7 +538,7 @@ PrefabInstance:
     - target: {fileID: 5823025324512359412, guid: cfedee4750971eb4d9297f9bed6f55c2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5823025324512359412, guid: cfedee4750971eb4d9297f9bed6f55c2,
         type: 3}
