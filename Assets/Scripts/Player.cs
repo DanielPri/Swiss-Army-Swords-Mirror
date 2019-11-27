@@ -256,7 +256,7 @@ public class Player : MonoBehaviour
 
         Debug.DrawRay(playerCollider.bounds.center + new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHeightText), Color.green);
         Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHeightText), Color.green);
-        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, playerCollider.bounds.extents.y + extraHeightText), Vector2.right * (playerCollider.bounds.extents.x), Color.green);
+        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, playerCollider.bounds.extents.y + extraHeightText), Vector2.right * (playerCollider.bounds.extents.x + extraHeightText), Color.green);
 
         grounded = raycastHit.collider != null;
     }
