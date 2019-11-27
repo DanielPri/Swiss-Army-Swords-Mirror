@@ -30,7 +30,7 @@ public class Sword : MonoBehaviour
         damaging = false;
         swordAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        swordCollider = GetComponent<BoxCollider2D>();
+        swordCollider = player.GetComponentInChildren<BoxCollider2D>();
         swordCollider.enabled = false;
     }
 
