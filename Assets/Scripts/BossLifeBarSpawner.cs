@@ -7,6 +7,8 @@ public class BossLifeBarSpawner : MonoBehaviour
     [SerializeField] GameObject bossLifeBar;
     public bool fightStart;
 
+    Vector2 defaultPosition = new Vector2(-1, -7);
+
     void Start()
     {
         fightStart = false;
@@ -19,5 +21,10 @@ public class BossLifeBarSpawner : MonoBehaviour
             Instantiate(bossLifeBar, new Vector2(0, -7), Quaternion.identity, GameObject.Find("UI Canvas").transform);
             fightStart = true;
         }
+    } 
+
+    public void SetDefaultPosition(Vector2 position)
+    {
+        defaultPosition = position;
     }
 }

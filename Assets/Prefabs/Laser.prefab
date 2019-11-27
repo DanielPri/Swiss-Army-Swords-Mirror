@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 50111935104929424}
   m_Layer: 0
   m_Name: Laser
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,6 +59,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -125,6 +126,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   ParticlesPrefab: {fileID: 2657431640700696230, guid: 1a0f8698b179995488c6ad31534a1ab6,
     type: 3}
+  mirrorHit: 0
 --- !u!50 &50111935104929424
 Rigidbody2D:
   serializedVersion: 4
