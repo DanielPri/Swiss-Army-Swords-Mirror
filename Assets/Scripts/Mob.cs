@@ -7,7 +7,7 @@ public class Mob : Enemy {
     GameObject DieParticlePrefab = null;
 
     Sword sword;
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
     SpriteRenderer hurtColor;
 
     public int easyMobHP = 2;
@@ -15,16 +15,19 @@ public class Mob : Enemy {
     bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
-
+    HitpointBar playerHPBar;
+    Player player;
     AudioSource hitSound;
 
     public override void Start() {
         base.Start();
-        rigidbody = GetComponent<Rigidbody2D>();
+        playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
+        rb = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
         movingRight = true;
         AudioSource[] audioSources = GetComponents<AudioSource>();
         hitSound = audioSources[0];
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     public override void Update()
@@ -101,7 +104,9 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            playerHPBar.DecreaseHitpoint(1);
+            player.IsHurt = true;
         }
 
     }
@@ -109,7 +114,7 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            rigidbody.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.None;
         }
     }
 }

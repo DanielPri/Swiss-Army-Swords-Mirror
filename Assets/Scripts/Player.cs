@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,6 +28,9 @@ public class Player : MonoBehaviour
     List<Transform> swords = new List<Transform>();
     List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
+
+    float isHurtTime = 0.6f;
+    float isHurtTimer = 0;
 
     void Start()
     {
@@ -106,6 +110,20 @@ public class Player : MonoBehaviour
         if (activeSwordIndex + 1 > swords.Count)
         {
             activeSwordIndex = 0;
+        }
+        checkHurt();
+    }
+
+    private void checkHurt()
+    {
+        if (isHurt)
+        {
+            if(isHurtTimer > isHurtTime)
+            {
+                isHurt = false;
+                isHurtTimer = 0;
+            }
+            isHurtTimer += Time.deltaTime;
         }
     }
 
@@ -234,7 +252,6 @@ public class Player : MonoBehaviour
 
                 // Switch to next sword
                 if (activeSwordIndex + 1 == swords.Count)
-                }
                 {
                     activeSwordIndex = 0;
                 }
