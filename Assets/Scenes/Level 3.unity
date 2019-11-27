@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 5823025324512359413, guid: cfedee4750971eb4d9297f9bed6f55c2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5823025324512359412, guid: cfedee4750971eb4d9297f9bed6f55c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -721,6 +726,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 3746487507584398554, guid: 5860d90f3cc6db645ba0b0366a197673,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3746487507584398555, guid: 5860d90f3cc6db645ba0b0366a197673,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -774,6 +784,11 @@ PrefabInstance:
     - target: {fileID: 3746487507584398555, guid: 5860d90f3cc6db645ba0b0366a197673,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 961653110048097124, guid: 5860d90f3cc6db645ba0b0366a197673,
+        type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1109,7 +1124,7 @@ GameObject:
   - component: {fileID: 287796663}
   - component: {fileID: 287796666}
   - component: {fileID: 287796667}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Platform1
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1572,7 +1587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.0999966, y: -3.3000035, z: -9.717552}
+  m_LocalPosition: {x: -3.834046, y: -3.3913255, z: -9.717552}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1340424797}
@@ -3413,7 +3428,7 @@ GameObject:
   - component: {fileID: 1082943475}
   - component: {fileID: 1082943474}
   - component: {fileID: 1082943479}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lava
   m_TagString: Lava
   m_Icon: {fileID: 0}
@@ -5873,7 +5888,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306194934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.0999966, y: -3.3000035, z: -9.717552}
+  m_LocalPosition: {x: -4.1699967, y: -3.380004, z: -9.717552}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2084498518}
@@ -6883,7 +6898,7 @@ PrefabInstance:
     - target: {fileID: 2110159222249153263, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
@@ -6893,12 +6908,12 @@ PrefabInstance:
     - target: {fileID: 2110159222249153260, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.1
+      value: -4.17
       objectReference: {fileID: 0}
     - target: {fileID: 2110159222249153260, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.3
+      value: -3.38
       objectReference: {fileID: 0}
     - target: {fileID: 2110159222249153260, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
@@ -6974,6 +6989,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 304245302850143825, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282310571565715668, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940905637657932287, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409136459181290520, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678203411502833305, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100718997610244391, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74c6454bd7bb901439ad715e81729d41, type: 3}
@@ -8100,7 +8145,7 @@ GameObject:
   - component: {fileID: 1979000080}
   - component: {fileID: 1979000082}
   - component: {fileID: 1979000081}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tiles
   m_TagString: Ground
   m_Icon: {fileID: 0}
