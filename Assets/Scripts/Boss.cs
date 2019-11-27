@@ -190,7 +190,8 @@ public class Boss : Enemy {
         if (col.gameObject.name == "Player")
         {
             playerHPBar.DecreaseHitpoint(1);
-            
+
+            Debug.Log("FORCE PUSH ");
             // Boss knocks back player upon collision
             Vector2 forceDirection = new Vector2(facingDirection.x, 1.0f) * 2f;
             playerRigidBody.AddForce(forceDirection, ForceMode2D.Impulse);

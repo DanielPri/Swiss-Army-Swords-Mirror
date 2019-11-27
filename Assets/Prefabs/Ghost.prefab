@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossLifeBar: {fileID: 3451021653924928558, guid: 7ebbcc9df0668de4987e969c5e9a9b5d,
     type: 3}
+  fightStart: 0
 --- !u!61 &880036016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -103,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2555847598869820917}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.456483, y: -1.8122423, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children:
   - {fileID: 880036015}
@@ -241,6 +242,7 @@ MonoBehaviour:
     type: 3}
   PrefabProjectile: {fileID: 1304778187103121423, guid: a276585c978a0af419b3cede62148447,
     type: 3}
+  invulnerabilityTime: 0.6
 --- !u!82 &82551438339397790
 AudioSource:
   m_ObjectHideFlags: 0
