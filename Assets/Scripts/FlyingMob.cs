@@ -129,7 +129,6 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
     {
         if (col.tag == "EnemyZone" && !playerInRange && !lightsword)
         {
-            Debug.Log("Enemy zone");
             GetComponent<SpriteRenderer>().flipX = movingRight;
             movingRight = !movingRight;
         }
