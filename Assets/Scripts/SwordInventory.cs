@@ -26,7 +26,7 @@ public class SwordInventory : MonoBehaviour {
     int index; // Should be put in a state file to keep track of it
     bool added = false; // For test
     bool open; // The inventory state
-    float inventoryDistance = 1.7F;
+    float inventoryDistance = 1.75f;
 
     void Start() {
         AddSlot(0);
@@ -37,6 +37,8 @@ public class SwordInventory : MonoBehaviour {
         inventoryToggleSound = audioSources[0];
         equipSound = audioSources[1];
         selectSound = audioSources[2];
+        Color color = new Color(0.368F, 0.96F, 0.13F);
+        inventoryList[0].GetComponent<SpriteRenderer>().color = color;
     }
 
     void Update() {
@@ -46,7 +48,7 @@ public class SwordInventory : MonoBehaviour {
 
     /* Handles the addition of inventory once new sword obtained */
     public void AddSlot(int swordNumber) {
-        Vector3 position = new Vector3(-12.03F, 1.34F, 0F); // Initial position for first sword
+        Vector3 position = new Vector3(-9.5f, 4, 0); // Initial position for first sword
         if (inventoryList.Count == 0) // Initialize
             ShowSword(inventoryList.Count, position);
         else { // Add new

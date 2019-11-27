@@ -314,7 +314,7 @@ InputManager:
     descriptiveName: Ability to switch sword.
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: x
+    positiveButton: tab
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 0
