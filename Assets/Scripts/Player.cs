@@ -210,26 +210,26 @@ public class Player : MonoBehaviour
 
     private void SwitchSwords()
     {
-        if (Input.GetKeyDown("tab") && switchSwords == true)
+        if (Input.GetButton("SwordTab") && switchSwords == true)
         {
-            if (swords.Count > 1) // Making sure the player has more than one sword
-            {
-                swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
-
-                // Switch to next sword
-                if (activeSwordIndex + 1 == swords.Count)
+            if (Input.GetButtonDown("SwordSelection"))
+                if (swords.Count > 1) // Making sure the player has more than one sword
                 {
-                    activeSwordIndex = 0;
-                }
-                else
-                {
-                    activeSwordIndex = activeSwordIndex + 1;
-                }
+                    Debug.Log("pressing both");
+                    swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
 
-                swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
-                Debug.Log("Current sword is: " + swords[activeSwordIndex].name);
-            }
-        
+                    // Switch to next sword
+                    if (activeSwordIndex + 1 == swords.Count)
+                    {
+                        activeSwordIndex = 0;
+                    }
+                    else
+                    {
+                        activeSwordIndex = activeSwordIndex + 1;
+                    }
+
+                    swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
+                }
         }
     }
     
