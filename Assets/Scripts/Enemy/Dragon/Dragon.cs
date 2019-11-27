@@ -13,6 +13,8 @@ public class Dragon : Enemy
     public GameObject fireBreathPrefab;
     public float fireBreathRange = 6;
 
+    float hurtTimer = 0.0F;
+
 
     Vector2 facingDirection;
 
@@ -29,6 +31,8 @@ public class Dragon : Enemy
 
     Color c;
     SpriteRenderer sr;
+
+    private bool oneTime;
 
     // Use this for initialization
     public override void Start()
@@ -62,29 +66,60 @@ public class Dragon : Enemy
             StartCoroutine(FireBreath());
         }
 
+        HandleTimers();
+
+        //if (isDark)
+        //{
+        //    TurnIntoDarkMode();
+        //} else
+        //{
+        //    TurnIntoNormalMode();
+        //}
+
+
+    }
+
+    private void HandleTimers()
+    {
+        if (isHurt)
+        {
+            hurtTimer += Time.deltaTime;
+            if (hurtTimer >= 2.0F)
+            {
+                isHurt = false;
+                hurtTimer = 0.0f;
+            }
+            Hurt();
+        }
+
+        if (isDark)
+        {
+            TurnIntoDarkMode();
+        }
+        else {
+            TurnIntoNormalMode();
+        }
     }
 
     public void FightStart()
     {
-        if (hitpointBar.GetHP() < 10)
+     
+        if (hitpointBar.GetHP() < 10 && !oneTime)
         {
             TurnIntoDarkMode();
+            oneTime = true;
         }
     }
 
     public void TurnIntoDarkMode()
     {
-        sr.enabled = false;
-        sr.enabled = true;
         isDark = true;
         sr.color = Color.black;
+        transform.localScale = new Vector3(15, 15, 15);
     }
 
     public void TurnIntoNormalMode()
     {
-        sr.enabled = false;
-        sr.enabled = true;
-        isDark = false;
         sr.color = Color.white;
     }
 
@@ -115,24 +150,16 @@ public class Dragon : Enemy
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag.Equals("Sword") && !isDark)
+        if (col.tag.Equals("Sword") && sword.damaging && !isDark)
         {
             isHurt = true;
             hitpointBar.DecreaseBossHitpoint(2);
         }
 
-        if (col.tag.Equals("Laser") && isDark)
+        if (col.tag.Equals("Laser") && sword.damaging && isDark)
         {
+            isDark = false;
             TurnIntoNormalMode();
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.tag.Equals("Sword") && !isDark)
-        {
-            isHurt = true;
-            hitpointBar.DecreaseBossHitpoint(2);
         }
     }
 
