@@ -30,7 +30,7 @@ public class Boss : Enemy {
     float projectileDuration = 3.0F;
     float projectileSpeed = 2.0F;
 
-    float introDuration = 0.9F;
+    float introDuration = 0.8F;
     float spawnedTimer = 0.0F;
     float projectileFrequency = 0.0F;
     float nextProjectileSpawn = 0.0F;
