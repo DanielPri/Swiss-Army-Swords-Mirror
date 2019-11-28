@@ -12,7 +12,7 @@ public class CutsceneManager : MonoBehaviour {
     }
 
     void Update() {
-        if (director.state != PlayState.Playing) { // If cutscene done, move to level 1
+        if (director.time > 28.4) { // If cutscene done, move to level 1 (28 seconds)
 			SceneManager.LoadScene("Level 1");
 		}
     }
