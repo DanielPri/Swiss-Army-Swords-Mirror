@@ -28,7 +28,7 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
     float hurtDuration = 2.0F;
 	AudioSource hitSound;
 	
-    public override void Start() {
+    new void Start() {
 		base.Start();
 		Scene currentScene = SceneManager.GetActiveScene(); // To know which level
 		sceneName = currentScene.name;

@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     Rigidbody2D player;
     Animator playerAnimator;
     Animator swordAnimator;
-    Vector2 facingDirection;
+    public Vector2 facingDirection;
     CapsuleCollider2D playerCollider;
 
     SwordInventory inventory;

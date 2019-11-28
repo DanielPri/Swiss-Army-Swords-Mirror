@@ -42,7 +42,7 @@ public class Boss : Enemy {
     AudioSource projectileSound;
     AudioSource morphSound;
 
-    public override void Start() {
+    new void Start() {
         base.Start();
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
 		bossLifeBarSpawner = GameObject.Find("BossLifeBarSpawner").GetComponent<BossLifeBarSpawner>();
