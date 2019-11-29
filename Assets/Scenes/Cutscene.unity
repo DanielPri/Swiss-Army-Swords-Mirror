@@ -431,7 +431,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Whoaaa !
+  m_Text: Whoaaa!
 --- !u!222 &222967268
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2502,7 +2502,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Oh, what is this ?! Obviously 2 funny magic person...
+  m_Text: Oh, what is this?! Two funny-looking magic people?
 --- !u!222 &1250018001
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2693,8 +2693,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'An old script about swords and legends... Amazing ! I have a feeling my
-    sword won''t be as useless as I thought ! '
+  m_Text: 'An old script about swords and legends... Amazing! I have a feeling my
+    sword won''t be as useless as I thought! '
 --- !u!222 &1429999972
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2870,7 +2870,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Let's go on an adventure of swords !
+  m_Text: Let's go on an adventure of swords!
 --- !u!222 &1526629855
 CanvasRenderer:
   m_ObjectHideFlags: 0
