@@ -1,10 +1,11 @@
 fileFormatVersion: 2
-guid: 8cdd0528e186e4307b224fd381a03207
+guid: e35a568405e9e9d41a420518207f592d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mist-forest-background-tiles_0
-    21300002: mist-forest-background-tiles_1
-    21300004: mist-forest-background-tiles_2
+    21300000: SnowCoverSize4_0
+    21300002: SnowCoverSize4_1
+    21300004: SnowCoverSize4_2
+    21300006: SnowCoverSize4_3
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -48,7 +49,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 120
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -66,7 +67,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -87,61 +88,81 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mist-forest-background-tiles_0
+      name: SnowCoverSize4_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
-        height: 80
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a71c02c028ab40aabe1ceddf932f01e
+      spriteID: 1144be476e1f4d64e8a0341cc0732afb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mist-forest-background-tiles_1
+      name: SnowCoverSize4_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 225a253fb63a94c4cbe8a7267ef95176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowCoverSize4_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2243d3b9695845e45a2ea48f091640d7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowCoverSize4_3
       rect:
         serializedVersion: 2
         x: 48
-        y: 16
-        width: 128
-        height: 37
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69c42c7ec87ec43fe8baab6737a652e7
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mist-forest-background-tiles_2
-      rect:
-        serializedVersion: 2
-        x: 195
-        y: 16
-        width: 90
-        height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f73d6d453ecb41399f487ba74316467
+      spriteID: dc24323fc7c7365458587184df5dc840
       vertices: []
       indices: 
       edges: []
@@ -149,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: ba8356996c3693e4eb34f2de1dd9f356
     vertices: []
     indices: 
     edges: []

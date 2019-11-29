@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 8cdd0528e186e4307b224fd381a03207
+guid: 52e55bdfd16f96b4095f2ff0b879f176
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mist-forest-background-tiles_0
-    21300002: mist-forest-background-tiles_1
-    21300004: mist-forest-background-tiles_2
+    21300000: mage_0
+    21300002: mage_1
+    21300004: mage_2
+    21300006: mage_3
+    21300008: mage_4
+    21300010: mage_5
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -48,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 120
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,61 +90,121 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mist-forest-background-tiles_0
+      name: mage_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 80
+        x: 24
+        y: 264
+        width: 102
+        height: 120
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a71c02c028ab40aabe1ceddf932f01e
+      spriteID: c08130f8e4be3934899035fdcb27a41d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mist-forest-background-tiles_1
+      name: mage_1
       rect:
         serializedVersion: 2
-        x: 48
-        y: 16
-        width: 128
-        height: 37
+        x: 228
+        y: 264
+        width: 102
+        height: 114
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69c42c7ec87ec43fe8baab6737a652e7
+      spriteID: 66180f316c1f5544a9b29db27af6512e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mist-forest-background-tiles_2
+      name: mage_2
       rect:
         serializedVersion: 2
-        x: 195
-        y: 16
-        width: 90
-        height: 53
+        x: 432
+        y: 264
+        width: 102
+        height: 120
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f73d6d453ecb41399f487ba74316467
+      spriteID: 220560a47120b1b478a24ca5ccb56629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_3
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 60
+        width: 102
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5af49bfa45355248aba9b70734fd7f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_4
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 60
+        width: 102
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36f3e50f88e73c74cae355981381a060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_5
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 60
+        width: 102
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 092375ca37ece164e9da77bf1d867d0c
       vertices: []
       indices: 
       edges: []
@@ -149,7 +212,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 9bd36b55d6c6d99438422a2f1314814b
     vertices: []
     indices: 
     edges: []
