@@ -16,9 +16,7 @@ public class BossLifeBarSpawner : MonoBehaviour
     {
         if (col.tag == "Player" && fightStart == false)
         {
-            GameObject camera = GameObject.Find("Main Camera");
-            GameObject thebar = Instantiate(bossLifeBar, camera.transform);
-            thebar.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y - 4, 0);
+            Instantiate(bossLifeBar, new Vector2(0, -7), Quaternion.identity, GameObject.Find("UI Canvas").transform);
             fightStart = true;
         }
     }

@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
-    [SerializeField] GameObject inventoryGO;
     [SerializeField] LayerMask platformLayerMask;
 
     bool pickingUpSword;
@@ -21,6 +20,7 @@ public class Player : MonoBehaviour
     CapsuleCollider2D playerCollider;
 
     SwordInventory inventory;
+    GameObject inventoryGO;
     List<Transform> swords = new List<Transform>();
     List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
         grounded = false;
         falling = false;
 
+        inventoryGO = GameObject.Find("InventoryManager");
         inventory = inventoryGO.GetComponent<SwordInventory>();
         swordPossessions.Add(0);
         getInventorySwords();
