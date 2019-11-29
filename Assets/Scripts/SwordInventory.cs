@@ -36,6 +36,7 @@ public class SwordInventory : MonoBehaviour {
         Color color = new Color(0.368F, 0.96F, 0.13F);
         inventoryList[0].GetComponent<SpriteRenderer>().color = color;
         switchSwords = true;
+        inventoryList[0].GetComponent<SpriteRenderer>().color = color;
     }
 
     void Update() {

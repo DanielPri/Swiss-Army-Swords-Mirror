@@ -215,21 +215,22 @@ public class Player : MonoBehaviour
         if (inventory.switchSwords && swords.Count > 1) // Making sure the player has more than one sword)
         {
             if (Input.GetButtonDown("SwordSelection") && Input.GetAxisRaw("SwordSelection") > 0)
-            {
-                swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
-
-                // Switch to next sword
-                if (activeSwordIndex + 1 == swords.Count)
                 {
-                    activeSwordIndex = 0;
-                }
-                else
-                {
-                    activeSwordIndex = activeSwordIndex + 1;
-                }
+                    Debug.Log("pressing both");
+                    swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
 
-                swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
-            }
+                    // Switch to next sword
+                    if (activeSwordIndex + 1 == swords.Count)
+                    {
+                        activeSwordIndex = 0;
+                    }
+                    else
+                    {
+                        activeSwordIndex = activeSwordIndex + 1;
+                    }
+
+                    swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
+                }
             else if (Input.GetButtonDown("SwordSelection") && Input.GetAxisRaw("SwordSelection") < 0)
             {
                 swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
