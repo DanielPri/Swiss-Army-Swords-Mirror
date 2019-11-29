@@ -214,9 +214,8 @@ public class Player : MonoBehaviour
     {
         if (inventory.switchSwords && swords.Count > 1) // Making sure the player has more than one sword)
         {
-            if (Input.GetButtonDown("SwordSelection") && Input.GetAxisRaw("SwordSelection") > 0)
+            if (Input.mouseScrollDelta.y > 0) // mouse scroll up
                 {
-                    Debug.Log("pressing both");
                     swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
 
                     // Switch to next sword
@@ -231,7 +230,7 @@ public class Player : MonoBehaviour
 
                     swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
                 }
-            else if (Input.GetButtonDown("SwordSelection") && Input.GetAxisRaw("SwordSelection") < 0)
+            else if (Input.mouseScrollDelta.y < 0) // mouse scroll down
             {
                 swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
 
@@ -246,6 +245,31 @@ public class Player : MonoBehaviour
                 }
 
                 swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1)) // press 1
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false);
+                swords[0].gameObject.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && swords.Count >= 2) // press 2 if player has at least 2 swords
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false);
+                swords[1].gameObject.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && swords.Count >= 3)
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false);
+                swords[2].gameObject.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && swords.Count >= 4)
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false);
+                swords[3].gameObject.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5) && swords.Count == 5)
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false);
+                swords[4].gameObject.SetActive(true);
             }
         }
     }

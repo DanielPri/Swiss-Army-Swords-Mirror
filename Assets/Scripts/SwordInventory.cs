@@ -85,7 +85,7 @@ public class SwordInventory : MonoBehaviour {
         if (inventoryList.Count > 1 && switchSwords)
         {
             Color color = new Color(0.368F, 0.96F, 0.13F); // Set green color to show sword equipped
-            if (Input.GetButtonDown("SwordSelection") && Input.GetAxisRaw("SwordSelection") > 0)
+            if (Input.mouseScrollDelta.y > 0) // mouse scroll up
             {
                 inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
                 index++;
@@ -94,12 +94,47 @@ public class SwordInventory : MonoBehaviour {
                 inventoryList[index].GetComponent<SpriteRenderer>().color = color;
                 selectSound.Play();
             }
-            if (Input.GetButtonDown("SwordSelection") && Input.GetAxisRaw("SwordSelection") < 0)
+            if (Input.mouseScrollDelta.y < 0) // mouse scroll down
             {
                 inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
                 index--;
                 if (index == -1)
                     index = inventoryList.Count - 1;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1)) // press 1
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index = 0;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && inventoryList.Count >= 2) // press 2 if player has at least 2 swords
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index = 1;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && inventoryList.Count >= 3)
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index = 2;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && inventoryList.Count >= 4)
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index = 3;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5) && inventoryList.Count == 5)
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index = 4;
                 inventoryList[index].GetComponent<SpriteRenderer>().color = color;
                 selectSound.Play();
             }
