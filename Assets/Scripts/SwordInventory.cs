@@ -25,7 +25,7 @@ public class SwordInventory : MonoBehaviour {
     public List<GameObject> inventoryList = new List<GameObject>(); // Keep track of the inventory
     public int index;
     public bool switchSwords;
-    float inventoryDistance = 1.75f;
+    float inventoryDistance = 80;
 
     void Start() {
         AddSlot(0);
@@ -45,18 +45,18 @@ public class SwordInventory : MonoBehaviour {
 
     /* Handles the addition of inventory once new sword obtained */
     public void AddSlot(int swordNumber) {
-        Vector2 position = new Vector2(-7.75f, 4); // Initial position for first sword
+        Vector2 position = new Vector2(0, 0); // Initial position for first sword
         if (inventoryList.Count == 0) // Initialize
             ShowSword(inventoryList.Count, position);
         else { // Add new
-            float newPositionX = inventoryList[inventoryList.Count - 1].transform.position.x + inventoryDistance;
-            float newPositionY = inventoryList[inventoryList.Count - 1].transform.position.y;
-            float newPositionZ = inventoryList[inventoryList.Count - 1].transform.position.z;
-            position = new Vector3(newPositionX, newPositionY, newPositionZ);
+            float newPositionX = inventoryList[inventoryList.Count - 1].transform.localPosition.x + inventoryDistance;
+            float newPositionY = inventoryList[inventoryList.Count - 1].transform.localPosition.y;
+            position = new Vector2(newPositionX, newPositionY);
             ShowSword(swordNumber, position);
         }
         GameObject slot = Instantiate(InventoryPrefab, position, Quaternion.identity) as GameObject;
-        slot.transform.parent = gameObject.transform;
+        slot.transform.SetParent(gameObject.transform, false);
+        slot.transform.localScale = new Vector2(37.5f, 37.5f);
         inventoryList.Add(slot);
     }
 
@@ -76,7 +76,8 @@ public class SwordInventory : MonoBehaviour {
         if (number == 5) // Guitar sword
             swordPrefab = GuitarSwordPrefab;
         var newSword = Instantiate(swordPrefab, pos, Quaternion.identity);
-        newSword.transform.parent = gameObject.transform;
+        newSword.transform.SetParent(gameObject.transform, false);
+        newSword.transform.localScale = new Vector2(20, 20);
     }
 
     /* Controlling UI of the inventory */
