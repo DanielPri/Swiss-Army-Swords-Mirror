@@ -152,6 +152,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  player: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41, type: 3}
+  playerRange: 5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  playerInRange: 0
   mediumHP: 5
   isFrozen: 0
   state: 1

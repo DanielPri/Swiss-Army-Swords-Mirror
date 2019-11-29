@@ -47,7 +47,6 @@ public class Cobra : Enemy { // Has big HP, but is annoying since it is found in
 	
 	void HandleAnimations() {
 		cobraAnimator.SetBool("isMoving", moving);
-        cobraAnimator.SetBool("isAttacking", attacking);
         cobraAnimator.SetBool("isDieing", dieing);
 	}
 	
@@ -70,9 +69,6 @@ public class Cobra : Enemy { // Has big HP, but is annoying since it is found in
 		} else if ((state == 1 && !dieing) || (!moving && !dieing)) {
 			rigidbody.velocity = Vector2.zero;
 			moving = false;
-		} else if (state == 4 && !dieing) {
-			moving = false;
-			attacking = true;
 		}
 	}
 	
