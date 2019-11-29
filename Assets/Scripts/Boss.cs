@@ -7,6 +7,8 @@ public class Boss : Enemy {
     GameObject PrefabBossIntro = null;
     [SerializeField]
     GameObject PrefabProjectile = null;
+    [SerializeField]
+    float invulnerabilityTime = 0.6f;
 
     BossBar hitpointBar;
 	BossLifeBarSpawner bossLifeBarSpawner;
@@ -17,12 +19,13 @@ public class Boss : Enemy {
     Sword sword;
     Transform playerPosition;
     Vector2 facingDirection;
+    
 
     SpriteRenderer hurtColor;
 
     bool isHurt;
     float hurtTimer = 0.0F;
-    float hurtDuration = 2.0F;
+    float hurtDuration = 0.5F;
 
     float projectileDuration = 3.0F;
     float projectileSpeed = 2.0F;
@@ -32,6 +35,9 @@ public class Boss : Enemy {
     float projectileFrequency = 0.0F;
     float nextProjectileSpawn = 0.0F;
     bool isSpawned;
+
+    float invulnerabilityTimer = 0.0f;
+    bool isInvulnerable = false;
 
     AudioSource projectileSound;
     AudioSource morphSound;
@@ -92,6 +98,15 @@ public class Boss : Enemy {
                 hurtTimer = 0.0f;
             }
             Hurt();
+        }
+        if (isInvulnerable)
+        {
+            invulnerabilityTimer += Time.deltaTime;
+            if(invulnerabilityTimer > invulnerabilityTime)
+            {
+                isInvulnerable = false;
+                invulnerabilityTimer = 0.0f;
+            }
         }
     }
 
@@ -159,22 +174,14 @@ public class Boss : Enemy {
     public override void OnDestroy() {
         base.OnDestroy();
     }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag == "Sword" && sword.damaging)
-        {
-            isHurt = true;
-            hitpointBar.DecreaseBossHitpoint(2);
-        }
-    }
-
+    
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.tag == "Sword" && sword.damaging)
+        if (col.tag == "Sword" && sword.damaging && !isInvulnerable)
         {
             isHurt = true;
             hitpointBar.DecreaseBossHitpoint(2);
+            isInvulnerable = true;
         }
     }
 
