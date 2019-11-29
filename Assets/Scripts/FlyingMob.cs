@@ -104,11 +104,11 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 	private void FaceDirection(Vector3 playerPosition) {
         // Opposite to the player
         if (transform.position.x < player.transform.position.x) {
-            Vector2 newScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
+            Vector3 newScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
             transform.localScale = newScale;
         }
         else {
-            Vector2 newScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
+            Vector3 newScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
             transform.localScale = newScale;
         }
     }
