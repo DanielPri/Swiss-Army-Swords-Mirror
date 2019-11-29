@@ -40,7 +40,7 @@ public class LightSword : Sword
             light.intensity = lightIntensity;
         }
         else {
-            particleLight.Stop();
+            particleLight.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             light.enabled = false;
             laserOn = false;
         }
@@ -49,7 +49,10 @@ public class LightSword : Sword
     public void ShootLaser() {
         GameObject laser = Instantiate(lightLaserPrefab, transform.position, Quaternion.identity) as GameObject;
         Laser projectileLaser = laser.GetComponent<Laser>();
-        projectileLaser.SetDirection(player.GetFacingDirection());
+        Vector2 direction = player.GetFacingDirection();
+        if (direction.x == 0)
+            direction.x = 1;
+        projectileLaser.SetDirection(direction);
         //Add sound for laser later
         Destroy(laser, projectileDuration);
     }
