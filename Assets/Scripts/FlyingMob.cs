@@ -46,12 +46,12 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 		base.Update();
 		playerInRange = Physics2D.OverlapCircle(transform.position, playerRange, playerLayer);
 		sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
-        if (lightsword && playerInRange && FindObjectOfType<LightSword>().laserOn == true && sceneName == "Level 2") { // For level 2, they should be attracted to light of light sword
+        if (lightsword && playerInRange && FindObjectOfType<LightSword>().laserOn == true && sceneName.Contains("Level 2")) { // For level 2, they should be attracted to light of light sword
 			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 			FaceDirection(player.transform.position);
 			return;
 		}
-        else if (!lightsword && sceneName == "Level 2" && !playerInRange)
+        else if (!lightsword && sceneName.Contains("Level 2") && !playerInRange)
         { // For level 2, if there's no sword light, they should just move on patrol
             if (movingRight)
                 transform.Translate(Vector2.right * speed * Time.deltaTime);
