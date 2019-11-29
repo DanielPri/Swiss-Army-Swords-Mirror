@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     bool moving;
     bool grounded;
     bool falling;
-    bool switchSwords;
     Rigidbody2D player;
     Animator playerAnimator;
     Animator swordAnimator;
@@ -26,6 +25,11 @@ public class Player : MonoBehaviour
     List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject); // prevent from getting destroyed between scenes
+    }
+
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
@@ -34,11 +38,12 @@ public class Player : MonoBehaviour
         moving = false;
         grounded = false;
         falling = false;
-        switchSwords = true;
 
         inventory = inventoryGO.GetComponent<SwordInventory>();
         swordPossessions.Add(0);
         getInventorySwords();
+
+        activeSwordIndex = inventory.index;
     }
 
     private void getInventorySwords()
@@ -97,11 +102,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isFalling", falling);
         playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
 
-        // If active sword index ever exceeds sword count (by pressing tab in the wrong frame) set it to 0
-        if (activeSwordIndex + 1 > swords.Count)
-        {
-            activeSwordIndex = 0;
-        }
+        activeSwordIndex = inventory.index;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -109,7 +110,7 @@ public class Player : MonoBehaviour
         if (col.gameObject.name.Contains("SwordDrop") && !pickingUpSword)
         {
             // Cannot switch swords until inventory is updated
-            switchSwords = false;
+            inventory.switchSwords = false;
             // Hide the player's held sword
             SpriteRenderer heldSwordSR = new SpriteRenderer();
             SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
@@ -167,7 +168,7 @@ public class Player : MonoBehaviour
             heldSwordSR.enabled = true;
         pickingUpSword = false;
         getInventorySwords(); // Get the inventory of swords again to account for new one
-        switchSwords = true; // Able to switch swords once inventory is updated
+        inventory.switchSwords = true; // Able to switch swords once inventory is updated
     }
 
     private void MovePlayer()
@@ -210,26 +211,40 @@ public class Player : MonoBehaviour
 
     private void SwitchSwords()
     {
-        if (Input.GetButton("SwordTab") && switchSwords == true)
+        if (inventory.switchSwords && swords.Count > 1) // Making sure the player has more than one sword)
         {
-            if (Input.GetButtonDown("SwordSelection"))
-                if (swords.Count > 1) // Making sure the player has more than one sword
+            if (Input.GetButtonDown("SwordSelection") && Input.GetAxisRaw("SwordSelection") > 0)
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
+
+                // Switch to next sword
+                if (activeSwordIndex + 1 == swords.Count)
                 {
-                    Debug.Log("pressing both");
-                    swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
-
-                    // Switch to next sword
-                    if (activeSwordIndex + 1 == swords.Count)
-                    {
-                        activeSwordIndex = 0;
-                    }
-                    else
-                    {
-                        activeSwordIndex = activeSwordIndex + 1;
-                    }
-
-                    swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
+                    activeSwordIndex = 0;
                 }
+                else
+                {
+                    activeSwordIndex = activeSwordIndex + 1;
+                }
+
+                swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
+            }
+            else if (Input.GetButtonDown("SwordSelection") && Input.GetAxisRaw("SwordSelection") < 0)
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
+
+                // Switch to next sword
+                if (activeSwordIndex - 1 == -1)
+                {
+                    activeSwordIndex = swords.Count - 1;
+                }
+                else
+                {
+                    activeSwordIndex = activeSwordIndex - 1;
+                }
+
+                swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
+            }
         }
     }
     
