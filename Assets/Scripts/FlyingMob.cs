@@ -22,7 +22,6 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 	string sceneName;
 	
 	public int easyMobHP = 3;
-    public bool isFrozen;
     bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
