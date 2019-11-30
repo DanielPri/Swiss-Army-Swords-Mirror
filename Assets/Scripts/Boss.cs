@@ -9,6 +9,7 @@ public class Boss : Enemy {
     GameObject PrefabProjectile = null;
     [SerializeField]
     float invulnerabilityTime = 0.6f;
+    [SerializeField] GameObject dropSword;
 
     BossBar hitpointBar;
 	BossLifeBarSpawner bossLifeBarSpawner;
@@ -163,6 +164,7 @@ public class Boss : Enemy {
         base.Die();
         hitpointBar.index = -1;
         MorphAnimation();
+        Instantiate(dropSword, transform.position, Quaternion.identity);
         Destroy(gameObject);
         // Show some UI here maybe after a boss ?
     }

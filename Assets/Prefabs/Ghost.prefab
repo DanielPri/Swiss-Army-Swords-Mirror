@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 880036016}
   m_Layer: 0
   m_Name: BossLifeBarSpawner
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 82886694987618606}
   m_Layer: 0
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,11 +238,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
+  iceCube: {fileID: 0}
+  isFrozen: 0
   PrefabBossIntro: {fileID: 3239902107653306859, guid: baa9d5c9856add949afb7a9dc44c997a,
     type: 3}
   PrefabProjectile: {fileID: 1304778187103121423, guid: a276585c978a0af419b3cede62148447,
     type: 3}
   invulnerabilityTime: 0.6
+  dropSword: {fileID: 3676029165264510146, guid: b517e177a0d284f409d4aeee521a0124,
+    type: 3}
 --- !u!82 &82551438339397790
 AudioSource:
   m_ObjectHideFlags: 0
