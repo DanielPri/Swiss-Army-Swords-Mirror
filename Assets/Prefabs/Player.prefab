@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2110159222249153259}
   - component: {fileID: 5320424679055043524}
   - component: {fileID: 8848693168285777446}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -123,8 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 3
   jumpForce: 500
-  inventoryGO: {fileID: 291965788272559412, guid: c354a0ed65326a043a6d10e13523077d,
-    type: 3}
+  inventoryGO: {fileID: 0}
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 1024

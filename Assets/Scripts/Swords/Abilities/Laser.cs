@@ -16,7 +16,8 @@ public class Laser : Projectile {
         effectColor = GetComponent<SpriteRenderer>();
     }
 
-    void Update() {
+    public override void Update() {
+		base.Update();
         LaserEffect();
 
         if (destroyed)

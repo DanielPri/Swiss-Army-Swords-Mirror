@@ -23,41 +23,40 @@ public class SwordInventory : MonoBehaviour {
     AudioSource selectSound;
 
     public List<GameObject> inventoryList = new List<GameObject>(); // Keep track of the inventory
-    int index; // Should be put in a state file to keep track of it
-    bool added = false; // For test
-    bool open; // The inventory state
-    float inventoryDistance = 1.7F;
+    public int index;
+    public bool switchSwords;
+    float inventoryDistance = 80;
 
     void Start() {
         AddSlot(0);
         index = 0;
-        open = false;
         // Audio
         AudioSource[] audioSources = GetComponents<AudioSource>();
-        inventoryToggleSound = audioSources[0];
-        equipSound = audioSources[1];
-        selectSound = audioSources[2];
+        selectSound = audioSources[0];
+        Color color = new Color(0.368F, 0.96F, 0.13F);
+        inventoryList[0].GetComponent<SpriteRenderer>().color = color;
+        switchSwords = true;
+        inventoryList[0].GetComponent<SpriteRenderer>().color = color;
     }
 
     void Update() {
         ControlInventory();
-        EquipWeapon();
     }
 
     /* Handles the addition of inventory once new sword obtained */
     public void AddSlot(int swordNumber) {
-        Vector3 position = new Vector3(-12.03F, 1.34F, 0F); // Initial position for first sword
+        Vector2 position = new Vector2(0, 0); // Initial position for first sword
         if (inventoryList.Count == 0) // Initialize
             ShowSword(inventoryList.Count, position);
         else { // Add new
-            float newPositionX = inventoryList[inventoryList.Count - 1].transform.position.x + inventoryDistance;
-            float newPositionY = inventoryList[inventoryList.Count - 1].transform.position.y;
-            float newPositionZ = inventoryList[inventoryList.Count - 1].transform.position.z;
-            position = new Vector3(newPositionX, newPositionY, newPositionZ);
+            float newPositionX = inventoryList[inventoryList.Count - 1].transform.localPosition.x + inventoryDistance;
+            float newPositionY = inventoryList[inventoryList.Count - 1].transform.localPosition.y;
+            position = new Vector2(newPositionX, newPositionY);
             ShowSword(swordNumber, position);
         }
         GameObject slot = Instantiate(InventoryPrefab, position, Quaternion.identity) as GameObject;
-        slot.transform.parent = gameObject.transform;
+        slot.transform.SetParent(gameObject.transform, false);
+        slot.transform.localScale = new Vector2(37.5f, 37.5f);
         inventoryList.Add(slot);
     }
 
@@ -77,35 +76,69 @@ public class SwordInventory : MonoBehaviour {
         if (number == 5) // Guitar sword
             swordPrefab = GuitarSwordPrefab;
         var newSword = Instantiate(swordPrefab, pos, Quaternion.identity);
-        newSword.transform.parent = gameObject.transform;
+        newSword.transform.SetParent(gameObject.transform, false);
+        newSword.transform.localScale = new Vector2(20, 20);
     }
 
     /* Controlling UI of the inventory */
-    private void ControlInventory() {
-        if (Input.GetButtonDown("SwordTab") && !open) { // Opening Tab
-            open = true;
-            inventoryList[index].GetComponent<SpriteRenderer>().color = Color.red;
-            inventoryToggleSound.Play();
-        }
-        if (Input.GetButtonUp("SwordTab") && open) { // Closing tab and green color to show sword equiped
-            open = false;
-            Color color = new Color(0.368F, 0.96F, 0.13F);
-            inventoryList[index].GetComponent<SpriteRenderer>().color = color;
-            equipSound.Play();
-        }
-        if (open && Input.GetButtonDown("SwordSelection")) {
-            inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
-            index++;
-            if (index == inventoryList.Count)
+    private void ControlInventory()
+    {
+        if (inventoryList.Count > 1 && switchSwords)
+        {
+            Color color = new Color(0.368F, 0.96F, 0.13F); // Set green color to show sword equipped
+            if (Input.mouseScrollDelta.y > 0) // mouse scroll up
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index++;
+                if (index == inventoryList.Count)
+                    index = 0;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.mouseScrollDelta.y < 0) // mouse scroll down
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index--;
+                if (index == -1)
+                    index = inventoryList.Count - 1;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1)) // press 1
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
                 index = 0;
-            inventoryList[index].GetComponent<SpriteRenderer>().color = Color.red;
-            selectSound.Play();
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && inventoryList.Count >= 2) // press 2 if player has at least 2 swords
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index = 1;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && inventoryList.Count >= 3)
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index = 2;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && inventoryList.Count >= 4)
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index = 3;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5) && inventoryList.Count == 5)
+            {
+                inventoryList[index].GetComponent<SpriteRenderer>().color = Color.white;
+                index = 4;
+                inventoryList[index].GetComponent<SpriteRenderer>().color = color;
+                selectSound.Play();
+            }
         }
     }
-
-    private void EquipWeapon() {
-        // Have to keep track of swords at same indices as the inventory
-        // Player.GetComponent<Player>().EquipSword(index); ?
-    }
-
 }

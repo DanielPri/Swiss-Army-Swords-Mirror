@@ -13,6 +13,9 @@ public class Projectile : MonoBehaviour {
         rigidbody.velocity = Vector2.right * speed;
         sprite = GetComponent<Transform>();
     }
+	
+	public virtual void Update() {
+	}
 
     public virtual void SetDirection(Vector2 direction) {
         rigidbody.velocity = direction * speed;
