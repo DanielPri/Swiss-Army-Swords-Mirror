@@ -49,15 +49,16 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 		base.Update();
 		playerInRange = Physics2D.OverlapCircle(transform.position, playerRange, playerLayer);
 		sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
-        if (lightsword && playerInRange && FindObjectOfType<LightSword>().laserOn == true && sceneName.Contains("Level 2")) { // For level 2, they should be attracted to light of light sword
+        // For level 2, they should be attracted to light of light sword
+        if (lightsword && playerInRange && FindObjectOfType<LightSword>().laserOn == true && sceneName.Contains("Level 2")) { 
 			if (easyMobHP < 1)
 				Die();
 			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 			FaceDirection(player.transform.position);
 			return;
 		}
-        else if (!lightsword && sceneName.Contains("Level 2") && !playerInRange)
-        { // For level 2, if there's no sword light, they should just move on patrol
+        else if (!lightsword && sceneName == "Level 2")
+        { // For first half of level 2, if there's no sword light, they should just move on patrol regardless of where the player is
             if (easyMobHP < 1)
                 Die();
             if (movingRight)
@@ -110,13 +111,11 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 	private void FaceDirection(Vector3 playerPosition) {
         // Opposite to the player
         if (transform.position.x < player.transform.position.x) {
-            //Vector3 newScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
-            //transform.localScale = newScale;
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            // Using eulerAngles to flip sprite will prevent the child object (its light) from flipping/changing as well.
+            // This was causing the light to zoom in too close to the object and creating really ugly light
+            transform.eulerAngles = new Vector3(0, 0, 0); 
         }
         else {
-            Vector3 newScale = new Vector3(-Mathf.Abs(transform.localScale.x), -transform.localScale.y, 1);
-            //transform.localScale = newScale;
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
         // Keep light object's position set
@@ -132,15 +131,20 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 	void OnTriggerEnter2D(Collider2D col) {
         if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging)
             isHurt = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.tag == "EnemyZone" && !playerInRange && !lightsword)
+        if (col.tag == "EnemyZone")
         {
             GetComponent<SpriteRenderer>().flipX = movingRight;
             movingRight = !movingRight;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        //if (col.tag == "EnemyZone" && !lightsword)
+        //{
+        //    GetComponent<SpriteRenderer>().flipX = movingRight;
+        //    movingRight = !movingRight;
+        //}
     }
 
     private void OnTriggerStay2D(Collider2D col)
