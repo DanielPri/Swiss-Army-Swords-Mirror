@@ -1,18 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DragonBreath : MonoBehaviour
+public class DragonBreath : Fire
 {
-    // Use this for initialization
-    void Start()
-    {
+    [SerializeField]
+    public Fire fireprefab;
+    private Vector3 originalPos;
 
+    public override void Initialize()
+    {
+        base.Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
+        Initialize();
+        originalPos = transform.position;
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("Player"))
+        {
+            player.playerHPBar.DecreaseHitpoint(2);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Fire fire = Instantiate(fireprefab) as Fire;
+        fire.transform.position = originalPos;
     }
 
 }

@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Dragon : Enemy
+public class Dragon : BossParent
 {
     /**
      *  Related to the dragon.
      */
     private Animator dragonAnimator;
     private bool isFiring;
+    private bool isTailWhipping;
     private bool isAttacking;
 
     public GameObject fireBreathPrefab;
-    public float fireBreathRange = 6;
+    public GameObject smokePrefab;
+    public float fireBreathRange = 7;
+    public float tailWhipRange = 4;
 
     float hurtTimer = 0.0F;
 
@@ -24,12 +27,8 @@ public class Dragon : Enemy
     bool isHurt;
     bool isDark;
 
-    /* Player */
-    private GameObject player;
-    private HitpointBar playerHPBar;
-    Sword sword;
+    private bool knockBack;
 
-    Color c;
     SpriteRenderer sr;
 
     private bool oneTime;
@@ -56,26 +55,20 @@ public class Dragon : Enemy
 
         if (bossLifeBarSpawner.fightStart)
         {
-            hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
             FightStart();
+        }
+
+        if (CheckIfInRange(tailWhipRange) && !isTailWhipping)
+        {
+            StartCoroutine(TailWhip());
         }
 
         if (CheckIfInRange(fireBreathRange) && !isFiring)
         {
-            StartCoroutine(FireBreathCoolDown());
             StartCoroutine(FireBreath());
         }
 
         HandleTimers();
-
-        //if (isDark)
-        //{
-        //    TurnIntoDarkMode();
-        //} else
-        //{
-        //    TurnIntoNormalMode();
-        //}
-
 
     }
 
@@ -96,14 +89,18 @@ public class Dragon : Enemy
         {
             TurnIntoDarkMode();
         }
-        else {
+        else
+        {
             TurnIntoNormalMode();
         }
+
+        FaceDirection(player.transform.position);
     }
 
     public void FightStart()
     {
-     
+        hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
+
         if (hitpointBar.GetHP() < 10 && !oneTime)
         {
             TurnIntoDarkMode();
@@ -115,32 +112,70 @@ public class Dragon : Enemy
     {
         isDark = true;
         sr.color = Color.black;
-        transform.localScale = new Vector3(15, 15, 15);
+        StartCoroutine(LerpScaleOverTime(transform.localScale, new Vector3(15, 15, 15), 3f));
+        transform.parent.position = new Vector3(player.transform.position.x - 5, -0.95f, 0);
     }
+
+    //IEnumerator RamPlayer()
+    //{
+    //    transform.parent.position = Vector3.Lerp(transform.parent.position, new Vector3(player.transform.position.x - 5, -0.95f, 0), 0.5f);
+    //}
 
     public void TurnIntoNormalMode()
     {
         sr.color = Color.white;
     }
 
+    private IEnumerator LerpScaleOverTime(Vector3 startingScale, Vector3 endingScale, float time)
+    {
+        float inversedTime = 1 / time; // Compute this value **once**
+        for (float step = 0.0f; step < 1.0f; step += Time.deltaTime * inversedTime)
+        {
+            transform.localScale = Vector3.Lerp(startingScale, endingScale, step);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
 
     IEnumerator FireBreath()
     {
+        isFiring = true;
         dragonAnimator.SetBool("isInRange", true);
         yield return new WaitForSeconds(1.7f);
         GameObject fb = Instantiate(fireBreathPrefab) as GameObject;
-        fb.transform.position = transform.position + new Vector3(-4.5f, -0.5f, 0);
-        yield return new WaitForSeconds(4f);
-        Destroy(fb);
+        if (GetFacingDirection().x < 0)
+        {
+           fb.transform.position = new Vector3(transform.position.x-5.0f, -2.5f, 0);
+        } else
+        {
+            fb.transform.right = -fb.transform.right;
+            fb.transform.position = new Vector3(transform.position.x+5.0f, -2.5f, 0);
+        }
+        yield return new WaitForSeconds(1f);
         dragonAnimator.SetBool("isInRange", false);
+        yield return new WaitForSeconds(6f); //Cooldown
+        isFiring = false;
+
     }
 
-    IEnumerator FireBreathCoolDown()
+    IEnumerator TailWhip()
     {
-        isFiring = true;
-        yield return new WaitForSeconds(4f);
-        isFiring = false;
-        dragonAnimator.SetBool("isInRange", false);
+        isTailWhipping = true;
+        dragonAnimator.SetBool("isTailWhipping", true);
+
+        if (isTailWhipping)
+        {
+            isTailWhipping = !isTailWhipping;
+            if(GetFacingDirection().x < 0)
+            {
+                player.GetComponent<Rigidbody2D>().AddForce(transform.right * -20);
+                player.GetComponent<Rigidbody2D>().AddForce(transform.up * 20);
+            }
+
+        }
+        yield return new WaitForSeconds(1f);
+        dragonAnimator.SetBool("isTailWhipping", false);
+        isTailWhipping = false;
     }
 
     bool CheckIfInRange(float range)
@@ -153,10 +188,10 @@ public class Dragon : Enemy
         if (col.tag.Equals("Sword") && sword.damaging && !isDark)
         {
             isHurt = true;
-            hitpointBar.DecreaseBossHitpoint(2);
+            hitpointBar.DecreaseBossHitpoint(1);
         }
 
-        if (col.tag.Equals("Laser") && sword.damaging && isDark)
+        if (col.tag.Equals("Laser") && isDark)
         {
             isDark = false;
             TurnIntoNormalMode();

@@ -191,8 +191,8 @@ TextureImporter:
       name: breath_3
       rect:
         serializedVersion: 2
-        x: 473
-        y: 3
+        x: 458
+        y: 18
         width: 23
         height: 12
       alignment: 0
@@ -212,9 +212,9 @@ TextureImporter:
       name: breath_4
       rect:
         serializedVersion: 2
-        x: 493
+        x: 492
         y: 0
-        width: 63
+        width: 64
         height: 51
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -365,7 +365,7 @@ TextureImporter:
         height: 49
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 2, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -385,7 +385,7 @@ TextureImporter:
         width: 42
         height: 2
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

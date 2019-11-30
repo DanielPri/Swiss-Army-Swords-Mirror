@@ -1,0 +1,871 @@
+fileFormatVersion: 2
+guid: 8622debfda5c6489a9455dc72e874103
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4423522159086083979
+    second: firetrail_0
+  - first:
+      213: 6274176200283209060
+    second: firetrail_1
+  - first:
+      213: 8203615507192183333
+    second: firetrail_2
+  - first:
+      213: -809932079184818034
+    second: firetrail_3
+  - first:
+      213: -6117210017579071988
+    second: firetrail_4
+  - first:
+      213: 6658101894016266235
+    second: firetrail_5
+  - first:
+      213: 8287540460529550320
+    second: firetrail_6
+  - first:
+      213: 6278785697010104192
+    second: firetrail_7
+  - first:
+      213: -5520549464429552720
+    second: firetrail_8
+  - first:
+      213: -7198610528254484957
+    second: firetrail_9
+  - first:
+      213: 416312398765583343
+    second: firetrail_10
+  - first:
+      213: 1767769596564591284
+    second: firetrail_11
+  - first:
+      213: 2883377470344695599
+    second: firetrail_12
+  - first:
+      213: 7822907450777067656
+    second: firetrail_13
+  - first:
+      213: 8981897250243100996
+    second: firetrail_14
+  - first:
+      213: 7469879890849953041
+    second: firetrail_15
+  - first:
+      213: -5723624579613103706
+    second: firetrail_16
+  - first:
+      213: -8364135766667939867
+    second: firetrail_17
+  - first:
+      213: 4496337790389085523
+    second: firetrail_18
+  - first:
+      213: 7740709408165792373
+    second: firetrail_19
+  - first:
+      213: -743814883846777707
+    second: firetrail_20
+  - first:
+      213: 8791333460275990439
+    second: firetrail_21
+  - first:
+      213: 290540828464422689
+    second: firetrail_22
+  - first:
+      213: -2496085211386861819
+    second: firetrail_23
+  - first:
+      213: 7201877141709039125
+    second: firetrail_24
+  - first:
+      213: 2391685254752927081
+    second: firetrail_25
+  - first:
+      213: 3251219874650584767
+    second: firetrail_26
+  - first:
+      213: -5388104717908703894
+    second: firetrail_27
+  - first:
+      213: -7944586080195203498
+    second: firetrail_28
+  - first:
+      213: -4371077624171134695
+    second: firetrail_29
+  - first:
+      213: -5739039505858131589
+    second: firetrail_30
+  - first:
+      213: -2061861651111461048
+    second: firetrail_31
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: firetrail_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 423
+        width: 49
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8d39bbe7bae64493aedbd20dbdfe871
+      internalID: 4423522159086083979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_1
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 466
+        width: 44
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80858883df93f44f490094cb053bceff
+      internalID: 6274176200283209060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 471
+        width: 40
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95dbe9ffd677a4ead8ae36209e9e8c3a
+      internalID: 8203615507192183333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_3
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 464
+        width: 47
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7ecb8c4ac7364c5fb04b87831f39fd9
+      internalID: -809932079184818034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_4
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 372
+        width: 212
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd4c5eb2de41846c690ca3da888fbf9f
+      internalID: -6117210017579071988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_5
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 479
+        width: 27
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbdb7fb106d0249eb80817833608b377
+      internalID: 6658101894016266235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_6
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 386
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c4b8aabd88244b73be3b5544bcacd9e
+      internalID: 8287540460529550320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_7
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 453
+        width: 5
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0309ac52038c640ae9868f83f7b765b8
+      internalID: 6278785697010104192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_8
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 439
+        width: 5
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a9f7244100aa47e784449816f640924
+      internalID: -5520549464429552720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_9
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 437
+        width: 5
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36b763ecc3f9d47da806e399829a1c73
+      internalID: -7198610528254484957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_10
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 421
+        width: 4
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40fc41dea75b94f5c81d9918d03f10bd
+      internalID: 416312398765583343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_11
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 246
+        width: 199
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0ef1f26f0b4f449ca015760d2ce540e
+      internalID: 1767769596564591284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_12
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 257
+        width: 193
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86f4fcd2b79614677962a1132fbb80a3
+      internalID: 2883377470344695599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_13
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 356
+        width: 27
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81b6dd1e9f0ac4424b3d01f15563fafb
+      internalID: 7822907450777067656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_14
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 296
+        width: 4
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 706b7d24bcadd45a5bd9973d4875d7bc
+      internalID: 8981897250243100996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_15
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 217
+        width: 35
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8cda1787a9246379cecfed33a0ab73
+      internalID: 7469879890849953041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 133
+        width: 182
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca1d1d522f3af46e8873f24945c7d474
+      internalID: -5723624579613103706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_17
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 225
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 322ce59b32a574168aaaa35854952271
+      internalID: -8364135766667939867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_18
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 203
+        width: 58
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96e09010bb1524be6994a71f77f2eb24
+      internalID: 4496337790389085523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_19
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 213
+        width: 50
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e2164de18e4f4ebfaadde5c18eb72ce
+      internalID: 7740709408165792373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_20
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 193
+        width: 59
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bd69a34d5f994e918aa4bf8e4f0bb38
+      internalID: -743814883846777707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_21
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 217
+        width: 9
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50712cfb003ed4406a79bc8ee4648e0f
+      internalID: 8791333460275990439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 145
+        width: 44
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de94d271c5dd3457887f56df61d0c6e4
+      internalID: 290540828464422689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_23
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 189
+        width: 4
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae3a7e204d2b34474a5decc9bbc4e724
+      internalID: -2496085211386861819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_24
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 144
+        width: 6
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 769c772e06a594530beb196c8be09100
+      internalID: 7201877141709039125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5
+        width: 62
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66d0d7542d5774d4eb0d6fad1980113c
+      internalID: 2391685254752927081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_26
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 5
+        width: 122
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d432f189e3f949fcbaf95ef235ce774
+      internalID: 3251219874650584767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_27
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 101
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af1b9b58d38a942bdb2b0b39db49bc0d
+      internalID: -5388104717908703894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_28
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 5
+        width: 181
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e865dfdae9a134c6b836298a4d391dab
+      internalID: -7944586080195203498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_29
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 0
+        width: 203
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 402910ec70d1a4e70ac5db2a1a684ee8
+      internalID: -4371077624171134695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_30
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 95
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65280f39061624cc6b6e3158fb34ad1d
+      internalID: -5739039505858131589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: firetrail_31
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 41
+        width: 5
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c3885599fb9d48af87f07a1df16cc8e
+      internalID: -2061861651111461048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
