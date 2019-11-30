@@ -103,6 +103,7 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
+			Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>;
             playerHPBar.DecreaseHitpoint(1);
             rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }

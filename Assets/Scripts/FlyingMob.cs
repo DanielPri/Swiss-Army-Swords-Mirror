@@ -21,7 +21,6 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 	string sceneName;
 	
 	public int easyMobHP = 3;
-    public bool isFrozen;
     bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
@@ -46,17 +45,21 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 		playerInRange = Physics2D.OverlapCircle(transform.position, playerRange, playerLayer);
 		sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
 		if (playerInRange && FindObjectOfType<LightSword>().laserOn == true && sceneName == "Level 2") { // For level 2, they should be attracted to light of light sword
+			if (easyMobHP < 1)
+				Die();
 			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 			FaceDirection(player.transform.position);
 			return;
 		}
 		else if (playerInRange && sceneName == "Level 3") {
+			if (easyMobHP < 1)
+				Die();
 			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 			FaceDirection(player.transform.position);
 			return;
 		}
 		HandleTimers();
-		if (easyMobHP < 1 && !isFrozen)
+		if (easyMobHP < 1)
             Die();
     }
 	
@@ -72,9 +75,6 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
                 hurtTimer = 0.0f;
             }
             Hurt();
-        }
-        if (isFrozen) {
-            Freeze();
         }
     }
 
