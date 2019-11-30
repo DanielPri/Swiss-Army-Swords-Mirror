@@ -26,7 +26,9 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
 	AudioSource hitSound;
-	
+    Light light;
+
+
     new void Start() {
 		base.Start();
 		Scene currentScene = SceneManager.GetActiveScene(); // To know which level
@@ -39,6 +41,7 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
         AudioSource[] audioSources = GetComponents<AudioSource>();
         hitSound = audioSources[0];
         lightsword = FindObjectOfType<LightSword>();
+        light = GetComponentInChildren<Light>();
     }
 
     public override void Update() {
@@ -55,6 +58,8 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 		}
         else if (!lightsword && sceneName.Contains("Level 2") && !playerInRange)
         { // For level 2, if there's no sword light, they should just move on patrol
+            if (easyMobHP < 1)
+                Die();
             if (movingRight)
                 transform.Translate(Vector2.right * speed * Time.deltaTime);
             else
@@ -105,17 +110,21 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 	private void FaceDirection(Vector3 playerPosition) {
         // Opposite to the player
         if (transform.position.x < player.transform.position.x) {
-            Vector3 newScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
-            transform.localScale = newScale;
+            //Vector3 newScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
+            //transform.localScale = newScale;
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else {
-            Vector3 newScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
-            transform.localScale = newScale;
+            Vector3 newScale = new Vector3(-Mathf.Abs(transform.localScale.x), -transform.localScale.y, 1);
+            //transform.localScale = newScale;
+            transform.eulerAngles = new Vector3(0, 180, 0);
         }
+        // Keep light object's position set
+        //light.gameObject.transform.localScale = new Vector3(transform.position.x, transform.position.y, -0.205f);
     }
-	
-	// Disable the gizmo in the game
-	void OnDrawGizmosSelected() {
+
+    // Disable the gizmo in the game
+    void OnDrawGizmosSelected() {
 		// Makes a circle around player for playerRange
 		Gizmos.DrawSphere(transform.position, playerRange);
 	}
