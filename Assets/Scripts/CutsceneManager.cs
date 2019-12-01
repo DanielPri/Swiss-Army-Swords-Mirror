@@ -15,5 +15,8 @@ public class CutsceneManager : MonoBehaviour {
         if (director.time > 28.4) { // If cutscene done, move to level 1 (28 seconds)
 			SceneManager.LoadScene("Level 1");
 		}
+		if (Input.GetButton("SkipCutscene")) { // Skip cutscene by pressing "s"
+			director.time = 28.0;
+		}
     }
 }

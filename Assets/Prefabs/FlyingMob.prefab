@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6335249054198628679}
   - component: {fileID: 6335249054198628677}
   m_Layer: 0
-  m_Name: FlyingMob 1
+  m_Name: FlyingMob
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,12 +288,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  player: {fileID: 0}
+  player: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41, type: 3}
   moveSpeed: 2
   playerRange: 7
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 2048
   playerInRange: 0
   easyMobHP: 3
   isFrozen: 0

@@ -48,8 +48,8 @@ public class LavaTile : MonoBehaviour {
 		Destroy(fire, touchedTime);
 	}
 	
-	void OnTriggerEnter2D(Collider2D col) {
-        if (col.tag == "Player") {
+	void OnCollisionEnter2D(Collision2D col) {
+        if (col.collider.tag == "Player") {
             touchingLava = true;
 			startForceTimer = true;
 			playerRigidbody.AddForce(new Vector2(0.0F, pushbackForce), ForceMode2D.Impulse);
@@ -58,8 +58,8 @@ public class LavaTile : MonoBehaviour {
         }
     }
 	
-	void OnTriggerExit2D(Collider2D col) {
-        if (col.tag == "Player") {
+	void OnCollisionExit2D(Collision2D col) {
+        if (col.collider.tag == "Player") {
             touchingLava = false;
         }
     }
