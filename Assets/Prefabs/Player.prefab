@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2110159222249153261}
   - component: {fileID: 2110159222249153262}
   - component: {fileID: 2110159222249153259}
-  - component: {fileID: 5320424679055043524}
   - component: {fileID: 8848693168285777446}
+  - component: {fileID: 8479224283816030587}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -122,27 +122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 3
-  jumpForce: 500
-  inventoryGO: {fileID: 0}
+  jumpForce: 4
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 1024
---- !u!70 &5320424679055043524
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110159222249153263}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.75, y: 1.1875}
-  m_Direction: 0
+  jumpDuration: 0.5
+  facingDirection: {x: 0, y: 0}
 --- !u!95 &8848693168285777446
 Animator:
   serializedVersion: 3
@@ -162,6 +147,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &8479224283816030587
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110159222249153263}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.51, y: 1.1875}
+  m_Direction: 0
 --- !u!1001 &774581460212382786
 PrefabInstance:
   m_ObjectHideFlags: 0

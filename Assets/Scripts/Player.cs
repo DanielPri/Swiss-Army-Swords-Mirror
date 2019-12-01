@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,16 +9,20 @@ public class Player : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask platformLayerMask;
+    [SerializeField]
+    float jumpDuration;
 
     bool pickingUpSword;
     bool moving;
     bool grounded;
     bool falling;
-    Rigidbody2D player;
+    bool jumping;
+    float jumpTimeElapsed;
+    Rigidbody2D rb;
     Animator playerAnimator;
     Animator swordAnimator;
     public Vector2 facingDirection;
-    CapsuleCollider2D playerCollider;
+    Collider2D playerCollider;
 
     SwordInventory inventory;
     GameObject inventoryGO;
@@ -32,9 +37,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        playerCollider = GetComponent<CapsuleCollider2D>();
+        playerCollider = GetComponent<Collider2D>();
         moving = false;
         grounded = false;
         falling = false;
@@ -125,12 +130,14 @@ public class Player : MonoBehaviour
             pickingUpSword = true;
             moving = false;
             // Hold sword above head - sorta buggy when you jump and collect it
-            col.gameObject.transform.localPosition = new Vector2(transform.position.x, transform.position.y + 1);
+
+            col.transform.parent = transform;
+            col.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
             col.gameObject.GetComponentInChildren<Animator>().enabled = false;
 
             swordPossessions.Add(SwordId(col.gameObject));
 
-            StartCoroutine(WaitAndPickup(col.gameObject, heldSwordSR));
+            StartCoroutine(HandleSwordPickup(col.gameObject, heldSwordSR));
         }
 
     }
@@ -144,7 +151,16 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
+     void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Platforms")  // or if(gameObject.CompareTag("YourWallTag"))
+        {
+            rb.velocity = Vector3.zero;
+        }
+    }
+
+
     private IEnumerator WaitAndPickup(GameObject swordGO, SpriteRenderer heldSwordSR)
     {
         // Will force a wait before the player can continue playing
@@ -192,17 +208,36 @@ public class Player : MonoBehaviour
                 moving = true;
             }
 
+            //jump handling
             if (grounded && Input.GetButtonDown("Jump"))
             {
-                player.AddForce(Vector2.up * jumpForce);
+                jumpTimeElapsed = 0;
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                jumping = true;
             }
-
+            if (jumping && Input.GetButton("Jump"))
+            {
+                timeJump();
+            }
+            if (Input.GetButtonUp("Jump"))
+            {
+               jumping = false;
+            }
         }
+    }
+
+    private void timeJump()
+    {
+        if(jumpTimeElapsed < jumpDuration) {
+            rb.AddForce(Vector2.up * jumpForce * (1-jumpTimeElapsed )/14 , ForceMode2D.Impulse);
+            jumpTimeElapsed += Time.deltaTime;
+        }
+        
     }
 
     private void CheckFalling()
     {
-        falling = player.velocity.y < 0.0f;
+        falling = rb.velocity.y < 0.0f;
     }
 
     public Vector2 GetFacingDirection()
