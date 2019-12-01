@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
+    Camera mainCamera;
     GameObject ui;
     GameObject pauseMenu;
 
@@ -14,9 +15,11 @@ public class Pause : MonoBehaviour
 
     void Start()
     {
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         ui = GameObject.Find("UI Canvas");
         ui.SetActive(true);
         pauseMenu = GameObject.Find("ControlScheme");
+        pauseMenu.GetComponent<Canvas>().worldCamera = mainCamera;
         pauseMenu.SetActive(false);
     }
 
