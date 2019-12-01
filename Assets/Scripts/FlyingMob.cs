@@ -54,8 +54,7 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 		sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
         // For level 2, they should be attracted to light of light sword
         if (lightsword && playerInRange && FindObjectOfType<LightSword>().laserOn == true && sceneName.Contains("Level 2")) { 
-
-			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+			transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 			FaceDirection(player.transform.position);
 			return;
 		}
