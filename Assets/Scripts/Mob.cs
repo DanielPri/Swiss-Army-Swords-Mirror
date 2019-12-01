@@ -109,7 +109,6 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-			Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>;
             if (!isFrozen)
             {
                 playerHPBar.DecreaseHitpoint(1);

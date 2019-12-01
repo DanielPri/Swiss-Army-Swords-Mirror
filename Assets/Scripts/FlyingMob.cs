@@ -45,6 +45,7 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
     public override void Update() {
 		// Must be attracted to light of light sword
 		base.Update();
+		HandleTimers();
         if (easyMobHP < 1) {
             Die();
             return;
@@ -71,7 +72,6 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 			FaceDirection(player.transform.position);
 			return;
 		}
-		HandleTimers();
     }
 	
 	public override void Die() {
