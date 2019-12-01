@@ -6,6 +6,7 @@ public class BossLifeBarSpawner : MonoBehaviour
 {
     [SerializeField] GameObject bossLifeBar;
     public bool fightStart;
+    GameObject theBar;
 
     void Start()
     {
@@ -16,7 +17,8 @@ public class BossLifeBarSpawner : MonoBehaviour
     {
         if (col.tag == "Player" && fightStart == false)
         {
-            Instantiate(bossLifeBar, new Vector2(0, -7), Quaternion.identity, GameObject.Find("UI Canvas").transform);
+            theBar = Instantiate(bossLifeBar, new Vector2(0, -200), Quaternion.identity);
+            theBar.transform.SetParent(GameObject.Find("UI Canvas").transform, false);
             fightStart = true;
         }
     }
