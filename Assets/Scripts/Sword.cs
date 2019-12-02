@@ -42,7 +42,7 @@ public class Sword : MonoBehaviour
         audioSource.volume = 0.2f;
     }
 
-    void Update()
+    public virtual void Update()
     {
         if (Input.GetButtonDown("Fire1") && damaging == false)
         {
@@ -62,13 +62,13 @@ public class Sword : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && swordType != SwordType.FIRE)
         {
             Ability();
         }
     }
 
-    private void makeAttackSound()
+    public void makeAttackSound()
     {
         //guarantee to never repeat a sound with this loop
         do
