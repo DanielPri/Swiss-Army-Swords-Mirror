@@ -18,7 +18,7 @@ public class LavaDemon : BossParent
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         FaceDirection(player.transform.position);
 
