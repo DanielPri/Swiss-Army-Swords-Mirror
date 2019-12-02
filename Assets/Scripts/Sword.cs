@@ -42,7 +42,7 @@ public class Sword : MonoBehaviour
         audioSource.volume = 0.2f;
     }
 
-    public virtual void Update()
+    protected void Update()
     {
         if (Input.GetButtonDown("Fire1") && damaging == false)
         {

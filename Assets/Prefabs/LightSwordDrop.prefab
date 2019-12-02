@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5424468622695665571}
   - component: {fileID: 5424468622695665570}
+  - component: {fileID: 3656486905971582594}
   m_Layer: 0
   m_Name: LightSwordDrop
   m_TagString: Untagged
@@ -58,6 +59,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3656486905971582594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424468622695665597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4decaf228531d6d4394c3744f86ab130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorGO: {fileID: 0}
 --- !u!1 &5424468623023913468
 GameObject:
   m_ObjectHideFlags: 0
