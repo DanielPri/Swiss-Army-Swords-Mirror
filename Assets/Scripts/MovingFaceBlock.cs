@@ -10,24 +10,14 @@ public class MovingFaceBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dragon = GameObject.Find("Dragon");
-        dragonChildren = dragon.GetComponentsInChildren<Transform>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        dragon = GameObject.Find("DragonChild");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            foreach (Transform child in dragonChildren)
-            {
-                child.gameObject.SetActive(true);
-            }
+            dragon.GetComponent<Rigidbody2D>().simulated = true;
         }
     }
 

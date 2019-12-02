@@ -1301,7 +1301,7 @@ TextureImporter:
         x: 128
         y: 489
         width: 60
-        height: 10
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1321,7 +1321,7 @@ TextureImporter:
         x: 190
         y: 489
         width: 64
-        height: 13
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1341,7 +1341,7 @@ TextureImporter:
         x: 256
         y: 489
         width: 68
-        height: 15
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1361,7 +1361,7 @@ TextureImporter:
         x: 326
         y: 489
         width: 37
-        height: 23
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1381,7 +1381,7 @@ TextureImporter:
         x: 365
         y: 489
         width: 58
-        height: 68
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1401,7 +1401,7 @@ TextureImporter:
         x: 425
         y: 489
         width: 74
-        height: 76
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1421,7 +1421,7 @@ TextureImporter:
         x: 501
         y: 489
         width: 80
-        height: 90
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1441,7 +1441,7 @@ TextureImporter:
         x: 583
         y: 489
         width: 72
-        height: 105
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1480,8 +1480,8 @@ TextureImporter:
         serializedVersion: 2
         x: 129
         y: 373
-        width: 70
-        height: 98
+        width: 74
+        height: 102
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1518,10 +1518,10 @@ TextureImporter:
       name: lavalDemon 1_65
       rect:
         serializedVersion: 2
-        x: 275
+        x: 273
         y: 373
-        width: 71
-        height: 101
+        width: 72
+        height: 103
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1538,10 +1538,10 @@ TextureImporter:
       name: lavalDemon 1_66
       rect:
         serializedVersion: 2
-        x: 348
+        x: 347
         y: 373
-        width: 64
-        height: 99
+        width: 65
+        height: 103
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1558,10 +1558,10 @@ TextureImporter:
       name: lavalDemon 1_67
       rect:
         serializedVersion: 2
-        x: 414
-        y: 374
-        width: 62
-        height: 97
+        x: 413
+        y: 373
+        width: 63
+        height: 102
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1578,10 +1578,10 @@ TextureImporter:
       name: lavalDemon 1_68
       rect:
         serializedVersion: 2
-        x: 478
-        y: 374
-        width: 58
-        height: 96
+        x: 477
+        y: 373
+        width: 59
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1598,10 +1598,10 @@ TextureImporter:
       name: lavalDemon 1_69
       rect:
         serializedVersion: 2
-        x: 538
-        y: 374
-        width: 56
-        height: 92
+        x: 536
+        y: 373
+        width: 58
+        height: 101
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1618,10 +1618,10 @@ TextureImporter:
       name: lavalDemon 1_70
       rect:
         serializedVersion: 2
-        x: 596
-        y: 374
-        width: 49
-        height: 82
+        x: 594
+        y: 373
+        width: 51
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1638,10 +1638,10 @@ TextureImporter:
       name: lavalDemon 1_71
       rect:
         serializedVersion: 2
-        x: 647
-        y: 374
-        width: 45
-        height: 34
+        x: 646
+        y: 373
+        width: 46
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1659,9 +1659,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 694
-        y: 374
-        width: 35
-        height: 15
+        y: 373
+        width: 38
+        height: 89
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2818,12 +2818,12 @@ TextureImporter:
       name: lavalDemon 1_130
       rect:
         serializedVersion: 2
-        x: 652
+        x: 654
         y: 473
         width: 32
         height: 113
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
