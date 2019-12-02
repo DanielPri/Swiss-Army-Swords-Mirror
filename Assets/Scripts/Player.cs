@@ -196,14 +196,14 @@ public class Player : MonoBehaviour
             if (Input.GetButton("Left"))
             {
                 transform.Translate(-Vector2.right * playerSpeed * Time.deltaTime);
-                transform.localScale = new Vector2(-1, 1);
+                transform.localScale = new Vector3(-1, 1, 1);
                 facingDirection = -transform.right;
                 moving = true;
             }
             if (Input.GetButton("Right"))
             {
                 transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
-                transform.localScale = new Vector2(1, 1);
+                transform.localScale = new Vector3(1, 1, 1);
                 facingDirection = transform.right;
                 moving = true;
             }

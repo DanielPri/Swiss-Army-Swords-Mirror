@@ -26,11 +26,11 @@ public class Mob : Enemy {
         movingRight = true;
         AudioSource[] audioSources = GetComponents<AudioSource>();
         hitSound = audioSources[0];
-        rb.freezeRotation = true;
         
         // Freeze properties
         freezeable = true;
         freezeCubeOffset = new Vector3(0, 0.5f);
+        freezeCubeScale = new Vector3(0.1f, 0.2f, 0.1f);
         freezeCubeScale = new Vector3(0.1f, 0.2f, 0.1f);
     }
 
