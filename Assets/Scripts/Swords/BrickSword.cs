@@ -101,7 +101,7 @@ public class BrickSword : Sword
 
     private void checkIfDestroyWall()
     {
-        if(wallContainer.transform.childCount > maxBrickWalls)
+        if(wallContainer != null && wallContainer.transform.childCount > maxBrickWalls)
         {
             GameObject oldestWall;
             for (int childIndex = 0; childIndex < wallContainer.transform.childCount - maxBrickWalls; childIndex++)
