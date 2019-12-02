@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     SwordInventory inventory;
     GameObject inventoryGO;
     List<Transform> swords = new List<Transform>();
-    List<int> swordPossessions = new List<int>();
+    public List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
     GameObject pauseMenu;
 

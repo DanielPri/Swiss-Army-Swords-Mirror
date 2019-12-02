@@ -11,6 +11,12 @@ public class Pause : MonoBehaviour
     GameObject pauseMenu;
     GameObject controlScheme;
     GameObject buttons;
+    GameObject regularDescription;
+    GameObject iceDescription;
+    GameObject brickDescription;
+    GameObject lightDescription;
+    GameObject flameDescription;
+    List<int> possessions;
     public bool paused;
 
     void Awake()
@@ -22,28 +28,56 @@ public class Pause : MonoBehaviour
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         ui = GameObject.Find("UI Canvas");
-        ui.SetActive(true);
         pauseMenu = GameObject.Find("MainPauseMenu");
-        pauseMenu.GetComponent<Canvas>().worldCamera = mainCamera;
-        pauseMenu.SetActive(false);
         controlScheme = GameObject.Find("ControlScheme");
-        controlScheme.GetComponent<Canvas>().worldCamera = mainCamera;
-        controlScheme.SetActive(false);
         buttons = GameObject.Find("PauseMenuButtons");
+        regularDescription = GameObject.Find("RegularSwordDescription");
+        iceDescription = GameObject.Find("IceSwordDescription");
+        brickDescription = GameObject.Find("BrickSwordDescription");
+        lightDescription = GameObject.Find("LightSwordDescription");
+        flameDescription = GameObject.Find("FlameSwordDescription");
+        possessions = GameObject.Find("Player").GetComponent<Player>().swordPossessions;
+        pauseMenu.GetComponent<Canvas>().worldCamera = mainCamera;
+        controlScheme.GetComponent<Canvas>().worldCamera = mainCamera;
         buttons.GetComponent<Canvas>().worldCamera = mainCamera;
+        ui.SetActive(true);
+        pauseMenu.SetActive(false);
+        controlScheme.SetActive(false);
         buttons.SetActive(false);
+        regularDescription.SetActive(false);
+        iceDescription.SetActive(false);
+        brickDescription.SetActive(false);
+        lightDescription.SetActive(false);
+        flameDescription.SetActive(false);
         paused = false;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) == true && EventSystem.current.IsPointerOverGameObject())
-        {
-            Debug.Log(EventSystem.current.currentSelectedGameObject.gameObject.name);
-        }
         if (pauseMenu.activeInHierarchy)
         {
             paused = true;
+            if (possessions.Contains(0))
+            {
+                regularDescription.SetActive(true);
+            }
+            if (possessions.Contains(1))
+            {
+                flameDescription.SetActive(true);
+            }
+            if (possessions.Contains(2))
+            {
+                brickDescription.SetActive(true);
+            }
+            if (possessions.Contains(3))
+            {
+                iceDescription.SetActive(true);
+            }
+            if (possessions.Contains(4))
+            {
+                lightDescription.SetActive(true);
+            }
+
         }
         else
         {
