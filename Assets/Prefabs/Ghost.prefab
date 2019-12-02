@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 2555847598869820920}
   - component: {fileID: 2555847598869820923}
   - component: {fileID: 2555847598869820922}
-  - component: {fileID: 6441126134916193895}
   - component: {fileID: 5674869845457566704}
   - component: {fileID: 114734099624031064}
   - component: {fileID: 82551438339397790}
   - component: {fileID: 82886694987618606}
   - component: {fileID: 5154630072021495453}
+  - component: {fileID: 8237903281095710297}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -105,32 +105,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &6441126134916193895
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2555847598869820917}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.011908054, y: -0.008244038}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.31, y: 0.44}
-    newSize: {x: 0.31, y: 0.44}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.25320816, y: 0.40885592}
-  m_EdgeRadius: 0
 --- !u!50 &5674869845457566704
 Rigidbody2D:
   serializedVersion: 4
@@ -380,3 +354,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossLifeBar: {fileID: 3451021653924928558, guid: 7ebbcc9df0668de4987e969c5e9a9b5d,
     type: 3}
+--- !u!60 &8237903281095710297
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555847598869820917}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.31, y: 0.44}
+    newSize: {x: 0.31, y: 0.44}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.023645949, y: 0.1247582}
+      - {x: -0.043584548, y: 0.1924105}
+      - {x: -0.099521086, y: 0.07188113}
+      - {x: -0.14552875, y: -0.024059117}
+      - {x: -0.0674105, y: -0.15594089}
+      - {x: -0.024999999, y: -0.22}
+      - {x: 0.125, y: -0.22}
+      - {x: 0.155, y: -0.17999999}
+      - {x: 0.08193603, y: -0.07735631}
+      - {x: 0.08493762, y: 0.08970444}
