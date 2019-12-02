@@ -153,9 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    sentences:
-    - 'What who are you... Oh no.. '
-    - That's the Red Dragon Of Phantom.. IT'S TIME TO FIGHT!
+    sentences: []
 --- !u!114 &101364900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c625947bb8443a68ecb9bf27408d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newTrack: {fileID: 8300000, guid: ddbb929ce67554c2399b7fe197764f45, type: 3}
+  newTrack: {fileID: 0}
 --- !u!61 &101364901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -207,8 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5466435aea5db904ba06ae166f4c1cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossLifeBar: {fileID: 3451021653924928558, guid: 7ebbcc9df0668de4987e969c5e9a9b5d,
-    type: 3}
+  bossLifeBar: {fileID: 0}
   fightStart: 0
 --- !u!224 &101364903
 RectTransform:
@@ -1559,7 +1556,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1991,15 +1988,15 @@ MonoBehaviour:
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
-  m_ScreenX: 0.49999985
-  m_ScreenY: 0.49999964
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.18276535
-  m_DeadZoneHeight: 0.28
+  m_DeadZoneWidth: 0.1
+  m_DeadZoneHeight: 0.1
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.7041917
-  m_SoftZoneHeight: 0.45
+  m_SoftZoneWidth: 0.8
+  m_SoftZoneHeight: 0.8
   m_BiasX: 0
   m_BiasY: 0
   m_GroupFramingMode: 2
@@ -3374,11 +3371,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  fireBreathPrefab: {fileID: 3286647498644308171, guid: 287f8a88e5e05407ca3b27dd1e137bd9,
-    type: 3}
-  smokePrefab: {fileID: 3175815186046069203, guid: e6b44500fe68a4ed68d64cc74e9c9752,
-    type: 3}
-  fireBreathRange: 6
+  fireBreathPrefab: {fileID: 0}
+  smokePrefab: {fileID: 0}
+  fireBreathRange: 7
   tailWhipRange: 4
 --- !u!1 &1188118999
 GameObject:
@@ -3433,10 +3428,10 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1429427937}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 5
+    OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -3501,9 +3496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    sentences:
-    - What?! The Red Phantom has been defeated?
-    - 
+    sentences: []
 --- !u!61 &1255807603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3575,9 +3568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    sentences:
-    - 'Where am I... '
-    - Oh right i'm still fighting the red phantom..
+    sentences: []
 --- !u!61 &1369947192
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3649,8 +3640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    sentences:
-    - AAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHH!!!!!!!!!
+    sentences: []
 --- !u!61 &1406250989
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3783,6 +3773,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: playerHPBar
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2110159222249153263, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_Name
@@ -3848,19 +3843,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
-        type: 3}
-      propertyPath: playerHPBar
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74c6454bd7bb901439ad715e81729d41, type: 3}
---- !u!4 &1429427937 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2110159222249153260, guid: 74c6454bd7bb901439ad715e81729d41,
-    type: 3}
-  m_PrefabInstance: {fileID: 1429427936}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1574930481
 GameObject:
   m_ObjectHideFlags: 0
@@ -4134,7 +4118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34bc8ce1c677846a58b07ed5158ec76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGM: {fileID: 1748606695}
+  BGM: {fileID: 0}
 --- !u!82 &1748606695
 AudioSource:
   m_ObjectHideFlags: 0
