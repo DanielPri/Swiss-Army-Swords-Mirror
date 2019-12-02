@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public HitpointBar playerHPBar;
+
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask platformLayerMask;
@@ -58,8 +60,8 @@ public class Player : MonoBehaviour
         inventory = inventoryGO.GetComponent<SwordInventory>();
         swordPossessions.Add(0);
         getInventorySwords();
-
         activeSwordIndex = inventory.index;
+        playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
     }
 
     private void getInventorySwords()

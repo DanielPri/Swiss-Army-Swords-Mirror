@@ -13,7 +13,7 @@ public class Boss : Enemy {
     [SerializeField] GameObject dropSword;
 
     BossBar hitpointBar;
-	BossLifeBarSpawner bossLifeBarSpawner;
+	BossLifeBarSpawner BossLifeBarSpawner;
     HitpointBar playerHPBar;
     Rigidbody2D rb;
     Rigidbody2D playerRigidBody;
