@@ -11,7 +11,7 @@ public class LavaTile : MonoBehaviour {
 	Rigidbody2D  playerRigidbody = null;
 	GameObject fire = null;
 	SpriteRenderer fireFade = null;
-	bool touchingLava = false;
+	public bool touchingLava = false;
 	bool startForceTimer = false;
 	
 	float pushbackForce = 7.0F;
