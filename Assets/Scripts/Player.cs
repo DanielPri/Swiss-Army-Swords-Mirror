@@ -294,7 +294,7 @@ public class Player : MonoBehaviour
 
     public Rigidbody2D PlayerRigidBody()
     {
-        return player;
+        return rb;
     }
 
     private void SwitchSwords()

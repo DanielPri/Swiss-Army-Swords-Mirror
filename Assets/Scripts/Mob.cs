@@ -15,7 +15,6 @@ public class Mob : Enemy {
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
     HitpointBar playerHPBar;
-    Player player;
     AudioSource hitSound;
 
     new public void Start() {
@@ -113,7 +112,6 @@ public class Mob : Enemy {
             if (!isFrozen)
             {
                 playerHPBar.DecreaseHitpoint(1);
-            player.IsHurt = true;
                 playerHurtSound();
             }
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
