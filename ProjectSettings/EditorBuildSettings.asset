@@ -6,18 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/UI.unity
-    guid: 8075767a5308a0248a617f00557214c7
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/__DELETED_GUID_Trash/de3df23d5c8eac04782652b0e61e76bb
-    guid: de3df23d5c8eac04782652b0e61e76bb
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/GameplayUI.unity
-    guid: abc5e715bb2062a49b90d2bb74f44893
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: ec5015b03d5dad744abdd53f0881a59b
   - enabled: 1
     path: Assets/Scenes/PlayerBossInteraction.unity
     guid: ec173b89c73ced749b207f21363bdf5f
+  - enabled: 1
+    path: Assets/Scenes/DragonBoss.unity
+    guid: e26d924cd7d5d41e092f6c0c10eeb02d
+  - enabled: 1
+    path: Assets/Scenes/LavaDemon.unity
+    guid: 86a62728cfe4240f8a0a6bce5f5d78b3
   m_configObjects: {}

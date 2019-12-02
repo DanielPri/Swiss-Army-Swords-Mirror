@@ -91,7 +91,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -104,13 +103,12 @@ SpriteRenderer:
   m_SortingLayerID: -835397081
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3357456237637211654, guid: 21adc9daeaf6f4d1b952226f6b60ab8e,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d8f128bf9d794f38bf3bc934b2326ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.71, y: 0.39}
+  m_Size: {x: 0.72, y: 0.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -150,9 +148,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  fireBreathPrefab: {fileID: 4569929925966375191, guid: 287f8a88e5e05407ca3b27dd1e137bd9,
+  fireBreathPrefab: {fileID: 3286647498644308171, guid: 287f8a88e5e05407ca3b27dd1e137bd9,
+    type: 3}
+  smokePrefab: {fileID: 3175815186046069203, guid: e6b44500fe68a4ed68d64cc74e9c9752,
     type: 3}
   fireBreathRange: 6
+  tailWhipRange: 4
 --- !u!95 &5016610969477369174
 Animator:
   serializedVersion: 3
@@ -189,8 +190,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.71, y: 0.39}
-    newSize: {x: 0.71, y: 0.39}
+    oldSize: {x: 0.72, y: 0.4}
+    newSize: {x: 0.72, y: 0.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
