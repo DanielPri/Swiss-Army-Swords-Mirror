@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,12 @@ public class Sword : MonoBehaviour
     protected Player player;
     protected bool isAbilityUsed;
     public bool damaging;
+
     
+    AudioSource audioSource;
+    int randomAudioIndex = -1;
+    int previousAudioIndex = -1;
+
     public enum SwordType
     {
         REGULAR, ICE, BRICK, LIGHT
@@ -32,6 +38,8 @@ public class Sword : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         swordCollider = player.GetComponentInChildren<BoxCollider2D>();
         swordCollider.enabled = false;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = 0.2f;
     }
 
     void Update()
@@ -40,6 +48,7 @@ public class Sword : MonoBehaviour
         {
             Attack();
             swordCollider.enabled = true;
+            makeAttackSound();
         }
 
         if (damaging)
@@ -57,6 +66,19 @@ public class Sword : MonoBehaviour
         {
             Ability();
         }
+    }
+
+    private void makeAttackSound()
+    {
+        //guarantee to never repeat a sound with this loop
+        do
+        {
+            randomAudioIndex = UnityEngine.Random.Range(0, player.attacksSounds.Length);
+        } while (randomAudioIndex == previousAudioIndex);
+        audioSource.clip = player.attacksSounds[randomAudioIndex];
+        audioSource.time = 0.1f;
+        audioSource.Play();
+        previousAudioIndex = randomAudioIndex;
     }
 
     public virtual void Attack()
