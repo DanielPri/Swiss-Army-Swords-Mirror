@@ -14,6 +14,7 @@ public class FireSword : Sword
         base.Start();
         base.swordType = SwordType.FIRE;
         particleFire = GetComponentsInChildren<ParticleSystem>()[0];
+        particleFire.Stop();
     }
 
     public override void Update()
@@ -32,15 +33,14 @@ public class FireSword : Sword
         }
         if (Input.GetButtonUp("Fire2"))
         {
+            damage = Mathf.FloorToInt((1 + attackTimeElapsed));
+            damaging = true;
+            damageDelay = damageDuration;
             charging = false;
             particleFire.Stop();
         }
     }
 
-    public override void Ability()
-    {
-        base.Ability();
-    }
     private void timeCharge()
     {
         if (attackTimeElapsed < chargeDuration)

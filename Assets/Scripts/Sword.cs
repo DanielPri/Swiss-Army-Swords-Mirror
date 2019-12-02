@@ -17,6 +17,7 @@ public class Sword : MonoBehaviour
     protected Player player;
     protected bool isAbilityUsed;
     public bool damaging;
+    int _damage = 1;
 
     
     AudioSource audioSource;
@@ -29,6 +30,8 @@ public class Sword : MonoBehaviour
     }
 
     public SwordType swordType { get { return _swordType; } set { _swordType = value; } }
+
+    public int damage { get { return _damage; } set { _damage = value; } }
 
     public virtual void Start()
     {
