@@ -6,6 +6,7 @@ public class LavaTile : MonoBehaviour {
 	[SerializeField]
 	GameObject PlayerTouchedPrefab = null; // When the player touch the lava
 	
+	HitpointBar playerHPBar;
 	GameObject player = null;
 	Rigidbody2D  playerRigidbody = null;
 	GameObject fire = null;
@@ -20,6 +21,7 @@ public class LavaTile : MonoBehaviour {
     public virtual void Start() {
 		player = GameObject.Find("Player");
 		playerRigidbody = player.GetComponent<Rigidbody2D>();
+		playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
     }
 
     public virtual void Update() { 
@@ -52,6 +54,7 @@ public class LavaTile : MonoBehaviour {
 			startForceTimer = true;
 			playerRigidbody.AddForce(new Vector2(0.0F, pushbackForce), ForceMode2D.Impulse);
 			GenerateFire();
+			playerHPBar.DecreaseHitpoint(17);
         }
     }
 	

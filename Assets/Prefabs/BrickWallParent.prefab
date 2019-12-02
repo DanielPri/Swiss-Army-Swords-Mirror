@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2586511394755528591}
   - component: {fileID: 1094584245696476001}
   - component: {fileID: 4182885167256934782}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BrickWall
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -78,7 +78,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -149,8 +148,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7634464128312065450}
-  m_Layer: 0
-  m_Name: BrickWallParent 1
+  m_Layer: 10
+  m_Name: BrickWallParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +164,7 @@ Transform:
   m_GameObject: {fileID: 7634464128312065455}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.37, y: -3.68, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children:
   - {fileID: 6676173427440108327}
   m_Father: {fileID: 0}

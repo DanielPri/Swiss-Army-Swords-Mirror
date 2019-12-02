@@ -15,8 +15,14 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/Cutscene.unity
+    guid: 15f8eecce02984148a1d5f573cde9483
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: ec5015b03d5dad744abdd53f0881a59b
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: a8fa25280f1dc624c988537e3706d427
   - enabled: 1
     path: Assets/Scenes/PlayerBossInteraction.unity
     guid: ec173b89c73ced749b207f21363bdf5f

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,16 +11,28 @@ public class Player : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask platformLayerMask;
+    [SerializeField]
+    float jumpDuration;
+    [SerializeField]
+    AudioClip[] jumpsSounds;
+    [SerializeField]
+    public AudioClip[] attacksSounds;
+    [SerializeField]
+    public AudioClip[] hurtSounds;
+
+    public AudioSource audioSource;
 
     bool pickingUpSword;
     bool moving;
     bool grounded;
     bool falling;
-    Rigidbody2D player;
+    bool jumping;
+    float jumpTimeElapsed;
+    Rigidbody2D rb;
     Animator playerAnimator;
     Animator swordAnimator;
-    Vector2 facingDirection;
-    CapsuleCollider2D playerCollider;
+    public Vector2 facingDirection;
+    Collider2D playerCollider;
 
     SwordInventory inventory;
     GameObject inventoryGO;
@@ -34,12 +47,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        playerCollider = GetComponent<CapsuleCollider2D>();
+        playerCollider = GetComponent<Collider2D>();
         moving = false;
         grounded = false;
         falling = false;
+
+        audioSource = GetComponent<AudioSource>();
 
         inventoryGO = GameObject.Find("InventoryManager");
         inventory = inventoryGO.GetComponent<SwordInventory>();
@@ -127,12 +142,14 @@ public class Player : MonoBehaviour
             pickingUpSword = true;
             moving = false;
             // Hold sword above head - sorta buggy when you jump and collect it
-            col.gameObject.transform.localPosition = new Vector2(transform.position.x, transform.position.y + 1);
+
+            col.transform.parent = transform;
+            col.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
             col.gameObject.GetComponentInChildren<Animator>().enabled = false;
 
             swordPossessions.Add(SwordId(col.gameObject));
 
-            StartCoroutine(WaitAndPickup(col.gameObject, heldSwordSR));
+            StartCoroutine(HandleSwordPickup(col.gameObject, heldSwordSR));
         }
 
     }
@@ -146,7 +163,16 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
+     void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Platforms")  // or if(gameObject.CompareTag("YourWallTag"))
+        {
+            rb.velocity = Vector3.zero;
+        }
+    }
+
+
     private IEnumerator WaitAndPickup(GameObject swordGO, SpriteRenderer heldSwordSR)
     {
         // Will force a wait before the player can continue playing
@@ -182,29 +208,56 @@ public class Player : MonoBehaviour
             if (Input.GetButton("Left"))
             {
                 transform.Translate(-Vector2.right * playerSpeed * Time.deltaTime);
-                transform.localScale = new Vector2(-1, 1);
+                transform.localScale = new Vector3(-1, 1, 1);
                 facingDirection = -transform.right;
                 moving = true;
             }
             if (Input.GetButton("Right"))
             {
                 transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
-                transform.localScale = new Vector2(1, 1);
+                transform.localScale = new Vector3(1, 1, 1);
                 facingDirection = transform.right;
                 moving = true;
             }
 
+            //jump handling
             if (grounded && Input.GetButtonDown("Jump"))
             {
-                player.AddForce(Vector2.up * jumpForce);
+                jumpTimeElapsed = 0;
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                jumping = true;
+                makeJumpNoise();
             }
-
+            if (jumping && Input.GetButton("Jump"))
+            {
+                timeJump();
+            }
+            if (Input.GetButtonUp("Jump"))
+            {
+               jumping = false;
+            }
         }
+    }
+
+    private void makeJumpNoise()
+    {
+        audioSource.clip = jumpsSounds[UnityEngine.Random.Range(0, jumpsSounds.Length)];
+        audioSource.time = 0.2f;
+        audioSource.Play();
+    }
+
+    private void timeJump()
+    {
+        if(jumpTimeElapsed < jumpDuration) {
+            rb.AddForce(Vector2.up * jumpForce * (1-jumpTimeElapsed )/14 , ForceMode2D.Impulse);
+            jumpTimeElapsed += Time.deltaTime;
+        }
+        
     }
 
     private void CheckFalling()
     {
-        falling = player.velocity.y < 0.0f;
+        falling = rb.velocity.y < 0.0f;
     }
 
     public Vector2 GetFacingDirection()
@@ -294,8 +347,12 @@ public class Player : MonoBehaviour
 
     private void isGrounded()
     {
-        float extraHeightText = 1f;
-        RaycastHit2D raycastHit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, extraHeightText, platformLayerMask);
+        float extraHeightText = 0.2f;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size * 0.9f, 0f, Vector2.down, extraHeightText, platformLayerMask);
+
+        Debug.DrawRay(playerCollider.bounds.center + new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHeightText), Color.green);
+        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHeightText), Color.green);
+        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, playerCollider.bounds.extents.y + extraHeightText), Vector2.right * (playerCollider.bounds.extents.x + extraHeightText), Color.green);
 
         grounded = raycastHit.collider != null;
     }

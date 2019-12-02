@@ -41,7 +41,7 @@ public class Laser : Projectile {
 				mob.Hurt();
 				destroyed = true;
 			}
-			else if (col.gameObject.name == "FlyingMob(Clone)" || col.gameObject.name == "FlyingMob") {
+			else if (col.gameObject.name.Contains("FlyingMob")) {
 				FlyingMob mob = col.gameObject.GetComponent<FlyingMob>();
 				mob.Hurt();
 				destroyed = true;

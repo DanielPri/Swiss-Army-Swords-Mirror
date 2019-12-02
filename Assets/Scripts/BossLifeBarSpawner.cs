@@ -1,30 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class BossLifeBarSpawner : MonoBehaviour
 {
     [SerializeField] GameObject bossLifeBar;
-    public bool fightStart;
-
-    Vector2 defaultPosition = new Vector2(-1, -7);
+    GameObject theBar;
 
     void Start()
     {
-        fightStart = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag == "Player" && fightStart == false)
-        {
-            Instantiate(bossLifeBar, new Vector2(0, -7), Quaternion.identity, GameObject.Find("UI Canvas").transform);
-            fightStart = true;
-        }
-    } 
-
-    public void SetDefaultPosition(Vector2 position)
-    {
-        defaultPosition = position;
+        theBar = Instantiate(bossLifeBar, new Vector2(0, -200), Quaternion.identity);
+        theBar.transform.SetParent(GameObject.Find("UI Canvas").transform, false);
     }
 }

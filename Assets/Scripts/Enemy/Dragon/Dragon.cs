@@ -7,12 +7,14 @@ public class Dragon : BossParent
      *  Related to the dragon.
      */
     private Animator dragonAnimator;
+    private bool onlyOnce;
     private bool isFiring;
     private bool isTailWhipping;
     private bool isAttacking;
 
     public GameObject fireBreathPrefab;
     public GameObject smokePrefab;
+    public float fightRange = 15;
     public float fireBreathRange = 7;
     public float tailWhipRange = 4;
 
@@ -22,7 +24,6 @@ public class Dragon : BossParent
     Vector2 facingDirection;
 
     BossBar hitpointBar;
-    BossLifeBarSpawner bossLifeBarSpawner;
 
     bool isHurt;
     bool isDark;
@@ -40,8 +41,6 @@ public class Dragon : BossParent
         isDark = false;
         player = GameObject.FindGameObjectWithTag("Player");
         dragonAnimator = GetComponent<Animator>();
-        bossLifeBarSpawner = GameObject.Find("BossLifeBarSpawner").GetComponent<BossLifeBarSpawner>();
-        bossLifeBarSpawner.SetDefaultPosition(transform.position + new Vector3(0, -4f, 0));
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
         sr = GetComponent<SpriteRenderer>();
     }
@@ -51,9 +50,8 @@ public class Dragon : BossParent
     {
         base.Update();
         sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
-        bossLifeBarSpawner.SetDefaultPosition(transform.position + new Vector3(0, -4f, 0));
 
-        if (bossLifeBarSpawner.fightStart)
+        if (CheckIfInRange(fightRange) && !onlyOnce)
         {
             FightStart();
         }
@@ -115,11 +113,6 @@ public class Dragon : BossParent
         StartCoroutine(LerpScaleOverTime(transform.localScale, new Vector3(15, 15, 15), 3f));
         transform.parent.position = new Vector3(player.transform.position.x - 5, -0.95f, 0);
     }
-
-    //IEnumerator RamPlayer()
-    //{
-    //    transform.parent.position = Vector3.Lerp(transform.parent.position, new Vector3(player.transform.position.x - 5, -0.95f, 0), 0.5f);
-    //}
 
     public void TurnIntoNormalMode()
     {
@@ -183,7 +176,7 @@ public class Dragon : BossParent
         return (Vector2.Distance(player.transform.position, transform.position) <= range);
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private new void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag.Equals("Sword") && sword.damaging && !isDark)
         {

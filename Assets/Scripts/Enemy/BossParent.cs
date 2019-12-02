@@ -12,12 +12,11 @@ public class BossParent : Enemy
     protected Sword sword;
 
 
-    public override void Start()
+    public new virtual void Start()
     {
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player");
         playerPosition = player.GetComponent<Transform>();
-
     }
 
     protected virtual void FaceDirection(Vector3 playerPosition)
