@@ -69,9 +69,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 8
+  m_SortingLayerID: -835397081
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 000087dbbac6a974a82e5540d6870b7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -173,7 +173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7060180369445644824}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.102}
+  m_LocalPosition: {x: 0, y: 0, z: -0.032}
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.25}
   m_Children: []
   m_Father: {fileID: 3217412109447993648}
@@ -190,8 +190,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.99607843, g: 1, b: 0.34509805, a: 1}
-  m_Intensity: 10
-  m_Range: 2.1
+  m_Intensity: 5
+  m_Range: 1.4289799
   m_SpotAngle: 13.3
   m_CookieSize: 10
   m_Shadows:
@@ -208,7 +208,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7425
+    m_Bits: 4294967295
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1.452662, y: 2}
