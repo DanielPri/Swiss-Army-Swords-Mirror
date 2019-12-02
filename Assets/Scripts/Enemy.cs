@@ -12,18 +12,21 @@ public class Enemy : MonoBehaviour {
     protected bool movingRight;
     protected Animator m_animator;
 
+    Player playerObject;
+
     //Freeze properties
     protected bool freezeable = false;
     protected Vector3 freezeCubeOffset;
     protected Vector3 freezeCubeScale;
     public bool isFrozen = false;
     protected float freezeTime = 8;
-
+    
     public void Start()
     {
         m_animator = GetComponent<Animator>();
         freezeCubeOffset = new Vector3();
         freezeCubeScale = new Vector3(0.1f, 0.1f, 0.1f);
+        playerObject = GameObject.Find("Player").GetComponent<Player>();
     }
 
     public virtual void Update() { 
@@ -80,6 +83,11 @@ public class Enemy : MonoBehaviour {
         {
             m_animator.speed = 1;
         }
+    }
+    protected void playerHurtSound()
+    {
+        playerObject.audioSource.clip = playerObject.hurtSounds[UnityEngine.Random.Range(0, playerObject.hurtSounds.Length)];
+        playerObject.audioSource.Play();
     }
 }
 

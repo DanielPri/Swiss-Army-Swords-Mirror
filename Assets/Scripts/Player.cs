@@ -15,8 +15,10 @@ public class Player : MonoBehaviour
     AudioClip[] jumpsSounds;
     [SerializeField]
     public AudioClip[] attacksSounds;
+    [SerializeField]
+    public AudioClip[] hurtSounds;
 
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
     bool pickingUpSword;
     bool moving;

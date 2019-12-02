@@ -236,6 +236,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ebdb21728e43de84dbc4c07e9794a330, type: 3}
   - {fileID: 8300000, guid: b4ba8591816fb96438f16a24e6a9f609, type: 3}
   - {fileID: 8300000, guid: 79351f73f7cad8542a842bc26608c561, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: 89c275f9f8e498648bce8f2276f29688, type: 3}
+  - {fileID: 8300000, guid: 8f89b38b90ba19a46bb6944056006f99, type: 3}
+  audioSource: {fileID: 0}
   facingDirection: {x: 0, y: 0}
 --- !u!95 &8848693168285777446
 Animator:

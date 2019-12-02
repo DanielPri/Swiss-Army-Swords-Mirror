@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class BossSpell : Projectile {
 
+    Player playerObject;
+
     public override void Awake() {
         base.Awake();
+        playerObject = GameObject.Find("Player").GetComponent<Player>();
     }
 
     public override void SetDirection(Vector2 direction) {
@@ -17,7 +20,13 @@ public class BossSpell : Projectile {
         HitpointBar playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
         if (col.gameObject.name == "Player") {
             playerHPBar.DecreaseHitpoint(5);
+            playerHurtSound();
             Destroy(gameObject);
         }
+    }
+    void playerHurtSound()
+    {
+        playerObject.audioSource.clip = playerObject.hurtSounds[UnityEngine.Random.Range(0, playerObject.hurtSounds.Length)];
+        playerObject.audioSource.Play();
     }
 }
