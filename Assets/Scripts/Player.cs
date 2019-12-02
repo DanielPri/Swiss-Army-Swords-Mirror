@@ -221,8 +221,10 @@ public class Player : MonoBehaviour
             }
 
             //jump handling
-            if (grounded && Input.GetButtonDown("Jump") && !FindObjectOfType<LavaTile>().touchingLava)
+            if (grounded && Input.GetButtonDown("Jump"))
             {
+                if (FindObjectOfType<LavaTile>() && FindObjectOfType<LavaTile>().touchingLava)
+                    return;
                 jumpTimeElapsed = 0;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 jumping = true;
