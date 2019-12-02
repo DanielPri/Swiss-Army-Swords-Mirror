@@ -6,6 +6,7 @@ public class LeverDoorController : MonoBehaviour
 {
 
     Animator anim;
+    AudioSource sound;
 
     [SerializeField] List<GameObject> Doors;
     [SerializeField] float timeDelay = 0.5f;
@@ -19,12 +20,14 @@ public class LeverDoorController : MonoBehaviour
                 Door.GetComponent<Door>().toggle();
                 Debug.Log("YOU'RE IN MY LAYER, uhhh..... lever.");
                 anim.SetTrigger("toggle");
+                sound.Play();
             }
     }
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        sound = GetComponent<AudioSource>();
     }
 
     void Update()
