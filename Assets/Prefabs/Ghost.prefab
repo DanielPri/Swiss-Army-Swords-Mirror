@@ -1,77 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &880036014
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 880036015}
-  - component: {fileID: 880036017}
-  - component: {fileID: 880036016}
-  m_Layer: 0
-  m_Name: BossLifeBarSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &880036015
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 880036014}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.16666667, y: 0.16666667, z: 0.16666667}
-  m_Children: []
-  m_Father: {fileID: 2555847598869820920}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &880036017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 880036014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5466435aea5db904ba06ae166f4c1cd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossLifeBar: {fileID: 3451021653924928558, guid: 7ebbcc9df0668de4987e969c5e9a9b5d,
-    type: 3}
---- !u!61 &880036016
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 880036014}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 10, y: 5}
-  m_EdgeRadius: 0
 --- !u!1 &2555847598869820917
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,14 +11,15 @@ GameObject:
   - component: {fileID: 2555847598869820920}
   - component: {fileID: 2555847598869820923}
   - component: {fileID: 2555847598869820922}
-  - component: {fileID: 6441126134916193895}
   - component: {fileID: 5674869845457566704}
   - component: {fileID: 114734099624031064}
   - component: {fileID: 82551438339397790}
   - component: {fileID: 82886694987618606}
+  - component: {fileID: 5154630072021495453}
+  - component: {fileID: 8237903281095710297}
   m_Layer: 0
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,10 +32,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2555847598869820917}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.456483, y: -1.8122423, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 6}
-  m_Children:
-  - {fileID: 880036015}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -177,32 +105,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &6441126134916193895
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2555847598869820917}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.011908054, y: -0.008244038}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.31, y: 0.44}
-    newSize: {x: 0.31, y: 0.44}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.25320816, y: 0.40885592}
-  m_EdgeRadius: 0
 --- !u!50 &5674869845457566704
 Rigidbody2D:
   serializedVersion: 4
@@ -237,9 +139,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
+  iceCube: {fileID: 0}
+  isFrozen: 0
   PrefabBossIntro: {fileID: 3239902107653306859, guid: baa9d5c9856add949afb7a9dc44c997a,
     type: 3}
   PrefabProjectile: {fileID: 1304778187103121423, guid: a276585c978a0af419b3cede62148447,
+    type: 3}
+  invulnerabilityTime: 0.6
+  dropSword: {fileID: 3676029165264510146, guid: b517e177a0d284f409d4aeee521a0124,
     type: 3}
 --- !u!82 &82551438339397790
 AudioSource:
@@ -433,3 +340,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5154630072021495453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555847598869820917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5466435aea5db904ba06ae166f4c1cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossLifeBar: {fileID: 3451021653924928558, guid: 7ebbcc9df0668de4987e969c5e9a9b5d,
+    type: 3}
+--- !u!60 &8237903281095710297
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555847598869820917}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.31, y: 0.44}
+    newSize: {x: 0.31, y: 0.44}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.023645949, y: 0.1247582}
+      - {x: -0.043584548, y: 0.1924105}
+      - {x: -0.099521086, y: 0.07188113}
+      - {x: -0.14552875, y: -0.024059117}
+      - {x: -0.0674105, y: -0.15594089}
+      - {x: -0.024999999, y: -0.22}
+      - {x: 0.125, y: -0.22}
+      - {x: 0.155, y: -0.17999999}
+      - {x: 0.08193603, y: -0.07735631}
+      - {x: 0.08493762, y: 0.08970444}

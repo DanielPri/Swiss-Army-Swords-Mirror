@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MirrorEffect : MonoBehaviour {
 	[SerializeField]
-	GameObject mobPrefab;
+	GameObject mobPrefab = null;
 	
 	AudioSource mirrorPuzzleSound; // For last target showing puzzle hint
 	AudioSource wrongMirrorPuzzleSound;

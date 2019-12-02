@@ -8,33 +8,39 @@ public class Mob : Enemy {
 
     HitpointBar playerHPBar;
     Sword sword;
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
     SpriteRenderer hurtColor;
 
     public int easyMobHP = 2;
-    public bool isFrozen;
     bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
 
     AudioSource hitSound;
 
-    public override void Start() {
+    new public void Start() {
         base.Start();
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
         movingRight = true;
         AudioSource[] audioSources = GetComponents<AudioSource>();
         hitSound = audioSources[0];
+        
+        // Freeze properties
+        freezeable = true;
+        freezeCubeOffset = new Vector3(0, 0.5f);
+        freezeCubeScale = new Vector3(0.1f, 0.2f, 0.1f);
+        freezeCubeScale = new Vector3(0.1f, 0.2f, 0.1f);
     }
 
-    public override void Update()
+    new public void Update()
     {
         sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
-        if (movingRight)
+
+        if (movingRight && !isFrozen)
             transform.Translate(Vector2.right * speed * Time.deltaTime);
-        else
+        else if (!isFrozen)
             transform.Translate(-Vector2.right * speed * Time.deltaTime);
         HandleTimers();
         if (easyMobHP == 0 && !isFrozen)
@@ -84,13 +90,14 @@ public class Mob : Enemy {
         base.OnDestroy();
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
+    new void OnTriggerEnter2D(Collider2D col) {
+        base.OnTriggerEnter2D(col);
         if (col.tag == "EnemyZone") {
             GetComponent<SpriteRenderer>().flipX = movingRight;
             movingRight = !movingRight;
         }
-        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging)
-            isHurt = true;
+        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging) { isHurt = true; }
+            
     }
 
     private void OnTriggerStay2D(Collider2D col)
@@ -103,8 +110,12 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            playerHPBar.DecreaseHitpoint(1);
-            rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            if (!isFrozen)
+            {
+                playerHPBar.DecreaseHitpoint(1);
+                playerHurtSound();
+            }
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
     }
@@ -112,7 +123,7 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            rigidbody.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.None;
         }
     }
 }

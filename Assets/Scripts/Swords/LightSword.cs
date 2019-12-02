@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LightSword : Sword
 {
@@ -36,11 +37,12 @@ public class LightSword : Sword
             light.enabled = true;
             laserOn = true;
             // Random light intensity (need a diffuse background to see it)
-            lightIntensity = Random.Range(minimumIntensity, maximumIntensity);
+            //lightIntensity = Random.Range(minimumIntensity, maximumIntensity);
+            lightIntensity = 5.0f;
             light.intensity = lightIntensity;
         }
         else {
-            particleLight.Stop();
+            particleLight.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             light.enabled = false;
             laserOn = false;
         }
@@ -48,8 +50,18 @@ public class LightSword : Sword
 
     public void ShootLaser() {
         GameObject laser = Instantiate(lightLaserPrefab, transform.position, Quaternion.identity) as GameObject;
-        Projectile projectileLaser = laser.GetComponent<Projectile>();
-        projectileLaser.SetDirection(player.GetFacingDirection());
+        Laser projectileLaser = laser.GetComponent<Laser>();
+        //List<Transform> children = new List<Transform>();
+        //foreach (Transform child in laser.transform)
+        //{
+        //    child.parent = null;
+        //    children.Add(child);
+        //}
+        Vector2 direction = player.GetFacingDirection();
+        if (direction.x == 0)
+            direction.x = 1;
+        projectileLaser.SetDirection(direction);
+        //foreach (Transform child in children) child.parent = laser.transform;
         //Add sound for laser later
         Destroy(laser, projectileDuration);
     }

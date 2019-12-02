@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,11 +10,12 @@ public class Boss : Enemy {
     GameObject PrefabProjectile = null;
     [SerializeField]
     float invulnerabilityTime = 0.6f;
+    [SerializeField] GameObject dropSword;
 
     BossBar hitpointBar;
-	BossLifeBarSpawner bossLifeBarSpawner;
+	BossLifeBarSpawner BossLifeBarSpawner;
     HitpointBar playerHPBar;
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
     Rigidbody2D playerRigidBody;
     Player playerGO;
     Sword sword;
@@ -25,15 +27,16 @@ public class Boss : Enemy {
 
     bool isHurt;
     float hurtTimer = 0.0F;
-    float hurtDuration = 0.5F;
+    float hurtDuration = 0.6F;
 
     float projectileDuration = 3.0F;
     float projectileSpeed = 2.0F;
 
-    float introDuration = 0.9F;
+    float introDuration = 0.8F;
     float spawnedTimer = 0.0F;
     float projectileFrequency = 0.0F;
     float nextProjectileSpawn = 0.0F;
+    float distanceFromPlayer = 0;
     bool isSpawned;
 
     float invulnerabilityTimer = 0.0f;
@@ -42,12 +45,11 @@ public class Boss : Enemy {
     AudioSource projectileSound;
     AudioSource morphSound;
 
-    public override void Start() {
+    new void Start() {
         base.Start();
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
-		bossLifeBarSpawner = GameObject.Find("BossLifeBarSpawner").GetComponent<BossLifeBarSpawner>();
         hurtColor = GetComponent<SpriteRenderer>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         playerRigidBody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         playerGO = GameObject.Find("Player").GetComponent<Player>();
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
@@ -57,20 +59,27 @@ public class Boss : Enemy {
         projectileSound = audioSources[0];
         morphSound = audioSources[1];
         MorphAnimation();
+        
     }
 
     public override void Update()
     {
         sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
-        projectileFrequency = Random.Range(1, 7);
+        projectileFrequency = UnityEngine.Random.Range(1, 7);
         HandleTimers();
         HandleProjectiles();
-		if (bossLifeBarSpawner.fightStart)
+        if (hitpointBar == null)
             hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
-		if (hitpointBar != null) {
+		else {
 			if (hitpointBar.GetHP() < 1)
 				Die();
 		}
+        GetDistanceFromPlayer();
+    }
+
+    private void GetDistanceFromPlayer()
+    {
+        distanceFromPlayer = (transform.position - playerGO.transform.position).magnitude;
     }
 
     private void HandleTimers() {
@@ -83,13 +92,28 @@ public class Boss : Enemy {
                 transform.localScale = new Vector3(7, 7, 7); // Spawn after the intro
             }
         }
-        else
+        else if(distanceFromPlayer > 3)
         {
             // Follow the player
             Vector2 target = playerPosition.position - transform.position;
             transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
             playerGO = GameObject.Find("Player").GetComponent<Player>();
             FaceDirection(playerGO.transform.position);
+        }
+        else // move to height of player to accurately shoot projectiles
+        {
+            if (transform.position.y > playerPosition.position.y)
+            {
+                transform.Translate(Vector2.down * speed * Time.deltaTime, Space.World);
+                playerGO = GameObject.Find("Player").GetComponent<Player>();
+                FaceDirection(playerGO.transform.position);
+            }
+            else if (transform.position.y < playerPosition.position.y)
+            {
+                transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
+                playerGO = GameObject.Find("Player").GetComponent<Player>();
+                FaceDirection(playerGO.transform.position);
+            }
         }
         if (isHurt) {
             hurtTimer += Time.deltaTime;
@@ -98,6 +122,10 @@ public class Boss : Enemy {
                 hurtTimer = 0.0f;
             }
             Hurt();
+        }
+        else
+        {
+            hurtColor.color = new Color(1F, 1F, 1F, 1F);
         }
         if (isInvulnerable)
         {
@@ -163,6 +191,7 @@ public class Boss : Enemy {
         base.Die();
         hitpointBar.index = -1;
         MorphAnimation();
+        Instantiate(dropSword, transform.position, Quaternion.identity);
         Destroy(gameObject);
         // Show some UI here maybe after a boss ?
     }
@@ -189,8 +218,7 @@ public class Boss : Enemy {
     {
         if (col.gameObject.name == "Player")
         {
-            playerHPBar.DecreaseHitpoint(1);
-            
+            Debug.Log("FORCE PUSH ");
             // Boss knocks back player upon collision
             Vector2 forceDirection = new Vector2(facingDirection.x, 1.0f) * 2f;
             playerRigidBody.AddForce(forceDirection, ForceMode2D.Impulse);

@@ -10,7 +10,6 @@ public class Cobra : Enemy { // Has big HP, but is annoying since it is found in
 	HitpointBar playerHPBar;
 	
 	public int mediumHP = 5; // Bigger life
-	public bool isFrozen;
 	bool moving;
     bool attacking;
     bool dieing;
@@ -23,7 +22,7 @@ public class Cobra : Enemy { // Has big HP, but is annoying since it is found in
 	
 	public int state = 1; // 1: idle, 2: moving left, 3: moving right, 4: attacking
 	
-    public override  void Start() {
+    new public void Start() {
 		base.Start();
 		playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
 		rigidbody = GetComponent<Rigidbody2D>();
