@@ -54,7 +54,7 @@ public class LavaTile : MonoBehaviour {
 			startForceTimer = true;
 			playerRigidbody.AddForce(new Vector2(0.0F, pushbackForce), ForceMode2D.Impulse);
 			GenerateFire();
-			playerHPBar.DecreaseHitpoint(17);
+			playerHPBar.DecreaseHitpoint(10);
         }
     }
 	
