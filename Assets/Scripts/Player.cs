@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public HitpointBar playerHPBar;
+
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask platformLayerMask;
@@ -58,8 +60,8 @@ public class Player : MonoBehaviour
         inventory = inventoryGO.GetComponent<SwordInventory>();
         swordPossessions.Add(0);
         getInventorySwords();
-
         activeSwordIndex = inventory.index;
+        playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
     }
 
     private void getInventorySwords()
@@ -219,7 +221,7 @@ public class Player : MonoBehaviour
             }
 
             //jump handling
-            if (grounded && Input.GetButtonDown("Jump"))
+            if (grounded && Input.GetButtonDown("Jump") && !FindObjectOfType<LavaTile>().touchingLava)
             {
                 jumpTimeElapsed = 0;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
