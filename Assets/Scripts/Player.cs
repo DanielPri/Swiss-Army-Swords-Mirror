@@ -6,11 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public HitpointBar playerHPBar;
+
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask platformLayerMask;
     [SerializeField]
     float jumpDuration;
+    [SerializeField]
+    AudioClip[] jumpsSounds;
+    [SerializeField]
+    public AudioClip[] attacksSounds;
+    [SerializeField]
+    public AudioClip[] hurtSounds;
+
+    public AudioSource audioSource;
 
     bool pickingUpSword;
     bool moving;
@@ -29,6 +39,7 @@ public class Player : MonoBehaviour
     List<Transform> swords = new List<Transform>();
     List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
+    GameObject pauseMenu;
 
     void Awake()
     {
@@ -44,12 +55,15 @@ public class Player : MonoBehaviour
         grounded = false;
         falling = false;
 
+        audioSource = GetComponent<AudioSource>();
+
         inventoryGO = GameObject.Find("InventoryManager");
         inventory = inventoryGO.GetComponent<SwordInventory>();
         swordPossessions.Add(0);
         getInventorySwords();
-
         activeSwordIndex = inventory.index;
+        pauseMenu = GameObject.Find("PauseMenu");
+        playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
     }
 
     private void getInventorySwords()
@@ -191,7 +205,7 @@ public class Player : MonoBehaviour
     private void MovePlayer()
     {
         moving = false;
-        if (!pickingUpSword)
+        if (!pickingUpSword && !pauseMenu.GetComponent<Pause>().paused)
         {
             if (Input.GetButton("Left"))
             {
@@ -211,9 +225,12 @@ public class Player : MonoBehaviour
             //jump handling
             if (grounded && Input.GetButtonDown("Jump"))
             {
+                if (FindObjectOfType<LavaTile>() && FindObjectOfType<LavaTile>().touchingLava)
+                    return;
                 jumpTimeElapsed = 0;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 jumping = true;
+                makeJumpNoise();
             }
             if (jumping && Input.GetButton("Jump"))
             {
@@ -224,6 +241,13 @@ public class Player : MonoBehaviour
                jumping = false;
             }
         }
+    }
+
+    private void makeJumpNoise()
+    {
+        audioSource.clip = jumpsSounds[UnityEngine.Random.Range(0, jumpsSounds.Length)];
+        audioSource.time = 0.2f;
+        audioSource.Play();
     }
 
     private void timeJump()

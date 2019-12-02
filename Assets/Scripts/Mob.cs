@@ -113,6 +113,7 @@ public class Mob : Enemy {
             if (!isFrozen)
             {
                 playerHPBar.DecreaseHitpoint(1);
+                playerHurtSound();
             }
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
