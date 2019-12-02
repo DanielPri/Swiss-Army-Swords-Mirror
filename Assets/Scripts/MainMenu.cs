@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(0))
         {
             mainMenu.SetActive(true);
             controlScheme.SetActive(false);
