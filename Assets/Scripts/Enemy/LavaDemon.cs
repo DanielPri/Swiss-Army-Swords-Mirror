@@ -6,6 +6,7 @@ public class LavaDemon : BossParent
 {
     [SerializeField]
     private GameObject lavaHand;
+    private GameObject door; 
 
     private bool attacking1, attacking2, isDead;
     private Animator animator;
@@ -19,6 +20,7 @@ public class LavaDemon : BossParent
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player");
         hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
+        //door = GameObject.Find("Door");
         animator = GetComponent<Animator>();
     }
 
@@ -110,5 +112,6 @@ public class LavaDemon : BossParent
         isDead = true;
         hitpointBar.index = -1;
         animator.SetBool("isDead", true);
+        //door.SetActive(true);
     }
 }
