@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
     Camera mainCamera;
     GameObject ui;
     GameObject pauseMenu;
+    GameObject controlScheme;
+    GameObject buttons;
+    public bool paused;
 
     void Awake()
     {
@@ -18,37 +23,81 @@ public class Pause : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         ui = GameObject.Find("UI Canvas");
         ui.SetActive(true);
-        pauseMenu = GameObject.Find("ControlScheme");
+        pauseMenu = GameObject.Find("MainPauseMenu");
         pauseMenu.GetComponent<Canvas>().worldCamera = mainCamera;
         pauseMenu.SetActive(false);
+        controlScheme = GameObject.Find("ControlScheme");
+        controlScheme.GetComponent<Canvas>().worldCamera = mainCamera;
+        controlScheme.SetActive(false);
+        buttons = GameObject.Find("PauseMenuButtons");
+        buttons.GetComponent<Canvas>().worldCamera = mainCamera;
+        buttons.SetActive(false);
+        paused = false;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetMouseButtonDown(0) == true && EventSystem.current.IsPointerOverGameObject())
         {
-            if (pauseMenu.activeInHierarchy)
-            {
-                ContinueGame();
-            }
-            else
-            {
-                PauseGame();
-            }
+            Debug.Log(EventSystem.current.currentSelectedGameObject.gameObject.name);
+        }
+        if (pauseMenu.activeInHierarchy)
+        {
+            paused = true;
+        }
+        else
+        {
+            paused = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !controlScheme.activeInHierarchy)
+        {
+            PauseControl();
+        }
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(0)) && controlScheme.activeInHierarchy)
+        {
+            pauseMenu.SetActive(true);
+            buttons.SetActive(true);
+            controlScheme.SetActive(false);
         }
     }
 
-    private void PauseGame()
+    public void PauseControl()
     {
-        Time.timeScale = 0;
-        ui.SetActive(false);
-        pauseMenu.SetActive(true);
+        if (Time.timeScale == 1)
+        {
+
+            Time.timeScale = 0;
+            ui.SetActive(false);
+            pauseMenu.SetActive(true);
+            buttons.SetActive(true);
+        }
+        else if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            ui.SetActive(true);
+            pauseMenu.SetActive(false);
+            buttons.SetActive(false);
+        }
     }
 
-    private void ContinueGame()
+    public void RestartLevel()
     {
-        Time.timeScale = 1;
-        ui.SetActive(true);
-        pauseMenu.SetActive(false);
+        string name = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(name);
     }
+
+    public void ExitLevel()
+    {
+        string name = "MainMenu";
+        SceneManager.LoadScene(name);
+    }
+
+    public void ControlScheme()
+    {
+        pauseMenu.SetActive(false);
+        buttons.SetActive(false);
+        controlScheme.SetActive(true);
+    }
+
 }

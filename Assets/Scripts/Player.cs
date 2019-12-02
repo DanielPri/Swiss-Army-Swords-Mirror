@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     List<Transform> swords = new List<Transform>();
     List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
+    GameObject pauseMenu;
 
     void Awake()
     {
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
         getInventorySwords();
 
         activeSwordIndex = inventory.index;
+        pauseMenu = GameObject.Find("PauseMenu");
     }
 
     private void getInventorySwords()
@@ -175,7 +177,7 @@ public class Player : MonoBehaviour
     private void MovePlayer()
     {
         moving = false;
-        if (!pickingUpSword)
+        if (!pickingUpSword && !pauseMenu.GetComponent<Pause>().paused)
         {
             if (Input.GetButton("Left"))
             {
