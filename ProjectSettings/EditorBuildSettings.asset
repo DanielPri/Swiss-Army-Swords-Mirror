@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerBossInteraction.unity
     guid: ec173b89c73ced749b207f21363bdf5f
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: fc0faf9c543cbe5418077b3348756330
   m_configObjects: {}

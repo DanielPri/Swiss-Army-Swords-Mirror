@@ -22,11 +22,8 @@ public class CutsceneManager : MonoBehaviour {
 				director.time = 28.0;
 			}
 		} else if (sceneName == "FinalCutscene") {
-			if (director.time > 44.8) { // If cutscene done, move to level 1 (28 seconds)
+			if (director.time > 45.6) { // If cutscene done, move to level 1 (28 seconds)
 				SceneManager.LoadScene("MainMenu");
-			}
-			if (Input.GetButton("SkipCutscene") ) { // Skip cutscene by pressing "s"
-				director.time = 44.8;
 			}
 		}
     }
