@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip[] attacksSounds;
     [SerializeField] int damageDealt = 1;
     // How quickly enemy takes damage
     protected Animator swordAnimator;
@@ -16,7 +19,10 @@ public class Sword : MonoBehaviour
     protected Player player;
     protected bool isAbilityUsed;
     public bool damaging;
+
     
+    AudioSource audioSource;
+
     public enum SwordType
     {
         REGULAR, ICE, BRICK, LIGHT
@@ -32,6 +38,7 @@ public class Sword : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         swordCollider = player.GetComponentInChildren<BoxCollider2D>();
         swordCollider.enabled = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -40,6 +47,7 @@ public class Sword : MonoBehaviour
         {
             Attack();
             swordCollider.enabled = true;
+            makeAttackSound();
         }
 
         if (damaging)
@@ -57,6 +65,13 @@ public class Sword : MonoBehaviour
         {
             Ability();
         }
+    }
+
+    private void makeAttackSound()
+    {
+        audioSource.clip = attacksSounds[UnityEngine.Random.Range(0, attacksSounds.Length)];
+        audioSource.time = 0.1f;
+        audioSource.Play();
     }
 
     public virtual void Attack()

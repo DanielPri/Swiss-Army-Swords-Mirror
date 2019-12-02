@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     float jumpDuration;
     [SerializeField]
-    AudioClip[] jumps;
+    AudioClip[] jumpsSounds;
+    AudioClip[] attacksSounds;
 
     AudioSource audioSource;
 
@@ -235,7 +236,7 @@ public class Player : MonoBehaviour
 
     private void makeJumpNoise()
     {
-        audioSource.clip = jumps[UnityEngine.Random.Range(0, jumps.Length)];
+        audioSource.clip = jumpsSounds[UnityEngine.Random.Range(0, jumpsSounds.Length)];
         audioSource.time = 0.2f;
         audioSource.Play();
     }
