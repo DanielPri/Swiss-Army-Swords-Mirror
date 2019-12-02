@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     Rigidbody2D player;
     Animator playerAnimator;
     Animator swordAnimator;
-    Vector2 facingDirection;
+    public Vector2 facingDirection;
     CapsuleCollider2D playerCollider;
 
     SwordInventory inventory;
@@ -180,14 +180,14 @@ public class Player : MonoBehaviour
             if (Input.GetButton("Left"))
             {
                 transform.Translate(-Vector2.right * playerSpeed * Time.deltaTime);
-                transform.localScale = new Vector2(-1, 1);
+                transform.localScale = new Vector3(-1, 1, 1);
                 facingDirection = -transform.right;
                 moving = true;
             }
             if (Input.GetButton("Right"))
             {
                 transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
-                transform.localScale = new Vector2(1, 1);
+                transform.localScale = new Vector3(1, 1, 1);
                 facingDirection = transform.right;
                 moving = true;
             }
