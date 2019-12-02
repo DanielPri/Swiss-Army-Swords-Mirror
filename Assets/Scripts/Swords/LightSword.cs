@@ -36,7 +36,8 @@ public class LightSword : Sword
             light.enabled = true;
             laserOn = true;
             // Random light intensity (need a diffuse background to see it)
-            lightIntensity = Random.Range(minimumIntensity, maximumIntensity);
+            //lightIntensity = Random.Range(minimumIntensity, maximumIntensity);
+            lightIntensity = 5.0f;
             light.intensity = lightIntensity;
         }
         else {
