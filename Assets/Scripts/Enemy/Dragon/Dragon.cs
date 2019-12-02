@@ -20,12 +20,8 @@ public class Dragon : BossParent
 
     float hurtTimer = 0.0F;
 
-
-    Vector2 facingDirection;
-
     BossBar hitpointBar;
 
-    bool isHurt;
     bool isDark;
 
     private bool knockBack;

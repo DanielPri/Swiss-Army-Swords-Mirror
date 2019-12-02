@@ -10,6 +10,7 @@ public class BossParent : Enemy
 
     protected HitpointBar playerHPBar;
     protected Sword sword;
+    protected bool isHurt;
 
 
     public new virtual void Start()

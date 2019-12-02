@@ -6,17 +6,21 @@ public class LavaHand : MonoBehaviour
 {
     protected Player player;
 
+    private bool once = true;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
     }
 
-    public virtual void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.tag.Equals("Player"))
+        if (collision.gameObject.tag.Equals("Player") && once)
         {
             player.playerHPBar.DecreaseHitpoint(1);
+            once = false;
         }
     }
+
 }
