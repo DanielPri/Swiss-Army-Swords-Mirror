@@ -20,7 +20,7 @@ public class Narration : MonoBehaviour
     {
         if (triggered && !audioClip.isPlaying)
         {
-            Destroy(gameObject, 20f);
+            Destroy(gameObject, 10f);
         }
     }
 
