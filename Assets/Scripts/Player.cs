@@ -6,24 +6,37 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public HitpointBar playerHPBar;
+
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
-    [SerializeField] GameObject inventoryGO;
     [SerializeField] LayerMask platformLayerMask;
+    [SerializeField]
+    float jumpDuration;
+    [SerializeField]
+    AudioClip[] jumpsSounds;
+    [SerializeField]
+    public AudioClip[] attacksSounds;
+    [SerializeField]
+    public AudioClip[] hurtSounds;
+
+    public AudioSource audioSource;
 
     bool pickingUpSword;
     bool moving;
     bool grounded;
     bool falling;
+    bool jumping;
     private bool isHurt;
-    bool switchSwords;
-    Rigidbody2D player;
+    float jumpTimeElapsed;
+    Rigidbody2D rb;
     Animator playerAnimator;
-    Vector2 facingDirection;
+    public Vector2 facingDirection;
     HitpointBar hitpointBar;
-    CapsuleCollider2D playerCollider;
+    Collider2D playerCollider;
 
     SwordInventory inventory;
+    GameObject inventoryGO;
     List<Transform> swords = new List<Transform>();
     List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
@@ -31,20 +44,29 @@ public class Player : MonoBehaviour
     float isHurtTime = 0.6f;
     float isHurtTimer = 0;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject); // prevent from getting destroyed between scenes
+    }
+
     void Start()
     {
-        player = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        playerCollider = GetComponent<CapsuleCollider2D>();
+        playerCollider = GetComponent<Collider2D>();
         moving = false;
         grounded = false;
         falling = false;
-        switchSwords = true;
         hitpointBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>(); 
 
+        audioSource = GetComponent<AudioSource>();
+
+        inventoryGO = GameObject.Find("InventoryManager");
         inventory = inventoryGO.GetComponent<SwordInventory>();
         swordPossessions.Add(0);
         getInventorySwords();
+        activeSwordIndex = inventory.index;
+        playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
     }
 
     private void getInventorySwords()
@@ -105,11 +127,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isFalling", falling);
         playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
         playerAnimator.SetBool("isHurt", isHurt);
-        // If active sword index ever exceeds sword count (by pressing tab in the wrong frame) set it to 0
-        if (activeSwordIndex + 1 > swords.Count)
-        {
-            activeSwordIndex = 0;
-        }
+        activeSwordIndex = inventory.index;
         checkHurt();
     }
 
@@ -131,7 +149,7 @@ public class Player : MonoBehaviour
         if (col.gameObject.name.Contains("SwordDrop") && !pickingUpSword)
         {
             // Cannot switch swords until inventory is updated
-            switchSwords = false;
+            inventory.switchSwords = false;
             // Hide the player's held sword
             SpriteRenderer heldSwordSR = new SpriteRenderer();
             SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
@@ -145,12 +163,14 @@ public class Player : MonoBehaviour
             pickingUpSword = true;
             moving = false;
             // Hold sword above head - sorta buggy when you jump and collect it
-            col.gameObject.transform.localPosition = new Vector2(transform.position.x, transform.position.y + 1);
+
+            col.transform.parent = transform;
+            col.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
             col.gameObject.GetComponentInChildren<Animator>().enabled = false;
 
             swordPossessions.Add(SwordId(col.gameObject));
 
-            StartCoroutine(WaitAndPickup(col.gameObject, heldSwordSR));
+            StartCoroutine(HandleSwordPickup(col.gameObject, heldSwordSR));
         }
 
     }
@@ -164,7 +184,16 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
+     void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Platforms")  // or if(gameObject.CompareTag("YourWallTag"))
+        {
+            rb.velocity = Vector3.zero;
+        }
+    }
+
+
     private IEnumerator WaitAndPickup(GameObject swordGO, SpriteRenderer heldSwordSR)
     {
         // Will force a wait before the player can continue playing
@@ -189,7 +218,7 @@ public class Player : MonoBehaviour
             heldSwordSR.enabled = true;
         pickingUpSword = false;
         getInventorySwords(); // Get the inventory of swords again to account for new one
-        switchSwords = true; // Able to switch swords once inventory is updated
+        inventory.switchSwords = true; // Able to switch swords once inventory is updated
     }
 
     private void MovePlayer()
@@ -200,29 +229,56 @@ public class Player : MonoBehaviour
             if (Input.GetButton("Left"))
             {
                 transform.Translate(-Vector2.right * playerSpeed * Time.deltaTime);
-                transform.localScale = new Vector2(-1, 1);
+                transform.localScale = new Vector3(-1, 1, 1);
                 facingDirection = -transform.right;
                 moving = true;
             }
             if (Input.GetButton("Right"))
             {
                 transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
-                transform.localScale = new Vector2(1, 1);
+                transform.localScale = new Vector3(1, 1, 1);
                 facingDirection = transform.right;
                 moving = true;
             }
 
-            if (grounded && Input.GetButtonDown("Jump"))
+            //jump handling
+            if (grounded && Input.GetButtonDown("Jump") && !FindObjectOfType<LavaTile>().touchingLava)
             {
-                player.AddForce(Vector2.up * jumpForce);
+                jumpTimeElapsed = 0;
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                jumping = true;
+                makeJumpNoise();
             }
-
+            if (jumping && Input.GetButton("Jump"))
+            {
+                timeJump();
+            }
+            if (Input.GetButtonUp("Jump"))
+            {
+               jumping = false;
+            }
         }
+    }
+
+    private void makeJumpNoise()
+    {
+        audioSource.clip = jumpsSounds[UnityEngine.Random.Range(0, jumpsSounds.Length)];
+        audioSource.time = 0.2f;
+        audioSource.Play();
+    }
+
+    private void timeJump()
+    {
+        if(jumpTimeElapsed < jumpDuration) {
+            rb.AddForce(Vector2.up * jumpForce * (1-jumpTimeElapsed )/14 , ForceMode2D.Impulse);
+            jumpTimeElapsed += Time.deltaTime;
+        }
+        
     }
 
     private void CheckFalling()
     {
-        falling = player.velocity.y < 0.0f;
+        falling = rb.velocity.y < 0.0f;
     }
 
     public Vector2 GetFacingDirection()
@@ -243,26 +299,65 @@ public class Player : MonoBehaviour
 
     private void SwitchSwords()
     {
-        if (Input.GetKeyDown("tab") && switchSwords == true)
+        if (inventory.switchSwords && swords.Count > 1) // Making sure the player has more than one sword)
         {
-            if (swords.Count > 1) // Making sure the player has more than one sword
+            if (Input.mouseScrollDelta.y > 0) // mouse scroll up
+                {
+                    swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
+
+                    // Switch to next sword
+                    if (activeSwordIndex + 1 == swords.Count)
+                    {
+                        activeSwordIndex = 0;
+                    }
+                    else
+                    {
+                        activeSwordIndex = activeSwordIndex + 1;
+                    }
+
+                    swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
+                }
+            else if (Input.mouseScrollDelta.y < 0) // mouse scroll down
             {
                 swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
 
                 // Switch to next sword
-                if (activeSwordIndex + 1 == swords.Count)
+                if (activeSwordIndex - 1 == -1)
                 {
-                    activeSwordIndex = 0;
+                    activeSwordIndex = swords.Count - 1;
                 }
                 else
                 {
-                    activeSwordIndex = activeSwordIndex + 1;
+                    activeSwordIndex = activeSwordIndex - 1;
                 }
 
                 swords[activeSwordIndex].gameObject.SetActive(true); // Re-enable the (selected) sword
-                Debug.Log("Current sword is: " + swords[activeSwordIndex].name);
             }
-        
+            if (Input.GetKeyDown(KeyCode.Alpha1)) // press 1
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false);
+                swords[0].gameObject.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && swords.Count >= 2) // press 2 if player has at least 2 swords
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false);
+                swords[1].gameObject.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && swords.Count >= 3)
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false);
+                swords[2].gameObject.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && swords.Count >= 4)
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false);
+                swords[3].gameObject.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5) && swords.Count == 5)
+            {
+                swords[activeSwordIndex].gameObject.SetActive(false);
+                swords[4].gameObject.SetActive(true);
+            }
         }
     }
 
@@ -284,8 +379,12 @@ public class Player : MonoBehaviour
 
     private void isGrounded()
     {
-        float extraHeightText = 1f;
-        RaycastHit2D raycastHit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, extraHeightText, platformLayerMask);
+        float extraHeightText = 0.2f;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size * 0.9f, 0f, Vector2.down, extraHeightText, platformLayerMask);
+
+        Debug.DrawRay(playerCollider.bounds.center + new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHeightText), Color.green);
+        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHeightText), Color.green);
+        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, playerCollider.bounds.extents.y + extraHeightText), Vector2.right * (playerCollider.bounds.extents.x + extraHeightText), Color.green);
 
         grounded = raycastHit.collider != null;
     }
