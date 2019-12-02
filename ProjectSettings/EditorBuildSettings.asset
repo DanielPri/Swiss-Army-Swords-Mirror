@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerBossInteraction.unity
     guid: ec173b89c73ced749b207f21363bdf5f
+  - enabled: 1
+    path: Assets/Scenes/DragonBoss.unity
+    guid: e26d924cd7d5d41e092f6c0c10eeb02d
+  - enabled: 1
+    path: Assets/Scenes/LavaDemon.unity
+    guid: 86a62728cfe4240f8a0a6bce5f5d78b3
   m_configObjects: {}
