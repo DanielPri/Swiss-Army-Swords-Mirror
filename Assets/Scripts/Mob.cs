@@ -8,7 +8,7 @@ public class Mob : Enemy {
 
     HitpointBar playerHPBar;
     Sword sword;
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
     SpriteRenderer hurtColor;
 
     public int easyMobHP = 2;
@@ -21,7 +21,7 @@ public class Mob : Enemy {
     new public void Start() {
         base.Start();
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
         movingRight = true;
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -30,6 +30,7 @@ public class Mob : Enemy {
         // Freeze properties
         freezeable = true;
         freezeCubeOffset = new Vector3(0, 0.5f);
+        freezeCubeScale = new Vector3(0.1f, 0.2f, 0.1f);
         freezeCubeScale = new Vector3(0.1f, 0.2f, 0.1f);
     }
 
@@ -113,7 +114,7 @@ public class Mob : Enemy {
             {
                 playerHPBar.DecreaseHitpoint(1);
             }
-            rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
     }
@@ -121,7 +122,7 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            rigidbody.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.None;
         }
     }
 }
