@@ -11,6 +11,14 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask platformLayerMask;
     [SerializeField]
     float jumpDuration;
+    [SerializeField]
+    AudioClip[] jumpsSounds;
+    [SerializeField]
+    public AudioClip[] attacksSounds;
+    [SerializeField]
+    public AudioClip[] hurtSounds;
+
+    public AudioSource audioSource;
 
     bool pickingUpSword;
     bool moving;
@@ -43,6 +51,8 @@ public class Player : MonoBehaviour
         moving = false;
         grounded = false;
         falling = false;
+
+        audioSource = GetComponent<AudioSource>();
 
         inventoryGO = GameObject.Find("InventoryManager");
         inventory = inventoryGO.GetComponent<SwordInventory>();
@@ -214,6 +224,7 @@ public class Player : MonoBehaviour
                 jumpTimeElapsed = 0;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 jumping = true;
+                makeJumpNoise();
             }
             if (jumping && Input.GetButton("Jump"))
             {
@@ -224,6 +235,13 @@ public class Player : MonoBehaviour
                jumping = false;
             }
         }
+    }
+
+    private void makeJumpNoise()
+    {
+        audioSource.clip = jumpsSounds[UnityEngine.Random.Range(0, jumpsSounds.Length)];
+        audioSource.time = 0.2f;
+        audioSource.Play();
     }
 
     private void timeJump()
