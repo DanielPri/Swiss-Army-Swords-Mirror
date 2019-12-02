@@ -97,6 +97,7 @@ public class Mob : Enemy {
             GetComponent<SpriteRenderer>().flipX = movingRight;
             movingRight = !movingRight;
         }
+        Debug.Log(GameObject.FindGameObjectWithTag("Sword"));
         if (col.tag == "Sword" && easyMobHP > 0 && sword.damaging) { isHurt = true; }
             
     }
