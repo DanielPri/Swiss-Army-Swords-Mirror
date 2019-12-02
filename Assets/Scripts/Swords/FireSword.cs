@@ -33,6 +33,8 @@ public class FireSword : Sword
         }
         if (Input.GetButtonUp("Fire2"))
         {
+            swordCollider.enabled = true;
+            makeAttackSound();
             damage = Mathf.FloorToInt((1 + attackTimeElapsed));
             damaging = true;
             damageDelay = damageDuration;
