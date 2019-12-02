@@ -100,6 +100,21 @@ public class Boss : Enemy {
             playerGO = GameObject.Find("Player").GetComponent<Player>();
             FaceDirection(playerGO.transform.position);
         }
+        else // move to height of player to accurately shoot projectiles
+        {
+            if (transform.position.y > playerPosition.position.y)
+            {
+                transform.Translate(Vector2.down * speed * Time.deltaTime, Space.World);
+                playerGO = GameObject.Find("Player").GetComponent<Player>();
+                FaceDirection(playerGO.transform.position);
+            }
+            else if (transform.position.y < playerPosition.position.y)
+            {
+                transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
+                playerGO = GameObject.Find("Player").GetComponent<Player>();
+                FaceDirection(playerGO.transform.position);
+            }
+        }
         if (isHurt) {
             hurtTimer += Time.deltaTime;
             if (hurtTimer >= hurtDuration) {
