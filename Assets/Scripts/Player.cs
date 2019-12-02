@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     float jumpDuration;
     [SerializeField]
     AudioClip[] jumpsSounds;
-    AudioClip[] attacksSounds;
+    [SerializeField]
+    public AudioClip[] attacksSounds;
 
     AudioSource audioSource;
 
