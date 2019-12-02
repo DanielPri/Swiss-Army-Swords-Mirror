@@ -1,14 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BrickSword : Sword
 {
     public GameObject brickWallPrefab;
+    [SerializeField]
+    int maxBrickWalls = 3;
+    GameObject wallContainer;
 
     public override void Start()
     {
         base.Start();
         base.swordType = SwordType.BRICK;
+        createWallContainer();
+    }
+
+    new public void Update()
+    {
+        base.Update();
+        checkIfDestroyWall();
+    }
+
+    private void createWallContainer()
+    {
+        wallContainer = GameObject.Find("WallContainer");
+        if(wallContainer == null)
+        {
+            wallContainer = new GameObject("WallContainer");
+        }
     }
 
     public override void Attack()
@@ -47,12 +67,28 @@ public class BrickSword : Sword
             {
                 if (rayHit.collider.tag == "Ground")
                 {
-                    GameObject BrickWall = Instantiate(brickWallPrefab, new Vector2(rayHit.point.x, rayHit.point.y), Quaternion.identity) as GameObject;
-					Destroy(BrickWall, 5.0F);
+                    GameObject BrickWall = Instantiate(brickWallPrefab, new Vector2(rayHit.point.x, rayHit.point.y), Quaternion.identity, wallContainer.transform) as GameObject;
+                    Destroy(BrickWall, 4.0F);
                     break;
                 }
             }
         }
+    }
+
+    private void checkIfDestroyWall()
+    {
+        if(wallContainer.transform.childCount > maxBrickWalls)
+        {
+            GameObject oldestWall;
+            for (int childIndex = 0; childIndex < wallContainer.transform.childCount - maxBrickWalls; childIndex++)
+            {
+                oldestWall = wallContainer.transform.GetChild(childIndex).gameObject;
+                Animator wallAnimator = oldestWall.GetComponentInChildren<Animator>();
+                wallAnimator.SetTrigger("destroy");
+                Destroy(oldestWall, 1f);
+            }
+        }
+          
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
