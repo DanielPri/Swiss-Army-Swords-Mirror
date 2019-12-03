@@ -9,6 +9,7 @@ public class LavaTile : MonoBehaviour {
 	HitpointBar playerHPBar;
 	GameObject player = null;
 	Rigidbody2D  playerRigidbody = null;
+    Player playerScript;
 	GameObject fire = null;
 	SpriteRenderer fireFade = null;
 	bool startForceTimer = false;
@@ -21,6 +22,7 @@ public class LavaTile : MonoBehaviour {
 		player = GameObject.Find("Player");
 		playerRigidbody = player.GetComponent<Rigidbody2D>();
 		playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
+        playerScript = player.GetComponent<Player>();
     }
 
     public virtual void Update() { 
@@ -53,6 +55,9 @@ public class LavaTile : MonoBehaviour {
 			playerRigidbody.AddForce(new Vector2(0.0F, pushbackForce), ForceMode2D.Impulse);
 			GenerateFire();
 			playerHPBar.DecreaseHitpoint(10);
+            playerScript.IsHurt = true;
+            playerScript.audioSource.clip = playerScript.hurtSounds[UnityEngine.Random.Range(0, playerScript.hurtSounds.Length)];
+            playerScript.audioSource.Play();
         }
     }
 	
