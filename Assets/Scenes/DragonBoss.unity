@@ -528,10 +528,40 @@ PrefabInstance:
       propertyPath: playerHPBar
       value: 
       objectReference: {fileID: 2103360790}
+    - target: {fileID: 2110159222249153261, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4409136459181290520, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 304245302850143823, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282310571565715658, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940905637657932257, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409136459181290502, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678203411502833287, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74c6454bd7bb901439ad715e81729d41, type: 3}
