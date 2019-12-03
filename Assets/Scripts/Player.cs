@@ -152,6 +152,7 @@ public class Player : MonoBehaviour
     {
         if (hitpointBar.PlayerHealth <= 0)
         {
+            playerAnimator.SetTrigger("death");
             StartCoroutine(resetAfterSeconds(2));
         }
     }
