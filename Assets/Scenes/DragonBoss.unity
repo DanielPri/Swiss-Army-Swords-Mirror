@@ -523,16 +523,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
-        type: 3}
-      propertyPath: playerHPBar
-      value: 
-      objectReference: {fileID: 2103360790}
     - target: {fileID: 2110159222249153261, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: playerHPBar
+      value: 
+      objectReference: {fileID: 2103360790}
     - target: {fileID: 4409136459181290520, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_IsActive
@@ -1654,7 +1654,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8de76adc056794d3eb4c904afdd9ddde, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.075
   m_Pitch: 1
   Loop: 1
   Mute: 0

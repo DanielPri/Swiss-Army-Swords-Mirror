@@ -36,9 +36,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 3.unity
     guid: 3a3133be48814d34db8503adebf27602
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: fc0faf9c543cbe5418077b3348756330
-  - enabled: 1
     path: Assets/Scenes/DragonBoss.unity
     guid: e26d924cd7d5d41e092f6c0c10eeb02d
   - enabled: 1
