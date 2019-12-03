@@ -27,7 +27,7 @@ public class LevelStart : MonoBehaviour
     void Update()
     {
         scene = SceneManager.GetActiveScene();
-        if (scene.name == "Level 1" && !level2)
+        if (scene.name == "Level 1" && !level1)
         {
             player.position = new Vector2(3.2f, 7.4f);
             level1 = true;
