@@ -581,46 +581,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseMenuButtons
       objectReference: {fileID: 0}
-    - target: {fileID: 2658306871465378124, guid: e8b409dcfe018a547adb37f380d21f28,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2658306871465378124, guid: e8b409dcfe018a547adb37f380d21f28,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5518316130439847144, guid: e8b409dcfe018a547adb37f380d21f28,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5518316130439847144, guid: e8b409dcfe018a547adb37f380d21f28,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6492433906903338759, guid: e8b409dcfe018a547adb37f380d21f28,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6492433906903338759, guid: e8b409dcfe018a547adb37f380d21f28,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8194100561377815948, guid: e8b409dcfe018a547adb37f380d21f28,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8194100561377815948, guid: e8b409dcfe018a547adb37f380d21f28,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8480788684714614234, guid: e8b409dcfe018a547adb37f380d21f28,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -724,6 +684,46 @@ PrefabInstance:
     - target: {fileID: 8480788684714614234, guid: e8b409dcfe018a547adb37f380d21f28,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658306871465378124, guid: e8b409dcfe018a547adb37f380d21f28,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658306871465378124, guid: e8b409dcfe018a547adb37f380d21f28,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492433906903338759, guid: e8b409dcfe018a547adb37f380d21f28,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492433906903338759, guid: e8b409dcfe018a547adb37f380d21f28,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194100561377815948, guid: e8b409dcfe018a547adb37f380d21f28,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194100561377815948, guid: e8b409dcfe018a547adb37f380d21f28,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518316130439847144, guid: e8b409dcfe018a547adb37f380d21f28,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518316130439847144, guid: e8b409dcfe018a547adb37f380d21f28,
+        type: 3}
+      propertyPath: m_LocalScale.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2877,7 +2877,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bce6e4ebff457fd4fa513c4da7803c90, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
