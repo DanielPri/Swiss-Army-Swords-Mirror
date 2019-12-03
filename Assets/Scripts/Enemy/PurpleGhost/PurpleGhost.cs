@@ -7,7 +7,6 @@ public class PurpleGhost : BossParent
     private GameObject lightningPrefab;
 
     private bool attacking1, isDead, isInvulnerable;
-    private Animator animator;
     private Light light;
     float hurtTimer, invulnerabilityTimer;
     float hurtDuration = 0.6F;
@@ -24,12 +23,16 @@ public class PurpleGhost : BossParent
 
     private void Update()
     {
+        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
+        hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
+
         FaceDirection(player.transform.position);
         HandleTimers();
 
         if (CheckIfInRange(7f) && !attacking1 && !isDead)
         {
             StartCoroutine(LightOff());
+            StartCoroutine(SpawnLightningShock());
         }
     }
 
@@ -125,6 +128,8 @@ public class PurpleGhost : BossParent
                 invulnerabilityTimer = 0.0f;
             }
         }
+        if (hitpointBar.GetHP() < 1)
+            Die();
     }
 
     private void OnTriggerStay2D(Collider2D col)
