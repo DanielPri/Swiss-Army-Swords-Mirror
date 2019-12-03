@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415e0db87cd224fcbb36b89cb1abb38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameOfTheScene: LavaBoss
+  nameOfTheScene: LavaDemon
 --- !u!1 &280605845
 GameObject:
   m_ObjectHideFlags: 3
@@ -3952,6 +3952,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6884039507494591218, guid: f9bfa27524db4fe4cafcd32a8f481e65,
+        type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2425742049566771507, guid: f9bfa27524db4fe4cafcd32a8f481e65,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4091,11 +4096,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884039507494591218, guid: f9bfa27524db4fe4cafcd32a8f481e65,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6884039505629218267, guid: f9bfa27524db4fe4cafcd32a8f481e65,
         type: 3}
