@@ -4660,11 +4660,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4300659206193755730, guid: 0a53f4722e32c534d8d3096d80ba0ae6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a53f4722e32c534d8d3096d80ba0ae6, type: 3}
 --- !u!114 &118964894 stripped
@@ -41875,6 +41870,31 @@ PrefabInstance:
         type: 3}
       propertyPath: swordPossessions.Array.data[1]
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 304245302850143823, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282310571565715658, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940905637657932257, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409136459181290502, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678203411502833287, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74c6454bd7bb901439ad715e81729d41, type: 3}
