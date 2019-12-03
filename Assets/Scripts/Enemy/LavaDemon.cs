@@ -97,6 +97,7 @@ public class LavaDemon : BossParent
 
             if (hitpointBar.GetHP() < 1) {
                 Die();
+				transitionTimer = true;
 				if (transitionTimer) {
 					afterDeadTimer += Time.deltaTime;
 					if (afterDeadTimer > transitionDuration)
