@@ -2227,7 +2227,7 @@ MonoBehaviour:
   m_Muted: 0
   m_CustomPlayableFullTypename: 
   m_AnimClip: {fileID: 0}
-  m_Parent: {fileID: 114814546587867024}
+  m_Parent: {fileID: 0}
   m_Children: []
   m_Clips: []
   m_Version: 2
@@ -2392,7 +2392,7 @@ MonoBehaviour:
   m_Muted: 0
   m_CustomPlayableFullTypename: 
   m_AnimClip: {fileID: 0}
-  m_Parent: {fileID: 114814546587867024}
+  m_Parent: {fileID: 0}
   m_Children: []
   m_Clips: []
   m_Version: 2
@@ -2991,7 +2991,7 @@ MonoBehaviour:
   m_Muted: 0
   m_CustomPlayableFullTypename: 
   m_AnimClip: {fileID: 0}
-  m_Parent: {fileID: 114857581210866536}
+  m_Parent: {fileID: 0}
   m_Children: []
   m_Clips: []
   m_Version: 2
@@ -3270,7 +3270,7 @@ MonoBehaviour:
   m_Muted: 0
   m_CustomPlayableFullTypename: 
   m_AnimClip: {fileID: 0}
-  m_Parent: {fileID: 114814546587867024}
+  m_Parent: {fileID: 0}
   m_Children: []
   m_Clips: []
   m_Version: 2
@@ -3380,7 +3380,7 @@ MonoBehaviour:
   m_Muted: 0
   m_CustomPlayableFullTypename: 
   m_AnimClip: {fileID: 0}
-  m_Parent: {fileID: 114814546587867024}
+  m_Parent: {fileID: 0}
   m_Children: []
   m_Clips: []
   m_Version: 2
@@ -3577,7 +3577,7 @@ MonoBehaviour:
   m_Muted: 0
   m_CustomPlayableFullTypename: 
   m_AnimClip: {fileID: 0}
-  m_Parent: {fileID: 114814546587867024}
+  m_Parent: {fileID: 0}
   m_Children: []
   m_Clips: []
   m_Version: 2
