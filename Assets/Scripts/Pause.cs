@@ -89,10 +89,12 @@ public class Pause : MonoBehaviour
             }
             else if (!pauseMenu.activeInHierarchy)
             {
+                paused = true;
                 PauseGame();
             }
             else if (pauseMenu.activeInHierarchy && !controlScheme.activeInHierarchy)
             {
+                paused = false;
                 ContinueGame();
             }
         }
@@ -104,16 +106,15 @@ public class Pause : MonoBehaviour
         ui.SetActive(false);
         pauseMenu.SetActive(true);
         buttons.GetComponent<Canvas>().sortingOrder = 101;
-        paused = false;
     }
 
     public void ContinueGame()
     {
+        paused = false;
         Time.timeScale = 1;
         ui.SetActive(true);
         pauseMenu.SetActive(false);
         buttons.GetComponent<Canvas>().sortingOrder = -1;
-        paused = true;
     }
     
     public void RestartLevel()
