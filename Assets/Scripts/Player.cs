@@ -27,11 +27,12 @@ public class Player : MonoBehaviour
     bool grounded;
     bool falling;
     bool jumping;
+    private bool isHurt;
     float jumpTimeElapsed;
     Rigidbody2D rb;
     Animator playerAnimator;
-    Animator swordAnimator;
     public Vector2 facingDirection;
+    HitpointBar hitpointBar;
     Collider2D playerCollider;
 
     SwordInventory inventory;
@@ -39,6 +40,11 @@ public class Player : MonoBehaviour
     List<Transform> swords = new List<Transform>();
     List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
+
+    float isHurtTime = 0.6f;
+    float isHurtTimer = 0;
+
+    string sceneName;
 
     void Awake()
     {
@@ -53,6 +59,7 @@ public class Player : MonoBehaviour
         moving = false;
         grounded = false;
         falling = false;
+        hitpointBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>(); 
 
         audioSource = GetComponent<AudioSource>();
 
@@ -62,6 +69,14 @@ public class Player : MonoBehaviour
         getInventorySwords();
         activeSwordIndex = inventory.index;
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
+
+        Scene currentScene = SceneManager.GetActiveScene(); // To know which level
+        sceneName = currentScene.name;
+        GameObject musicGO = GameObject.FindGameObjectWithTag("Music");
+        if (sceneName.Contains("Level 2") && musicGO)
+            musicGO.GetComponent<PersistentMusic>().PlayMusic();
+        else if (musicGO)
+            GameObject.FindGameObjectWithTag("Music").GetComponent<PersistentMusic>().StopMusic();
     }
 
     private void getInventorySwords()
@@ -102,8 +117,10 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    public void ChangeToBossScene() {
-        if (Input.GetButtonDown("ToBoss")) {
+    public void ChangeToBossScene()
+    {
+        if (Input.GetButtonDown("ToBoss"))
+        {
             SceneManager.LoadScene("PlayerBossInteraction");
         }
     }
@@ -119,8 +136,22 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
         playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
-
+        playerAnimator.SetBool("isHurt", isHurt);
         activeSwordIndex = inventory.index;
+        checkHurt();
+    }
+
+    private void checkHurt()
+    {
+        if (isHurt)
+        {
+            if(isHurtTimer > isHurtTime)
+            {
+                isHurt = false;
+                isHurtTimer = 0;
+            }
+            isHurtTimer += Time.deltaTime;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -265,6 +296,17 @@ public class Player : MonoBehaviour
         return facingDirection;
     }
 
+    public bool IsHurt
+    {
+        get { return isHurt; }
+        set { isHurt = value; }
+    }
+
+    public Rigidbody2D PlayerRigidBody()
+    {
+        return rb;
+    }
+
     private void SwitchSwords()
     {
         if (inventory.switchSwords && swords.Count > 1) // Making sure the player has more than one sword)
@@ -328,7 +370,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
     private int SwordId(GameObject sword)
     {
         string name = sword.name;
@@ -357,3 +399,4 @@ public class Player : MonoBehaviour
         grounded = raycastHit.collider != null;
     }
 }
+

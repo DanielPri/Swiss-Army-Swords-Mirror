@@ -18,9 +18,6 @@ public class HitpointBar : MonoBehaviour {
         index = barFilled.Length - 1;
     }
 
-    void Update() {
-    }
-
     public void IncreaseHitpoint(int indexPosition) {
         for (int i = 0; i < indexPosition; i++) {
             if (index < maxHealth) {
@@ -38,5 +35,11 @@ public class HitpointBar : MonoBehaviour {
             }
         }
     }
+
+    public int PlayerHealth
+    {
+        get { return index; }
+    }
+      
 
 }

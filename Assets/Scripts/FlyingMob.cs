@@ -93,7 +93,8 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
         Color secondColor = new Color(0.2F, 0.009F, 0.002F, 1F);
         hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
         hitSound.Play();
-        easyMobHP--;
+        easyMobHP -= sword.damage;
+        sword.damage = 1; // Reset damage back to 1 (relevant to flame sword)
     }
 	
 	public void Freeze() {
@@ -131,7 +132,7 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 	}
 	
 	void OnTriggerEnter2D(Collider2D col) {
-        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging)
+        if (col.tag == "Sword" && easyMobHP > 0 && sword.damaging)
             isHurt = true;
         if (col.tag == "EnemyZone")
         {
@@ -151,13 +152,14 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging)
+        if (col.tag == "Sword" && easyMobHP > 0 && sword.damaging)
             isHurt = true;
     }
 	
 	public void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Player") {
             playerHPBar.DecreaseHitpoint(3);
+            playerHurtSound();
             rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 

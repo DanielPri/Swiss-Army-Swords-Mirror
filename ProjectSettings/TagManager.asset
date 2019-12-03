@@ -15,8 +15,7 @@ TagManager:
   - BrokenMirror
   - IceProjectile
   - LavaDemon
-  - Laser
-  - PurpleGhost
+  - Music
   layers:
   - Default
   - TransparentFX

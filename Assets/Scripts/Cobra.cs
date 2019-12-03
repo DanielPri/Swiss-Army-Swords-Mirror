@@ -40,7 +40,7 @@ public class Cobra : Enemy { // Has big HP, but is annoying since it is found in
 		GenerateRandomState();
 		HandleMovement();
 		HandleTimers();
-		if (mediumHP == 0 && !isFrozen)
+		if (mediumHP < 0 && !isFrozen)
 			Die();
     }
 	
@@ -108,7 +108,8 @@ public class Cobra : Enemy { // Has big HP, but is annoying since it is found in
         Color firstColor = new Color(1F, 0F, 0F, 0.7F);
         Color secondColor = new Color(1F, 1F, 1F, 1F);
         hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
-        mediumHP--;
+        mediumHP -= sword.damage;
+        sword.damage = 1; // Reset damage back to 1 (relevant to flame sword)
     }
 	
 	public override void SetSpeed(float number) {
@@ -123,6 +124,7 @@ public class Cobra : Enemy { // Has big HP, but is annoying since it is found in
         if (col.gameObject.tag == "Player")
         {
             playerHPBar.DecreaseHitpoint(10);
+            playerHurtSound();
             rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
