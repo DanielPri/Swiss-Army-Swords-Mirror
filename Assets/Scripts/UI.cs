@@ -7,11 +7,6 @@ public class UI : MonoBehaviour
     Camera mainCamera;
     Canvas ui;
 
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject); // prevent from getting destroyed between scenes
-    }
-
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();

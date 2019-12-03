@@ -19,11 +19,6 @@ public class Pause : MonoBehaviour
     List<int> possessions;
     public bool paused;
 
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject); // prevent from getting destroyed between scenes
-    }
-
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -43,13 +38,12 @@ public class Pause : MonoBehaviour
         ui.SetActive(true);
         pauseMenu.SetActive(false);
         controlScheme.SetActive(false);
-        buttons.SetActive(false);
+        buttons.GetComponent<Canvas>().sortingOrder = -1;
         regularDescription.SetActive(false);
         iceDescription.SetActive(false);
         brickDescription.SetActive(false);
         lightDescription.SetActive(false);
         flameDescription.SetActive(false);
-        paused = false;
     }
 
     void Update()
@@ -77,7 +71,6 @@ public class Pause : MonoBehaviour
             {
                 lightDescription.SetActive(true);
             }
-
         }
         else
         {
@@ -91,7 +84,7 @@ public class Pause : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(0)) && controlScheme.activeInHierarchy)
         {
             pauseMenu.SetActive(true);
-            buttons.SetActive(true);
+            buttons.GetComponent<Canvas>().sortingOrder = 101;
             controlScheme.SetActive(false);
         }
     }
@@ -100,38 +93,48 @@ public class Pause : MonoBehaviour
     {
         if (Time.timeScale == 1)
         {
-
             Time.timeScale = 0;
             ui.SetActive(false);
             pauseMenu.SetActive(true);
-            buttons.SetActive(true);
+            buttons.GetComponent<Canvas>().sortingOrder = 101;
         }
         else if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
             ui.SetActive(true);
             pauseMenu.SetActive(false);
-            buttons.SetActive(false);
+            buttons.GetComponent<Canvas>().sortingOrder = -1;
         }
     }
 
     public void RestartLevel()
     {
-        string name = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(name);
+        if (pauseMenu.activeInHierarchy)
+        {
+            string name = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(name);
+            Time.timeScale = 1;
+        }
     }
 
     public void ExitLevel()
     {
-        string name = "MainMenu";
-        SceneManager.LoadScene(name);
+        if (pauseMenu.activeInHierarchy)
+        {
+            string name = "MainMenu";
+            SceneManager.LoadScene(name);
+            Time.timeScale = 1;
+        }
     }
 
     public void ControlScheme()
     {
-        pauseMenu.SetActive(false);
-        buttons.SetActive(false);
-        controlScheme.SetActive(true);
+        if (pauseMenu.activeInHierarchy)
+        {
+            pauseMenu.SetActive(false);
+            buttons.GetComponent<Canvas>().sortingOrder = -1;
+            controlScheme.SetActive(true);
+        }
     }
 
 }

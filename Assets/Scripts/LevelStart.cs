@@ -7,6 +7,7 @@ public class LevelStart : MonoBehaviour
 {
     Transform player;
     Scene scene;
+    bool level1;
     bool level2;
     bool level2puzzle;
     bool level2end;
@@ -16,6 +17,7 @@ public class LevelStart : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Transform>();
+        level1 = false;
         level2 = false;
         level2puzzle = false;
         level2end = false;
@@ -26,6 +28,11 @@ public class LevelStart : MonoBehaviour
     void Update()
     {
         scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 1" && !level2)
+        {
+            player.position = new Vector2(3.2f, 7.4f);
+            level1 = true;
+        }
         if (scene.name == "Level 2" && !level2)
         {
             player.position = new Vector2(-3.65f, 0.4f);

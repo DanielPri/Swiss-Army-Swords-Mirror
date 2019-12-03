@@ -22,6 +22,7 @@ public class Sword : MonoBehaviour
     AudioSource audioSource;
     int randomAudioIndex = -1;
     int previousAudioIndex = -1;
+    GameObject pauseMenu;
 
     public enum SwordType
     {
@@ -40,11 +41,12 @@ public class Sword : MonoBehaviour
         swordCollider.enabled = false;
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = 0.2f;
+        pauseMenu = GameObject.Find("PauseMenu");
     }
 
     protected void Update()
     {
-        if (Input.GetButtonDown("Fire1") && damaging == false)
+        if (Input.GetButtonDown("Fire1") && damaging == false && !pauseMenu.GetComponent<Pause>().paused)
         {
             Attack();
             swordCollider.enabled = true;

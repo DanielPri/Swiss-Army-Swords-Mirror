@@ -41,10 +41,6 @@ public class Player : MonoBehaviour
     int activeSwordIndex;
     GameObject pauseMenu;
 
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject); // prevent from getting destroyed between scenes
-    }
 
     void Start()
     {
