@@ -18,7 +18,7 @@ public class LavaHand : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player") && once)
         {
-            player.playerHPBar.DecreaseHitpoint(1);
+            player.playerHPBar.DecreaseHitpoint(3);
             once = false;
         }
     }
