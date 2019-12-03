@@ -1213,6 +1213,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DisplayNextSentence
       objectReference: {fileID: 0}
+    - target: {fileID: 6492628684769620030, guid: 329dde0b595cd4076bdccf7ee5002e70,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492628684769620030, guid: 329dde0b595cd4076bdccf7ee5002e70,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 800.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 329dde0b595cd4076bdccf7ee5002e70, type: 3}
 --- !u!114 &631897982 stripped
