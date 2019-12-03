@@ -17,6 +17,7 @@ public class Sword : MonoBehaviour
     protected Player player;
     protected bool isAbilityUsed;
     public bool damaging;
+    int _damage = 1;
 
     
     AudioSource audioSource;
@@ -26,10 +27,12 @@ public class Sword : MonoBehaviour
 
     public enum SwordType
     {
-        REGULAR, ICE, BRICK, LIGHT
+        REGULAR, ICE, BRICK, LIGHT, FIRE
     }
 
     public SwordType swordType { get { return _swordType; } set { _swordType = value; } }
+
+    public int damage { get { return _damage; } set { _damage = value; } }
 
     public virtual void Start()
     {
@@ -44,7 +47,7 @@ public class Sword : MonoBehaviour
         pauseMenu = GameObject.Find("PauseMenu");
     }
 
-    protected void Update()
+    public virtual void Update()
     {
         if (Input.GetButtonDown("Fire1") && damaging == false && !pauseMenu.GetComponent<Pause>().paused)
         {
@@ -64,13 +67,13 @@ public class Sword : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && swordType != SwordType.FIRE)
         {
             Ability();
         }
     }
 
-    private void makeAttackSound()
+    public void makeAttackSound()
     {
         //guarantee to never repeat a sound with this loop
         do

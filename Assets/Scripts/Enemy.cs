@@ -86,6 +86,7 @@ public class Enemy : MonoBehaviour {
     }
     protected void playerHurtSound()
     {
+        playerObject.IsHurt = true;
         playerObject.audioSource.clip = playerObject.hurtSounds[UnityEngine.Random.Range(0, playerObject.hurtSounds.Length)];
         playerObject.audioSource.Play();
     }
