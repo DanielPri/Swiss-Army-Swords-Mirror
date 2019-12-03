@@ -2882,6 +2882,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: playerHPBar
+      value: 
+      objectReference: {fileID: 1941872704}
     - target: {fileID: 2110159222249153263, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_Name
@@ -2947,11 +2952,6 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1.25
       objectReference: {fileID: 0}
-    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
-        type: 3}
-      propertyPath: playerHPBar
-      value: 
-      objectReference: {fileID: 1941872704}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74c6454bd7bb901439ad715e81729d41, type: 3}
 --- !u!1 &938938998
@@ -38540,8 +38540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mob: {fileID: 1036250000}
-  mobPrefab: {fileID: 2101472519024208954, guid: 5d8324b4ea91ff24bb816231154695c3,
-    type: 3}
+  mobPrefab: {fileID: 1036250000}
   waitTimer: 2
 --- !u!4 &1193972223
 Transform:
@@ -39275,16 +39274,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.0000002
       objectReference: {fileID: 0}
-    - target: {fileID: 520361053898444101, guid: 627ef31926a938441ac5c6d6e6cb18b0,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 8648326769471677271, guid: 627ef31926a938441ac5c6d6e6cb18b0,
         type: 3}
       propertyPath: Doors.Array.data[0]
       value: 
       objectReference: {fileID: 290885990}
+    - target: {fileID: 520361053898444101, guid: 627ef31926a938441ac5c6d6e6cb18b0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 627ef31926a938441ac5c6d6e6cb18b0, type: 3}
 --- !u!1 &1483826569
@@ -41654,6 +41653,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114257130741203520, guid: 5d8324b4ea91ff24bb816231154695c3,
+        type: 3}
+      propertyPath: isFrozen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3076633019552332438, guid: 5d8324b4ea91ff24bb816231154695c3,
         type: 3}
       propertyPath: m_Constraints
@@ -41664,10 +41668,20 @@ PrefabInstance:
       propertyPath: m_Simulated
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114257130741203520, guid: 5d8324b4ea91ff24bb816231154695c3,
+    - target: {fileID: 484729299421362539, guid: 5d8324b4ea91ff24bb816231154695c3,
         type: 3}
-      propertyPath: isFrozen
+      propertyPath: m_SortingLayerID
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484729299421362539, guid: 5d8324b4ea91ff24bb816231154695c3,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484729299421362539, guid: 5d8324b4ea91ff24bb816231154695c3,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d8324b4ea91ff24bb816231154695c3, type: 3}
