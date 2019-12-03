@@ -17,7 +17,7 @@ public class Fire : MonoBehaviour
         Destroy(this.gameObject, 3.0f);
     }
 
-    public virtual void OnTriggerStay2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag.Equals("Player"))
         {

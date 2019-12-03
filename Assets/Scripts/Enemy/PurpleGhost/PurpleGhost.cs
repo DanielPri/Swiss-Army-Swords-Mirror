@@ -53,7 +53,7 @@ public class PurpleGhost : BossParent
         attacking1 = true;
         GameObject a = Instantiate(lightningPrefab) as GameObject;
         a.transform.position = player.transform.position;
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(3f);
         attacking1 = false;
     }
 
@@ -108,6 +108,7 @@ public class PurpleGhost : BossParent
         isDead = true;
         Destroy(this);
         gameObject.SetActive(false);
+        GameObject.Find("BlockingCrate").SetActive(false);
     }
 
     private void GetDistanceFromPlayer()
@@ -170,7 +171,7 @@ public class PurpleGhost : BossParent
         if (col.tag == "Sword" && sword.damaging && !isInvulnerable)
         {
             isHurt = true;
-            hitpointBar.DecreaseBossHitpoint(5);
+            hitpointBar.DecreaseBossHitpoint(3);
             isInvulnerable = true;
             Vector2 forceDirection = new Vector2(facingDirection.x, 1.0f) * 2f;
             rg.AddForce(forceDirection, ForceMode2D.Impulse);

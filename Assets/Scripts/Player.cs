@@ -31,25 +31,24 @@ public class Player : MonoBehaviour
     float jumpTimeElapsed;
     Rigidbody2D rb;
     Animator playerAnimator;
+    Animator swordAnimator;
     public Vector2 facingDirection;
     HitpointBar hitpointBar;
     Collider2D playerCollider;
 
     SwordInventory inventory;
     GameObject inventoryGO;
-    List<Transform> swords = new List<Transform>();
-    List<int> swordPossessions = new List<int>();
+    public List<Transform> swords = new List<Transform>();
+    public List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
+    GameObject pauseMenu;
+    Scene scene;
 
     float isHurtTime = 0.6f;
     float isHurtTimer = 0;
 
     string sceneName;
 
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject); // prevent from getting destroyed between scenes
-    }
 
     void Start()
     {
@@ -65,9 +64,10 @@ public class Player : MonoBehaviour
 
         inventoryGO = GameObject.Find("InventoryManager");
         inventory = inventoryGO.GetComponent<SwordInventory>();
-        swordPossessions.Add(0);
+        addSwords();
         getInventorySwords();
         activeSwordIndex = inventory.index;
+        pauseMenu = GameObject.Find("PauseMenu");
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
 
         Scene currentScene = SceneManager.GetActiveScene(); // To know which level
@@ -77,6 +77,45 @@ public class Player : MonoBehaviour
             musicGO.GetComponent<PersistentMusic>().PlayMusic();
         else if (musicGO)
             GameObject.FindGameObjectWithTag("Music").GetComponent<PersistentMusic>().StopMusic();
+    }
+
+    private void addSwords()
+    {
+        scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 1")
+        {
+            swordPossessions.Add(0);
+        }
+        if (scene.name == "Level 2" || scene.name == "Level 2 Puzzle")
+        {
+            swordPossessions.Add(0);
+            swordPossessions.Add(1);
+            swordPossessions.Add(2);
+            inventory.AddSlot(1);
+            inventory.AddSlot(2);
+        }
+        if (scene.name == "Level 2 Part 2" || scene.name == "Level 3")
+        {
+            swordPossessions.Add(0);
+            swordPossessions.Add(1);
+            swordPossessions.Add(2);
+            swordPossessions.Add(3);
+            inventory.AddSlot(1);
+            inventory.AddSlot(2);
+            inventory.AddSlot(3);
+        }
+        if (scene.name == "DragonBoss" || scene.name == "LavaDemon")
+        {
+            swordPossessions.Add(0);
+            swordPossessions.Add(1);
+            swordPossessions.Add(2);
+            swordPossessions.Add(3);
+            swordPossessions.Add(4);
+            inventory.AddSlot(1);
+            inventory.AddSlot(2);
+            inventory.AddSlot(3);
+            inventory.AddSlot(4);
+        }
     }
 
     private void getInventorySwords()
@@ -117,21 +156,12 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    public void ChangeToBossScene()
-    {
-        if (Input.GetButtonDown("ToBoss"))
-        {
-            SceneManager.LoadScene("PlayerBossInteraction");
-        }
-    }
-
     void Update()
     {
         isGrounded();
         MovePlayer();
         CheckFalling();
         SwitchSwords();
-        ChangeToBossScene();
         playerAnimator.SetBool("isMoving", moving);
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
@@ -139,6 +169,22 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isHurt", isHurt);
         activeSwordIndex = inventory.index;
         checkHurt();
+        DeathHandler();
+    }
+
+    private void DeathHandler()
+    {
+        if (hitpointBar.PlayerHealth <= 0)
+        {
+            playerAnimator.SetTrigger("death");
+            StartCoroutine(resetAfterSeconds(2));
+        }
+    }
+
+    IEnumerator resetAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void checkHurt()
@@ -181,6 +227,10 @@ public class Player : MonoBehaviour
             swordPossessions.Add(SwordId(col.gameObject));
 
             StartCoroutine(HandleSwordPickup(col.gameObject, heldSwordSR));
+        }
+        if(col.name == "Death")
+        {
+            StartCoroutine(resetAfterSeconds(1));
         }
 
     }
@@ -234,7 +284,7 @@ public class Player : MonoBehaviour
     private void MovePlayer()
     {
         moving = false;
-        if (!pickingUpSword)
+        if (!pickingUpSword && !pauseMenu.GetComponent<Pause>().paused)
         {
             if (Input.GetButton("Left"))
             {
@@ -374,16 +424,16 @@ public class Player : MonoBehaviour
     private int SwordId(GameObject sword)
     {
         string name = sword.name;
-        if (name.Contains("Flame"))
-            return 1;
         if (name.Contains("Brick"))
-            return 2;
+            return 1;
         if (name.Contains("Ice"))
-            return 3;
+            return 2;
         if (name.Contains("Light"))
+            return 3;
+        if (name.Contains("Flame"))
             return 4;
         if (name.Contains("Guitar"))
-            return 5;
+            return -1;
         return 0;
     }
 

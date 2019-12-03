@@ -177,7 +177,7 @@ public class Dragon : BossParent
         if (col.tag.Equals("Sword") && sword.damaging && !isDark)
         {
             isHurt = true;
-            hitpointBar.DecreaseBossHitpoint(1);
+            hitpointBar.DecreaseBossHitpoint(sword.damage);
         }
 
         if (col.tag.Equals("Laser") && isDark)
@@ -192,7 +192,7 @@ public class Dragon : BossParent
         if (col.gameObject.name == "Player")
         {
             playerHPBar.DecreaseHitpoint(1);
-
+            playerHurtSound();
             // Boss knocks back player upon collision
             Vector2 forceDirection = new Vector2(facingDirection.x, 1.0f) * 2f;
             Rigidbody2D playerRigidBody = player.GetComponent<Rigidbody2D>();
