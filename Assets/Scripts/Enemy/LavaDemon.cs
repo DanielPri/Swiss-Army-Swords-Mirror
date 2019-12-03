@@ -80,7 +80,7 @@ public class LavaDemon : BossParent
         if (col.tag.Equals("Sword") && sword.damaging)
         {
             isHurt = true;
-            hitpointBar.DecreaseBossHitpoint(1);
+            hitpointBar.DecreaseBossHitpoint(sword.damage);
         }
     }
 
