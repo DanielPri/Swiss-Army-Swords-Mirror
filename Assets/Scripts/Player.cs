@@ -86,11 +86,33 @@ public class Player : MonoBehaviour
         {
             swordPossessions.Add(0);
         }
-        if (scene.name == "Level 2")
+        if (scene.name == "Level 2" || scene.name == "Level 2 Puzzle")
         {
             swordPossessions.Add(0);
+            swordPossessions.Add(2);
             swordPossessions.Add(3);
+            inventory.AddSlot(2);
             inventory.AddSlot(3);
+        }
+        if (scene.name == "Level 2 Part 2")
+        {
+            swordPossessions.Add(0);
+            swordPossessions.Add(2);
+            swordPossessions.Add(3);
+            swordPossessions.Add(4);
+            inventory.AddSlot(2);
+            inventory.AddSlot(3);
+            inventory.AddSlot(4);
+        }
+        if (scene.name == "Level 3")
+        {
+            swordPossessions.Add(0);
+            swordPossessions.Add(2);
+            swordPossessions.Add(3);
+            swordPossessions.Add(4);
+            inventory.AddSlot(2);
+            inventory.AddSlot(3);
+            inventory.AddSlot(4);
         }
     }
 
