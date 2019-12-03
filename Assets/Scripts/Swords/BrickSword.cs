@@ -30,6 +30,7 @@ public class BrickSword : Sword
             indicator.transform.parent = transform;
             indicator.AddComponent<SpriteRenderer>();
             indicator.GetComponent<SpriteRenderer>().sprite = indicatorSprite;
+            indicator.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
             indicator.GetComponent<SpriteRenderer>().sortingOrder = 5;
         }
     }

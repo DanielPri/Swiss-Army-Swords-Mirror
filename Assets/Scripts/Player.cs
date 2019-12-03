@@ -11,14 +11,11 @@ public class Player : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask platformLayerMask;
-    [SerializeField]
-    float jumpDuration;
-    [SerializeField]
-    AudioClip[] jumpsSounds;
-    [SerializeField]
-    public AudioClip[] attacksSounds;
-    [SerializeField]
-    public AudioClip[] hurtSounds;
+    [SerializeField] float jumpDuration;
+    [SerializeField] float timeJumpFactor;
+    [SerializeField] AudioClip[] jumpsSounds;
+    [SerializeField] public AudioClip[] attacksSounds;
+    [SerializeField] public AudioClip[] hurtSounds;
 
     public AudioSource audioSource;
 
@@ -330,7 +327,7 @@ public class Player : MonoBehaviour
     private void timeJump()
     {
         if(jumpTimeElapsed < jumpDuration) {
-            rb.AddForce(Vector2.up * jumpForce * (1-jumpTimeElapsed )/14 , ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce * (1-jumpTimeElapsed ) * Time.deltaTime * timeJumpFactor,  ForceMode2D.Impulse);
             jumpTimeElapsed += Time.deltaTime;
         }
         

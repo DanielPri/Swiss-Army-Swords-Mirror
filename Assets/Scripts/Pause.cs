@@ -38,7 +38,8 @@ public class Pause : MonoBehaviour
         ui.SetActive(true);
         pauseMenu.SetActive(false);
         controlScheme.SetActive(false);
-        buttons.GetComponent<Canvas>().sortingOrder = -1;
+        buttons.SetActive(false);
+        //buttons.GetComponent<Canvas>().sortingOrder = -1;
         regularDescription.SetActive(false);
         iceDescription.SetActive(false);
         brickDescription.SetActive(false);
@@ -75,7 +76,8 @@ public class Pause : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && controlScheme.activeInHierarchy)
         {
             pauseMenu.SetActive(true);
-            buttons.GetComponent<Canvas>().sortingOrder = 101;
+            buttons.SetActive(true);
+            //buttons.GetComponent<Canvas>().sortingOrder = 101;
             controlScheme.SetActive(false);
         }
 
@@ -84,7 +86,8 @@ public class Pause : MonoBehaviour
             if (!pauseMenu.activeInHierarchy && controlScheme.activeInHierarchy)
             {
                 pauseMenu.SetActive(true);
-                buttons.GetComponent<Canvas>().sortingOrder = 101;
+                buttons.SetActive(true);
+                //buttons.GetComponent<Canvas>().sortingOrder = 101;
                 controlScheme.SetActive(false);
             }
             else if (!pauseMenu.activeInHierarchy)
@@ -105,7 +108,8 @@ public class Pause : MonoBehaviour
         Time.timeScale = 0;
         ui.SetActive(false);
         pauseMenu.SetActive(true);
-        buttons.GetComponent<Canvas>().sortingOrder = 101;
+        buttons.SetActive(true);
+        //buttons.GetComponent<Canvas>().sortingOrder = 101;
     }
 
     public void ContinueGame()
@@ -114,7 +118,8 @@ public class Pause : MonoBehaviour
         Time.timeScale = 1;
         ui.SetActive(true);
         pauseMenu.SetActive(false);
-        buttons.GetComponent<Canvas>().sortingOrder = -1;
+        buttons.SetActive(false);
+        //buttons.GetComponent<Canvas>().sortingOrder = -1;
     }
     
     public void RestartLevel()
@@ -142,7 +147,8 @@ public class Pause : MonoBehaviour
         if (pauseMenu.activeInHierarchy)
         {
             pauseMenu.SetActive(false);
-            buttons.GetComponent<Canvas>().sortingOrder = -1;
+            buttons.SetActive(false);
+            //buttons.GetComponent<Canvas>().sortingOrder = -1;
             controlScheme.SetActive(true);
         }
     }
