@@ -1,29 +1,48 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public HitpointBar playerHPBar;
+
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask platformLayerMask;
+    [SerializeField]
+    float jumpDuration;
+    [SerializeField]
+    AudioClip[] jumpsSounds;
+    [SerializeField]
+    public AudioClip[] attacksSounds;
+    [SerializeField]
+    public AudioClip[] hurtSounds;
+
+    public AudioSource audioSource;
 
     bool pickingUpSword;
     bool moving;
     bool grounded;
     bool falling;
-    Rigidbody2D player;
+    bool jumping;
+    private bool isHurt;
+    float jumpTimeElapsed;
+    Rigidbody2D rb;
     Animator playerAnimator;
-    Animator swordAnimator;
     public Vector2 facingDirection;
-    CapsuleCollider2D playerCollider;
+    HitpointBar hitpointBar;
+    Collider2D playerCollider;
 
     SwordInventory inventory;
     GameObject inventoryGO;
     List<Transform> swords = new List<Transform>();
     List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
+
+    float isHurtTime = 0.6f;
+    float isHurtTimer = 0;
 
     void Awake()
     {
@@ -32,19 +51,22 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        playerCollider = GetComponent<CapsuleCollider2D>();
+        playerCollider = GetComponent<Collider2D>();
         moving = false;
         grounded = false;
         falling = false;
+        hitpointBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>(); 
+
+        audioSource = GetComponent<AudioSource>();
 
         inventoryGO = GameObject.Find("InventoryManager");
         inventory = inventoryGO.GetComponent<SwordInventory>();
         swordPossessions.Add(0);
         getInventorySwords();
-
         activeSwordIndex = inventory.index;
+        playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
     }
 
     private void getInventorySwords()
@@ -85,8 +107,10 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    public void ChangeToBossScene() {
-        if (Input.GetButtonDown("ToBoss")) {
+    public void ChangeToBossScene()
+    {
+        if (Input.GetButtonDown("ToBoss"))
+        {
             SceneManager.LoadScene("PlayerBossInteraction");
         }
     }
@@ -102,8 +126,22 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
         playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
-
+        playerAnimator.SetBool("isHurt", isHurt);
         activeSwordIndex = inventory.index;
+        checkHurt();
+    }
+
+    private void checkHurt()
+    {
+        if (isHurt)
+        {
+            if(isHurtTimer > isHurtTime)
+            {
+                isHurt = false;
+                isHurtTimer = 0;
+            }
+            isHurtTimer += Time.deltaTime;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -125,12 +163,14 @@ public class Player : MonoBehaviour
             pickingUpSword = true;
             moving = false;
             // Hold sword above head - sorta buggy when you jump and collect it
-            col.gameObject.transform.localPosition = new Vector2(transform.position.x, transform.position.y + 1);
+
+            col.transform.parent = transform;
+            col.gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
             col.gameObject.GetComponentInChildren<Animator>().enabled = false;
 
             swordPossessions.Add(SwordId(col.gameObject));
 
-            StartCoroutine(WaitAndPickup(col.gameObject, heldSwordSR));
+            StartCoroutine(HandleSwordPickup(col.gameObject, heldSwordSR));
         }
 
     }
@@ -144,7 +184,16 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
+     void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Platforms")  // or if(gameObject.CompareTag("YourWallTag"))
+        {
+            rb.velocity = Vector3.zero;
+        }
+    }
+
+
     private IEnumerator WaitAndPickup(GameObject swordGO, SpriteRenderer heldSwordSR)
     {
         // Will force a wait before the player can continue playing
@@ -192,22 +241,60 @@ public class Player : MonoBehaviour
                 moving = true;
             }
 
+            //jump handling
             if (grounded && Input.GetButtonDown("Jump"))
             {
-                player.AddForce(Vector2.up * jumpForce);
+                jumpTimeElapsed = 0;
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                jumping = true;
+                makeJumpNoise();
             }
-
+            if (jumping && Input.GetButton("Jump"))
+            {
+                timeJump();
+            }
+            if (Input.GetButtonUp("Jump"))
+            {
+               jumping = false;
+            }
         }
+    }
+
+    private void makeJumpNoise()
+    {
+        audioSource.clip = jumpsSounds[UnityEngine.Random.Range(0, jumpsSounds.Length)];
+        audioSource.time = 0.2f;
+        audioSource.Play();
+    }
+
+    private void timeJump()
+    {
+        if(jumpTimeElapsed < jumpDuration) {
+            rb.AddForce(Vector2.up * jumpForce * (1-jumpTimeElapsed )/14 , ForceMode2D.Impulse);
+            jumpTimeElapsed += Time.deltaTime;
+        }
+        
     }
 
     private void CheckFalling()
     {
-        falling = player.velocity.y < 0.0f;
+        falling = rb.velocity.y < 0.0f;
     }
 
     public Vector2 GetFacingDirection()
     {
         return facingDirection;
+    }
+
+    public bool IsHurt
+    {
+        get { return isHurt; }
+        set { isHurt = value; }
+    }
+
+    public Rigidbody2D PlayerRigidBody()
+    {
+        return rb;
     }
 
     private void SwitchSwords()
@@ -273,7 +360,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
     private int SwordId(GameObject sword)
     {
         string name = sword.name;
@@ -292,9 +379,14 @@ public class Player : MonoBehaviour
 
     private void isGrounded()
     {
-        float extraHeightText = 1f;
-        RaycastHit2D raycastHit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, extraHeightText, platformLayerMask);
+        float extraHeightText = 0.2f;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size * 0.9f, 0f, Vector2.down, extraHeightText, platformLayerMask);
+
+        Debug.DrawRay(playerCollider.bounds.center + new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHeightText), Color.green);
+        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHeightText), Color.green);
+        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, playerCollider.bounds.extents.y + extraHeightText), Vector2.right * (playerCollider.bounds.extents.x + extraHeightText), Color.green);
 
         grounded = raycastHit.collider != null;
     }
 }
+

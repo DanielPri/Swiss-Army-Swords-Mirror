@@ -114,8 +114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageDealt: 1
+  damageDuration: 0.2
   damaging: 0
   iceCubePrefab: {fileID: 6506788799937779940, guid: 98f8b70b2393d4c51914dbd61fa0677e,
+    type: 3}
+  freezeBall: {fileID: 8167211654131709302, guid: c6842df3478c6634482e05e950668193,
     type: 3}
 --- !u!61 &-6223484279944677788
 BoxCollider2D:

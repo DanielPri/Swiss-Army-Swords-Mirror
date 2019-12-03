@@ -21,9 +21,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 1.unity
     guid: ec5015b03d5dad744abdd53f0881a59b
   - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: a8fa25280f1dc624c988537e3706d427
+  - enabled: 1
     path: Assets/Scenes/PlayerBossInteraction.unity
     guid: ec173b89c73ced749b207f21363bdf5f
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: fc0faf9c543cbe5418077b3348756330
+  - enabled: 1
+    path: Assets/Scenes/DragonBoss.unity
+    guid: e26d924cd7d5d41e092f6c0c10eeb02d
+  - enabled: 1
+    path: Assets/Scenes/LavaDemon.unity
+    guid: 86a62728cfe4240f8a0a6bce5f5d78b3
   m_configObjects: {}
