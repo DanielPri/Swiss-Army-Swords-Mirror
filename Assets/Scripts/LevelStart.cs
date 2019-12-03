@@ -19,7 +19,6 @@ public class LevelStart : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Transform>();
         level1 = false;
         level2 = false;
-        level2puzzle = false;
         level2end = false;
         level3 = false;
         finalBoss = false;
@@ -38,6 +37,15 @@ public class LevelStart : MonoBehaviour
             player.position = new Vector2(-3.65f, 0.4f);
             level2 = true;
         }
-        // repeat for all the other levels
+        if (scene.name == "Level 2 Part 2" && !level2end)
+        {
+            player.position = new Vector2(-5.88f, 4.49f);
+            level2end = true;
+        }
+        if (scene.name == "Level 3" && !level3)
+        {
+            player.position = new Vector2(-9.2f, -3.42f);
+            level3 = true;
+        }
     }
 }
