@@ -159,6 +159,7 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
 	public void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Player") {
             playerHPBar.DecreaseHitpoint(3);
+            playerHurtSound();
             rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 

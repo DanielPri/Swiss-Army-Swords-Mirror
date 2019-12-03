@@ -27,11 +27,12 @@ public class Player : MonoBehaviour
     bool grounded;
     bool falling;
     bool jumping;
+    private bool isHurt;
     float jumpTimeElapsed;
     Rigidbody2D rb;
     Animator playerAnimator;
-    Animator swordAnimator;
     public Vector2 facingDirection;
+    HitpointBar hitpointBar;
     Collider2D playerCollider;
 
     SwordInventory inventory;
@@ -39,6 +40,9 @@ public class Player : MonoBehaviour
     List<Transform> swords = new List<Transform>();
     List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
+
+    float isHurtTime = 0.6f;
+    float isHurtTimer = 0;
 
     void Awake()
     {
@@ -53,6 +57,7 @@ public class Player : MonoBehaviour
         moving = false;
         grounded = false;
         falling = false;
+        hitpointBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>(); 
 
         audioSource = GetComponent<AudioSource>();
 
@@ -102,8 +107,10 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    public void ChangeToBossScene() {
-        if (Input.GetButtonDown("ToBoss")) {
+    public void ChangeToBossScene()
+    {
+        if (Input.GetButtonDown("ToBoss"))
+        {
             SceneManager.LoadScene("PlayerBossInteraction");
         }
     }
@@ -119,8 +126,22 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
         playerAnimator.SetBool("isPickingUpSword", pickingUpSword);
-
+        playerAnimator.SetBool("isHurt", isHurt);
         activeSwordIndex = inventory.index;
+        checkHurt();
+    }
+
+    private void checkHurt()
+    {
+        if (isHurt)
+        {
+            if(isHurtTimer > isHurtTime)
+            {
+                isHurt = false;
+                isHurtTimer = 0;
+            }
+            isHurtTimer += Time.deltaTime;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -223,8 +244,6 @@ public class Player : MonoBehaviour
             //jump handling
             if (grounded && Input.GetButtonDown("Jump"))
             {
-                if (FindObjectOfType<LavaTile>() && FindObjectOfType<LavaTile>().touchingLava)
-                    return;
                 jumpTimeElapsed = 0;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 jumping = true;
@@ -265,6 +284,17 @@ public class Player : MonoBehaviour
     public Vector2 GetFacingDirection()
     {
         return facingDirection;
+    }
+
+    public bool IsHurt
+    {
+        get { return isHurt; }
+        set { isHurt = value; }
+    }
+
+    public Rigidbody2D PlayerRigidBody()
+    {
+        return rb;
     }
 
     private void SwitchSwords()
@@ -330,7 +360,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
     private int SwordId(GameObject sword)
     {
         string name = sword.name;
@@ -359,3 +389,4 @@ public class Player : MonoBehaviour
         grounded = raycastHit.collider != null;
     }
 }
+

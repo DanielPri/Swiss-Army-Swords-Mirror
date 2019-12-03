@@ -6,7 +6,6 @@ public class Mob : Enemy {
     [SerializeField]
     GameObject DieParticlePrefab = null;
 
-    HitpointBar playerHPBar;
     Sword sword;
     Rigidbody2D rb;
     SpriteRenderer hurtColor;
@@ -15,7 +14,7 @@ public class Mob : Enemy {
     bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
-
+    HitpointBar playerHPBar;
     AudioSource hitSound;
 
     new public void Start() {

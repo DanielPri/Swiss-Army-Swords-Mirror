@@ -124,6 +124,7 @@ public class Cobra : Enemy { // Has big HP, but is annoying since it is found in
         if (col.gameObject.tag == "Player")
         {
             playerHPBar.DecreaseHitpoint(10);
+            playerHurtSound();
             rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
