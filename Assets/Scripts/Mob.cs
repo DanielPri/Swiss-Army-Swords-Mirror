@@ -42,7 +42,7 @@ public class Mob : Enemy {
         else if (!isFrozen)
             transform.Translate(-Vector2.right * speed * Time.deltaTime);
         HandleTimers();
-        if (easyMobHP == 0 && !isFrozen)
+        if (easyMobHP <= 0 && !isFrozen)
             Die();
     }
 
@@ -65,7 +65,8 @@ public class Mob : Enemy {
         Color secondColor = new Color(1F, 1F, 1F, 1F);
         hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
         hitSound.Play();
-        easyMobHP--;
+        easyMobHP -= sword.damage;
+        sword.damage = 1; // Reset damage back to 1 (relevant to flame sword)
     }
 
     public void Freeze()
@@ -95,14 +96,17 @@ public class Mob : Enemy {
             GetComponent<SpriteRenderer>().flipX = movingRight;
             movingRight = !movingRight;
         }
-        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging) { isHurt = true; }
+
+        if (col.tag == "Sword" && easyMobHP > 0 && sword.damaging) { isHurt = true; }
             
     }
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.tag == "Sword" && easyMobHP != 0 && sword.damaging)
+        if (col.tag == "Sword" && easyMobHP > 0 && sword.damaging)
+        {
             isHurt = true;
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D col)
