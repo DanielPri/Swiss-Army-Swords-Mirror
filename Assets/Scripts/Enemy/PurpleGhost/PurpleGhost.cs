@@ -26,10 +26,14 @@ public class PurpleGhost : BossParent
     {
         FaceDirection(player.transform.position);
         HandleTimers();
-        StartCoroutine(LightOff());
+
+        if (CheckIfInRange(7f) && !attacking1 && !isDead)
+        {
+            StartCoroutine(LightOff());
+        }
     }
 
-    IEnumerator SpawnLavaHand()
+    IEnumerator SpawnLightningShock()
     {
         attacking1 = true;
         yield return new WaitForSeconds(7f);
@@ -68,6 +72,12 @@ public class PurpleGhost : BossParent
     bool CheckIfInRange(float range)
     {
         return (Vector2.Distance(player.transform.position, transform.position) <= range);
+    }
+
+    void Die()
+    {
+        isDead = true;
+        Destroy(this);
     }
 
     private void HandleTimers()

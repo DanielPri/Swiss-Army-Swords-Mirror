@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class BossLifeBarSpawner : MonoBehaviour
@@ -11,4 +12,5 @@ public class BossLifeBarSpawner : MonoBehaviour
         theBar = Instantiate(bossLifeBar, new Vector2(0, -200), Quaternion.identity);
         theBar.transform.SetParent(GameObject.Find("UI Canvas").transform, false);
     }
+
 }
