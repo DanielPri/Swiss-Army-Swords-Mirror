@@ -166,21 +166,12 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    public void ChangeToBossScene()
-    {
-        if (Input.GetButtonDown("ToBoss"))
-        {
-            SceneManager.LoadScene("PlayerBossInteraction");
-        }
-    }
-
     void Update()
     {
         isGrounded();
         MovePlayer();
         CheckFalling();
         SwitchSwords();
-        ChangeToBossScene();
         playerAnimator.SetBool("isMoving", moving);
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
@@ -188,6 +179,22 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isHurt", isHurt);
         activeSwordIndex = inventory.index;
         checkHurt();
+        DeathHandler();
+    }
+
+    private void DeathHandler()
+    {
+        if (hitpointBar.PlayerHealth <= 0)
+        {
+            playerAnimator.SetTrigger("death");
+            StartCoroutine(resetAfterSeconds(2));
+        }
+    }
+
+    IEnumerator resetAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void checkHurt()
@@ -230,6 +237,10 @@ public class Player : MonoBehaviour
             swordPossessions.Add(SwordId(col.gameObject));
 
             StartCoroutine(HandleSwordPickup(col.gameObject, heldSwordSR));
+        }
+        if(col.name == "Death")
+        {
+            StartCoroutine(resetAfterSeconds(1));
         }
 
     }
