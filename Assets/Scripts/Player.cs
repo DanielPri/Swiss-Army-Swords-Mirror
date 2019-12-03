@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
             inventory.AddSlot(1);
             inventory.AddSlot(2);
         }
-        if (scene.name == "Level 2 Part 2")
+        if (scene.name == "Level 2 Part 2" || scene.name == "Level 3")
         {
             swordPossessions.Add(0);
             swordPossessions.Add(1);
@@ -104,17 +104,7 @@ public class Player : MonoBehaviour
             inventory.AddSlot(2);
             inventory.AddSlot(3);
         }
-        if (scene.name == "Level 3")
-        {
-            swordPossessions.Add(0);
-            swordPossessions.Add(1);
-            swordPossessions.Add(2);
-            swordPossessions.Add(3);
-            inventory.AddSlot(1);
-            inventory.AddSlot(2);
-            inventory.AddSlot(3);
-        }
-        if (scene.name == "DragonBoss")
+        if (scene.name == "DragonBoss" || scene.name == "LavaDemon")
         {
             swordPossessions.Add(0);
             swordPossessions.Add(1);
