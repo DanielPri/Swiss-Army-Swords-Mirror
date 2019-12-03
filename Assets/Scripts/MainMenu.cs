@@ -26,6 +26,10 @@ public class MainMenu : MonoBehaviour {
         mainMenu.SetActive(false);
         controlScheme.SetActive(true);
     }
+	
+	public void QuitGame() {
+		Application.Quit();
+	}
 
     void Update()
     {
