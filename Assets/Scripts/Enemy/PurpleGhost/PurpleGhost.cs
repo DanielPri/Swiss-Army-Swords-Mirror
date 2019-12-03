@@ -10,7 +10,7 @@ public class PurpleGhost : BossParent
     private Light light;
     float hurtTimer, invulnerabilityTimer;
     float hurtDuration = 0.6F;
-
+    float distanceFromPlayer;
     Rigidbody2D rg;
     HitpointBar playerBar;
 
@@ -43,6 +43,8 @@ public class PurpleGhost : BossParent
         {
             StartCoroutine(LightOff());
         }
+
+        GetDistanceFromPlayer();
 
     }
 
@@ -108,9 +110,15 @@ public class PurpleGhost : BossParent
         gameObject.SetActive(false);
     }
 
+    private void GetDistanceFromPlayer()
+    {
+        distanceFromPlayer = (transform.position - player.transform.position).magnitude;
+    }
+
+
     private void HandleTimers()
     {
-        if (CheckIfInRange(3) && !toWait)
+        if (distanceFromPlayer > 3)
         {
             // Follow the player
             Vector2 target = player.transform.position - transform.position;
@@ -119,7 +127,7 @@ public class PurpleGhost : BossParent
             StartCoroutine(Wait());
 
         }
-        else if(CheckIfInRange(5)) // move to height of player to accurately shoot projectiles
+        else // move to height of player to accurately shoot projectiles
         {
             if (transform.position.y > player.transform.position.y)
             {
