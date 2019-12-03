@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LavaDemon : BossParent
 {
@@ -10,6 +11,10 @@ public class LavaDemon : BossParent
 
     private bool attacking1, attacking2, isDead;
     private Animator animator;
+	
+	bool transitionTimer;
+	float afterDeadTimer = 0.0F;
+	float transitionDuration = 3.0F;
 
     BossBar hitpointBar;
     SpriteRenderer sr;
@@ -75,7 +80,7 @@ public class LavaDemon : BossParent
         if (col.tag.Equals("Sword") && sword.damaging)
         {
             isHurt = true;
-            hitpointBar.DecreaseBossHitpoint(1);
+            hitpointBar.DecreaseBossHitpoint(sword.damage);
         }
     }
 
@@ -90,8 +95,18 @@ public class LavaDemon : BossParent
                 transform.Translate(target.normalized * speed * Time.deltaTime, Space.World);
             }
 
-            if (hitpointBar.GetHP() < 1)
+            if (hitpointBar.GetHP() < 1) {
                 Die();
+				transitionTimer = true;
+				if (transitionTimer) {
+					afterDeadTimer += Time.deltaTime;
+					if (afterDeadTimer > transitionDuration)
+					{
+						transitionTimer = false;
+						SceneManager.LoadScene("FinalCutscene");
+					}
+				}
+			}
         }
     }
 
