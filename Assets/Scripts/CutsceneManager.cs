@@ -22,7 +22,7 @@ public class CutsceneManager : MonoBehaviour {
 				director.time = 28.0;
 			}
 		} else if (sceneName == "FinalCutscene") {
-			if (director.time > 48.4) { // If cutscene done, move to menu
+			if (director.time > 50.5) { // If cutscene done, move to menu
 				SceneManager.LoadScene("MainMenu");
 			}
 		}
