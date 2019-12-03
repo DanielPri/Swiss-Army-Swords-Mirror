@@ -22,6 +22,13 @@ public class LightSword : Sword
         light.enabled = false;
     }
 
+    public override void Update()
+    {
+        base.Update();
+        if (!gameObject.activeInHierarchy)
+            particleLight.Stop();
+    }
+
     public override void Attack() {
         base.Attack();
         // Laser
@@ -51,17 +58,10 @@ public class LightSword : Sword
     public void ShootLaser() {
         GameObject laser = Instantiate(lightLaserPrefab, transform.position, Quaternion.identity) as GameObject;
         Laser projectileLaser = laser.GetComponent<Laser>();
-        //List<Transform> children = new List<Transform>();
-        //foreach (Transform child in laser.transform)
-        //{
-        //    child.parent = null;
-        //    children.Add(child);
-        //}
         Vector2 direction = player.GetFacingDirection();
         if (direction.x == 0)
             direction.x = 1;
         projectileLaser.SetDirection(direction);
-        //foreach (Transform child in children) child.parent = laser.transform;
         //Add sound for laser later
         Destroy(laser, projectileDuration);
     }
