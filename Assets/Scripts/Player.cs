@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     SwordInventory inventory;
     GameObject inventoryGO;
-    List<Transform> swords = new List<Transform>();
+    public List<Transform> swords = new List<Transform>();
     public List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
     GameObject pauseMenu;
@@ -89,42 +89,42 @@ public class Player : MonoBehaviour
         if (scene.name == "Level 2" || scene.name == "Level 2 Puzzle")
         {
             swordPossessions.Add(0);
+            swordPossessions.Add(1);
             swordPossessions.Add(2);
-            swordPossessions.Add(3);
+            inventory.AddSlot(1);
             inventory.AddSlot(2);
-            inventory.AddSlot(3);
         }
         if (scene.name == "Level 2 Part 2")
         {
             swordPossessions.Add(0);
+            swordPossessions.Add(1);
             swordPossessions.Add(2);
             swordPossessions.Add(3);
-            swordPossessions.Add(4);
+            inventory.AddSlot(1);
             inventory.AddSlot(2);
             inventory.AddSlot(3);
-            inventory.AddSlot(4);
         }
         if (scene.name == "Level 3")
         {
             swordPossessions.Add(0);
+            swordPossessions.Add(1);
             swordPossessions.Add(2);
             swordPossessions.Add(3);
-            swordPossessions.Add(4);
+            inventory.AddSlot(1);
             inventory.AddSlot(2);
             inventory.AddSlot(3);
-            inventory.AddSlot(4);
         }
         if (scene.name == "DragonBoss")
         {
             swordPossessions.Add(0);
+            swordPossessions.Add(1);
             swordPossessions.Add(2);
             swordPossessions.Add(3);
             swordPossessions.Add(4);
-            swordPossessions.Add(1);
+            inventory.AddSlot(1);
             inventory.AddSlot(2);
             inventory.AddSlot(3);
             inventory.AddSlot(4);
-            inventory.AddSlot(1);
         }
     }
 
@@ -423,16 +423,16 @@ public class Player : MonoBehaviour
     private int SwordId(GameObject sword)
     {
         string name = sword.name;
-        if (name.Contains("Flame"))
-            return 1;
         if (name.Contains("Brick"))
-            return 2;
+            return 1;
         if (name.Contains("Ice"))
-            return 3;
+            return 2;
         if (name.Contains("Light"))
+            return 3;
+        if (name.Contains("Flame"))
             return 4;
         if (name.Contains("Guitar"))
-            return 5;
+            return -1;
         return 0;
     }
 

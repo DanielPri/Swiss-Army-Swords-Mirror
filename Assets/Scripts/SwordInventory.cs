@@ -65,15 +65,15 @@ public class SwordInventory : MonoBehaviour {
         GameObject swordPrefab = null;
         if (number == 0)
             swordPrefab = RegularSwordPrefab;
-        if (number == 1) // Fire sword
-            swordPrefab = FlameSwordPrefab;
-        if (number == 2) // Brick Sword
+        if (number == 1) // Brick Sword
             swordPrefab = BrickSwordPrefab;
-        if (number == 3) // Ice sword
+        if (number == 2) // Ice sword
             swordPrefab = IceSwordPrefab;
-        if (number == 4) // Light sword
+        if (number == 3) // Light sword
             swordPrefab = LightSwordPrefab;
-        if (number == 5) // Guitar sword
+        if (number == 4) // Fire sword
+            swordPrefab = FlameSwordPrefab;
+        if (number == -1) // Guitar sword
             swordPrefab = GuitarSwordPrefab;
         var newSword = Instantiate(swordPrefab, pos, Quaternion.identity);
         newSword.transform.SetParent(gameObject.transform, false);

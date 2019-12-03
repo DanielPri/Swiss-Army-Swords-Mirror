@@ -56,19 +56,19 @@ public class Pause : MonoBehaviour
             }
             if (possessions.Contains(1))
             {
-                flameDescription.SetActive(true);
+                brickDescription.SetActive(true);
             }
             if (possessions.Contains(2))
             {
-                brickDescription.SetActive(true);
+                iceDescription.SetActive(true);
             }
             if (possessions.Contains(3))
             {
-                iceDescription.SetActive(true);
+                lightDescription.SetActive(true);
             }
             if (possessions.Contains(4))
             {
-                lightDescription.SetActive(true);
+                flameDescription.SetActive(true);
             }
         }
 
