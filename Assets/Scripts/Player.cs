@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
     float isHurtTime = 0.6f;
     float isHurtTimer = 0;
 
+    string sceneName;
+
 
     void Start()
     {
@@ -67,6 +69,14 @@ public class Player : MonoBehaviour
         activeSwordIndex = inventory.index;
         pauseMenu = GameObject.Find("PauseMenu");
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
+
+        Scene currentScene = SceneManager.GetActiveScene(); // To know which level
+        sceneName = currentScene.name;
+        GameObject musicGO = GameObject.FindGameObjectWithTag("Music");
+        if (sceneName.Contains("Level 2") && musicGO)
+            musicGO.GetComponent<PersistentMusic>().PlayMusic();
+        else if (musicGO)
+            GameObject.FindGameObjectWithTag("Music").GetComponent<PersistentMusic>().StopMusic();
     }
 
     private void addSwords()

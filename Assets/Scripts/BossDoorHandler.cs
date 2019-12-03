@@ -7,6 +7,7 @@ public class BossDoorHandler : MonoBehaviour
 {
     [SerializeField]
     Door door;
+    AudioSource audioSource;
 
     GameObject boss;
 
@@ -16,7 +17,7 @@ public class BossDoorHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,6 +36,7 @@ public class BossDoorHandler : MonoBehaviour
             {
                 door.toggle();
                 isDoorOpen = true;
+                audioSource.Play();
             }
         }
     }
