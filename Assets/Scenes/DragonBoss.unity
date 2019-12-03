@@ -531,7 +531,7 @@ PrefabInstance:
     - target: {fileID: 2110159222249153261, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4409136459181290520, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
@@ -541,27 +541,27 @@ PrefabInstance:
     - target: {fileID: 304245302850143823, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2282310571565715658, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2940905637657932257, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4409136459181290502, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8678203411502833287, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74c6454bd7bb901439ad715e81729d41, type: 3}
@@ -1039,7 +1039,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: a4cb85e63d350419d9180d577ecdb316, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3952,11 +3952,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6884039507494591218, guid: f9bfa27524db4fe4cafcd32a8f481e65,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 2425742049566771507, guid: f9bfa27524db4fe4cafcd32a8f481e65,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4096,6 +4091,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884039507494591218, guid: f9bfa27524db4fe4cafcd32a8f481e65,
+        type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6884039505629218267, guid: f9bfa27524db4fe4cafcd32a8f481e65,
         type: 3}
