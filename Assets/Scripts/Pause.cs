@@ -50,7 +50,6 @@ public class Pause : MonoBehaviour
     {
         if (pauseMenu.activeInHierarchy)
         {
-            paused = true;
             if (possessions.Contains(0))
             {
                 regularDescription.SetActive(true);
@@ -72,41 +71,51 @@ public class Pause : MonoBehaviour
                 lightDescription.SetActive(true);
             }
         }
-        else
-        {
-            paused = false;
-        }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !controlScheme.activeInHierarchy)
-        {
-            PauseControl();
-        }
-        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(0)) && controlScheme.activeInHierarchy)
+        if (Input.GetMouseButtonDown(0) && controlScheme.activeInHierarchy)
         {
             pauseMenu.SetActive(true);
             buttons.GetComponent<Canvas>().sortingOrder = 101;
             controlScheme.SetActive(false);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            if (!pauseMenu.activeInHierarchy && controlScheme.activeInHierarchy)
+            {
+                pauseMenu.SetActive(true);
+                buttons.GetComponent<Canvas>().sortingOrder = 101;
+                controlScheme.SetActive(false);
+            }
+            else if (!pauseMenu.activeInHierarchy)
+            {
+                PauseGame();
+            }
+            else if (pauseMenu.activeInHierarchy && !controlScheme.activeInHierarchy)
+            {
+                ContinueGame();
+            }
+        }
     }
 
-    public void PauseControl()
+    private void PauseGame()
     {
-        if (Time.timeScale == 1)
-        {
-            Time.timeScale = 0;
-            ui.SetActive(false);
-            pauseMenu.SetActive(true);
-            buttons.GetComponent<Canvas>().sortingOrder = 101;
-        }
-        else if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-            ui.SetActive(true);
-            pauseMenu.SetActive(false);
-            buttons.GetComponent<Canvas>().sortingOrder = -1;
-        }
+        Time.timeScale = 0;
+        ui.SetActive(false);
+        pauseMenu.SetActive(true);
+        buttons.GetComponent<Canvas>().sortingOrder = 101;
+        paused = false;
     }
 
+    public void ContinueGame()
+    {
+        Time.timeScale = 1;
+        ui.SetActive(true);
+        pauseMenu.SetActive(false);
+        buttons.GetComponent<Canvas>().sortingOrder = -1;
+        paused = true;
+    }
+    
     public void RestartLevel()
     {
         if (pauseMenu.activeInHierarchy)
