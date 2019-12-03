@@ -11,7 +11,6 @@ public class LavaTile : MonoBehaviour {
 	Rigidbody2D  playerRigidbody = null;
 	GameObject fire = null;
 	SpriteRenderer fireFade = null;
-	public bool touchingLava = false;
 	bool startForceTimer = false;
 	
 	float pushbackForce = 7.0F;
@@ -50,17 +49,10 @@ public class LavaTile : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D col) {
         if (col.collider.tag == "Player") {
-            touchingLava = true;
 			startForceTimer = true;
 			playerRigidbody.AddForce(new Vector2(0.0F, pushbackForce), ForceMode2D.Impulse);
 			GenerateFire();
 			playerHPBar.DecreaseHitpoint(10);
-        }
-    }
-	
-	void OnCollisionExit2D(Collision2D col) {
-        if (col.collider.tag == "Player") {
-            touchingLava = false;
         }
     }
 	
