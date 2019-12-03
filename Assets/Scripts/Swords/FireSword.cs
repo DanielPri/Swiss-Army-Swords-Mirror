@@ -17,15 +17,15 @@ public class FireSword : Sword
         particleFire.Stop();
     }
 
+    private void OnDisable()
+    {
+        charging = false;
+        particleFire.Stop();
+    }
+
     public override void Update()
     {
         base.Update();
-        if (!gameObject.activeInHierarchy)
-        {
-            attackTimeElapsed = 0;
-            charging = false;
-            particleFire.Stop();
-        }
         swordAnimator.SetBool("charging", charging);
         if (Input.GetButtonDown("Fire2"))
         {
