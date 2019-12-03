@@ -23,6 +23,10 @@ public class BossSpell : Projectile {
             playerHurtSound();
             Destroy(gameObject);
         }
+        if(col.tag == "Ground")
+        {
+            Destroy(gameObject);
+        }
     }
     void playerHurtSound()
     {
