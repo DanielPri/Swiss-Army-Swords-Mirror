@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     public List<int> swordPossessions = new List<int>();
     int activeSwordIndex;
     GameObject pauseMenu;
+    Scene scene;
 
     float isHurtTime = 0.6f;
     float isHurtTimer = 0;
@@ -61,11 +62,26 @@ public class Player : MonoBehaviour
 
         inventoryGO = GameObject.Find("InventoryManager");
         inventory = inventoryGO.GetComponent<SwordInventory>();
-        swordPossessions.Add(0);
+        addSwords();
         getInventorySwords();
         activeSwordIndex = inventory.index;
         pauseMenu = GameObject.Find("PauseMenu");
         playerHPBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
+    }
+
+    private void addSwords()
+    {
+        scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 1")
+        {
+            swordPossessions.Add(0);
+        }
+        if (scene.name == "Level 2")
+        {
+            swordPossessions.Add(0);
+            swordPossessions.Add(3);
+            inventory.AddSlot(3);
+        }
     }
 
     private void getInventorySwords()
