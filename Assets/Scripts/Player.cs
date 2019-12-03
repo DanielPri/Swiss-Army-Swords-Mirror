@@ -114,6 +114,18 @@ public class Player : MonoBehaviour
             inventory.AddSlot(3);
             inventory.AddSlot(4);
         }
+        if (scene.name == "DragonBoss")
+        {
+            swordPossessions.Add(0);
+            swordPossessions.Add(2);
+            swordPossessions.Add(3);
+            swordPossessions.Add(4);
+            swordPossessions.Add(1);
+            inventory.AddSlot(2);
+            inventory.AddSlot(3);
+            inventory.AddSlot(4);
+            inventory.AddSlot(1);
+        }
     }
 
     private void getInventorySwords()

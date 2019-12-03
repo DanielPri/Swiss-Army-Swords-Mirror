@@ -47,5 +47,10 @@ public class LevelStart : MonoBehaviour
             player.position = new Vector2(-9.2f, -3.42f);
             level3 = true;
         }
+        if (scene.name == "DragonBoss" && !finalBoss)
+        {
+            player.position = new Vector2(-9.03f, -2.93f);
+            finalBoss = true;
+        }
     }
 }
