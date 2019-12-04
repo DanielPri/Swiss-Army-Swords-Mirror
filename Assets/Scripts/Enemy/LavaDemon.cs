@@ -7,14 +7,15 @@ public class LavaDemon : BossParent
 {
     [SerializeField]
     private GameObject lavaHand;
-    private GameObject door; 
+    private GameObject door;
+	private GameObject demonWall;	
 
     private bool attacking1, attacking2, isDead;
     private Animator animator;
 	
 	bool transitionTimer;
 	float afterDeadTimer = 0.0F;
-	float transitionDuration = 3.0F;
+	float transitionDuration = 7.0F;
 
     BossBar hitpointBar;
     SpriteRenderer sr;
@@ -25,7 +26,10 @@ public class LavaDemon : BossParent
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player");
         hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
-        //door = GameObject.Find("Door");
+        door = GameObject.Find("Door");
+		demonWall = GameObject.Find("Wall");
+		door.SetActive(false);
+		demonWall.SetActive(true);
         animator = GetComponent<Animator>();
     }
 
@@ -97,15 +101,6 @@ public class LavaDemon : BossParent
 
             if (hitpointBar.GetHP() < 1) {
                 Die();
-				transitionTimer = true;
-				if (transitionTimer) {
-					afterDeadTimer += Time.deltaTime;
-					if (afterDeadTimer > transitionDuration)
-					{
-						transitionTimer = false;
-						SceneManager.LoadScene("FinalCutscene");
-					}
-				}
 			}
         }
     }
@@ -127,6 +122,7 @@ public class LavaDemon : BossParent
         isDead = true;
         hitpointBar.index = -1;
         animator.SetBool("isDead", true);
-        //door.SetActive(true);
+        door.SetActive(true);
+		demonWall.SetActive(false);
     }
 }

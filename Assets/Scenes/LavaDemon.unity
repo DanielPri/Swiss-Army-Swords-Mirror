@@ -1620,7 +1620,6 @@ GameObject:
   - component: {fileID: 650540256}
   - component: {fileID: 650540255}
   - component: {fileID: 650540254}
-  - component: {fileID: 650540257}
   - component: {fileID: 650540258}
   m_Layer: 0
   m_Name: Door
@@ -1628,7 +1627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &650540254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1638,10 +1637,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 650540253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 415e0db87cd224fcbb36b89cb1abb38a, type: 3}
+  m_Script: {fileID: 11500000, guid: 24a109cd1b3349444ac8bbfc33caec57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameOfTheScene: 
 --- !u!212 &650540255
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1704,19 +1702,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &650540257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650540253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33963e87b7be95e49a8ad732419204e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorClosed: 1
 --- !u!61 &650540258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1727,7 +1712,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4086,7 +4071,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1623212057
 GameObject:
@@ -5743,6 +5728,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 544865710}
+    - target: {fileID: 6492628684769620030, guid: 329dde0b595cd4076bdccf7ee5002e70,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 329dde0b595cd4076bdccf7ee5002e70, type: 3}
 --- !u!114 &7054225630213855949
