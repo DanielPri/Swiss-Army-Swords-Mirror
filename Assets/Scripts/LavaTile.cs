@@ -18,6 +18,8 @@ public class LavaTile : MonoBehaviour {
 	float touchedTime = 1.5F; // 3 seconds
 	float forceTimer = 0.0F;
 	
+	float particleSpawn = 0.0F;
+	
     public virtual void Start() {
 		player = GameObject.Find("Player");
 		playerRigidbody = player.GetComponent<Rigidbody2D>();
@@ -40,7 +42,18 @@ public class LavaTile : MonoBehaviour {
             }
 		}
 		// Some fire coming out of lava later here
+		EmitLavaParticles();
     }
+	
+	private void EmitLavaParticles() {
+		float emissionRate = Random.Range(1.0F, 6.0F);
+		
+		if (Time.time > particleSpawn) {
+            particleSpawn = Time.time + emissionRate;
+			// Not sure if will have time to finish this part
+			// Might just animate new lava tilemap
+		}
+	}	
 	
 	private void GenerateFire() {
 		Vector3 position = new Vector3(player.transform.position.x, player.transform.position.y - 1.0F, player.transform.position.z);
