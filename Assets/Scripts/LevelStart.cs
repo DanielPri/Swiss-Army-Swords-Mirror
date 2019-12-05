@@ -35,7 +35,7 @@ public class LevelStart : MonoBehaviour
         }
         if (scene.name == "Level 2" && !level2)
         {
-            transform.position = new Vector2(-2.9f, 9.9f);
+            transform.position = new Vector2(-2.9f, 9.7f);
             level2 = true;
         }
         if (scene.name == "Level 2 Puzzle" && !level2puzzle)

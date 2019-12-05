@@ -47,7 +47,7 @@ public class Laser : Projectile {
 				destroyed = true;
 			}
         }
-        if (col.gameObject.name == "Walls")
+        if (col.gameObject.name.Contains("Wall") || col.gameObject.name.Contains("Platform"))
         {
             destroyed = true;
         }

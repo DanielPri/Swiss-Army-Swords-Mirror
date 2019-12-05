@@ -131,7 +131,7 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 }

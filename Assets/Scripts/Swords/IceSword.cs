@@ -36,7 +36,7 @@ public class IceSword : Sword
 
     public void ShootIceBall()
     {
-        GameObject iceBall = Instantiate(freezeBall, transform.position, Quaternion.identity) as GameObject;
+        GameObject iceBall = Instantiate(freezeBall, new Vector2(transform.position.x, transform.position.y + 0.1f), Quaternion.identity) as GameObject;
         FreezeBall projectileLaser = iceBall.GetComponent<FreezeBall>();
         projectileLaser.SetDirection(player.GetFacingDirection());
         Destroy(iceBall, projectileDuration);

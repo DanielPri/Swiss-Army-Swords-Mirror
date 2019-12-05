@@ -170,7 +170,7 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
     }
     public void OnCollisionExit2D(Collision2D col) {
         if (col.gameObject.tag == "Player") {
-            rigidbody.constraints = RigidbodyConstraints2D.None;
+            rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 	
