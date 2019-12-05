@@ -70,10 +70,10 @@ public class Player : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene(); // To know which level
         sceneName = currentScene.name;
         GameObject musicGO = GameObject.FindGameObjectWithTag("Music");
-        if (sceneName.Contains("Level 2") && musicGO)
+        /*if (sceneName.Contains("Level 2") && musicGO)
             musicGO.GetComponent<PersistentMusic>().PlayMusic();
         else if (musicGO)
-            GameObject.FindGameObjectWithTag("Music").GetComponent<PersistentMusic>().StopMusic();
+            GameObject.FindGameObjectWithTag("Music").GetComponent<PersistentMusic>().StopMusic();*/
     }
 
     private void addSwords()
@@ -155,10 +155,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (scene.name == "Cutscene" || scene.name == "FinalCutscene") // prevent input during cutscenes
+        { }
+        else
+        {
+            MovePlayer();
+            SwitchSwords();
+        }
         isGrounded();
-        MovePlayer();
         CheckFalling();
-        SwitchSwords();
         playerAnimator.SetBool("isMoving", moving);
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);

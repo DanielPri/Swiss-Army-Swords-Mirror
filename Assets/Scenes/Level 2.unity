@@ -6557,7 +6557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769881452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.899997, y: 9.899996, z: -10}
+  m_LocalPosition: {x: -2.8999965, y: 9.899996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1474218856}
@@ -8753,6 +8753,7 @@ GameObject:
   - component: {fileID: 1191128304}
   - component: {fileID: 1191128303}
   - component: {fileID: 1191128301}
+  - component: {fileID: 1191128300}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8760,6 +8761,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &1191128300
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191128299}
+  m_Enabled: 1
 --- !u!114 &1191128301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8837,7 +8846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191128299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.899997, y: 9.899996, z: -10}
+  m_LocalPosition: {x: -2.8999965, y: 9.899996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1487865281}
@@ -42346,16 +42355,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
-        type: 3}
-      propertyPath: playerHPBar
-      value: 
-      objectReference: {fileID: 1895146194}
-    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
-        type: 3}
-      propertyPath: swordPossessions.Array.data[1]
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2110159222249153263, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_Name
@@ -42415,6 +42414,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: playerHPBar
+      value: 
+      objectReference: {fileID: 1895146194}
+    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: swordPossessions.Array.data[1]
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 304245302850143823, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}

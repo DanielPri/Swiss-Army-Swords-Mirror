@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Sword : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class Sword : MonoBehaviour
     int randomAudioIndex = -1;
     int previousAudioIndex = -1;
     GameObject pauseMenu;
+    Scene scene;
 
     public enum SwordType
     {
@@ -49,27 +51,34 @@ public class Sword : MonoBehaviour
 
     public virtual void Update()
     {
-        if (Input.GetButtonDown("Fire1") && damaging == false && !pauseMenu.GetComponent<Pause>().paused)
-        {
-            Attack();
-            swordCollider.enabled = true;
-            makeAttackSound();
-        }
+        scene = SceneManager.GetActiveScene();
 
-        if (damaging)
-        {
-            damageDelay -= Time.deltaTime;
-
-            if (damageDelay <= 0f)
+        if (scene.name == "Cutscene" || scene.name == "FinalCutscene") // prevent input during cutscenes
+        { }
+        else
+        { 
+            if (Input.GetButtonDown("Fire1") && damaging == false && !pauseMenu.GetComponent<Pause>().paused)
             {
-                damaging = false;
-                swordCollider.enabled = false;
+                Attack();
+                swordCollider.enabled = true;
+                makeAttackSound();
             }
-        }
 
-        if (Input.GetButtonDown("Fire2") && swordType != SwordType.FIRE)
-        {
-            Ability();
+            if (damaging)
+            {
+                damageDelay -= Time.deltaTime;
+
+                if (damageDelay <= 0f)
+                {
+                    damaging = false;
+                    swordCollider.enabled = false;
+                }
+            }
+
+            if (Input.GetButtonDown("Fire2") && swordType != SwordType.FIRE)
+            {
+                Ability();
+            }
         }
     }
 
