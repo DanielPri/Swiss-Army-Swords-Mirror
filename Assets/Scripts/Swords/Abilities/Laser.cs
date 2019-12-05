@@ -47,6 +47,10 @@ public class Laser : Projectile {
 				destroyed = true;
 			}
         }
+        if (col.gameObject.name == "Walls")
+        {
+            destroyed = true;
+        }
     }
 
     public void Destroyed() {

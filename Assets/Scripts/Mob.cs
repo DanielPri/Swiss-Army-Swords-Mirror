@@ -16,6 +16,7 @@ public class Mob : Enemy {
     float hurtDuration = 2.0F;
     HitpointBar playerHPBar;
     AudioSource hitSound;
+    bool hasPlayed;
 
     new public void Start() {
         base.Start();
@@ -23,8 +24,8 @@ public class Mob : Enemy {
         rb = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
         movingRight = true;
-        AudioSource[] audioSources = GetComponents<AudioSource>();
-        hitSound = audioSources[0];
+        hitSound = GetComponent<AudioSource>();
+        hasPlayed = false;
         
         // Freeze properties
         freezeable = true;
@@ -64,9 +65,10 @@ public class Mob : Enemy {
         Color firstColor = new Color(1F, 0F, 0F, 0.7F);
         Color secondColor = new Color(1F, 1F, 1F, 1F);
         hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
-        if (!isFrozen)
+        if (!isFrozen && !hasPlayed) // play sound to it's completion if enemy is not frozen, otherwise don't play at all
         {
-            hitSound.Play();
+            hasPlayed = true;
+            AudioSource.PlayClipAtPoint(hitSound.clip, transform.position);
         }
         easyMobHP -= sword.damage;
         sword.damage = 1; // Reset damage back to 1 (relevant to flame sword)
@@ -129,7 +131,7 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rb.constraints = RigidbodyConstraints2D.None;
         }
     }
 }

@@ -25,8 +25,8 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
     bool isHurt;
     float hurtTimer = 0.0F;
     float hurtDuration = 2.0F;
-	AudioSource hitSound;
-
+    AudioSource hitSound;
+    bool hasPlayed;
 
     new void Start() {
 		base.Start();
@@ -37,8 +37,8 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
         rigidbody = GetComponent<Rigidbody2D>();
         hurtColor = GetComponent<SpriteRenderer>();
         movingRight = true;
-        AudioSource[] audioSources = GetComponents<AudioSource>();
-        hitSound = audioSources[0];
+        hitSound = GetComponent<AudioSource>();
+        hasPlayed = false;
         lightsword = FindObjectOfType<LightSword>();
     }
 
@@ -92,7 +92,11 @@ public class FlyingMob : Enemy { // 3 HP, Gives 3 Damages
         Color firstColor = new Color(1F, 1F, 1F, 1F);
         Color secondColor = new Color(0.2F, 0.009F, 0.002F, 1F);
         hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
-        hitSound.Play();
+        if (!hasPlayed) // play sound to it's completion if enemy is not frozen, otherwise don't play at all
+        {
+            hasPlayed = true;
+            AudioSource.PlayClipAtPoint(hitSound.clip, transform.position);
+        }
         easyMobHP -= sword.damage;
         sword.damage = 1; // Reset damage back to 1 (relevant to flame sword)
     }

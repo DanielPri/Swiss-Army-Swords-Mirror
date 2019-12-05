@@ -38,7 +38,6 @@ public class IceSword : Sword
     {
         GameObject iceBall = Instantiate(freezeBall, transform.position, Quaternion.identity) as GameObject;
         FreezeBall projectileLaser = iceBall.GetComponent<FreezeBall>();
-        projectileLaser.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
         projectileLaser.SetDirection(player.GetFacingDirection());
         Destroy(iceBall, projectileDuration);
     }
