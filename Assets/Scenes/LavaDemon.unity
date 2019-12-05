@@ -397,8 +397,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -835397081
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
@@ -1674,8 +1674,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -835397081
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bc459e7fd2c9d40cf804701c6d3a65a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1969,8 +1969,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -835397081
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300026, guid: 27e434c5c2cc7424a968075b76d06d07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2210,9 +2210,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -835397081
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.100000024, y: 0.16666669, z: 0}
   m_MaxChunkCount: 16
@@ -3940,6 +3940,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
+        type: 3}
+      propertyPath: playerHPBar
+      value: 
+      objectReference: {fileID: 26674032}
     - target: {fileID: 2110159222249153263, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_Name
@@ -4000,11 +4005,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41,
-        type: 3}
-      propertyPath: playerHPBar
-      value: 
-      objectReference: {fileID: 26674032}
     - target: {fileID: 4409136459181290520, guid: 74c6454bd7bb901439ad715e81729d41,
         type: 3}
       propertyPath: m_IsActive
@@ -4185,8 +4185,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1432409891
-  m_SortingLayer: 1
+  m_SortingLayerID: -835397081
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7f5c546fd6d3d484ab879bd67386c4fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4502,11 +4502,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 794274428}
     - target: {fileID: 2425742049566771506, guid: f9bfa27524db4fe4cafcd32a8f481e65,
         type: 3}
       propertyPath: m_RenderMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2425742049566771506, guid: f9bfa27524db4fe4cafcd32a8f481e65,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -394678549
       objectReference: {fileID: 0}
     - target: {fileID: 6884039507494591223, guid: f9bfa27524db4fe4cafcd32a8f481e65,
         type: 3}
@@ -4782,6 +4787,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1883696375615553082, guid: 0a53f4722e32c534d8d3096d80ba0ae6,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 794274428}
+    - target: {fileID: 4405110785001807621, guid: 0a53f4722e32c534d8d3096d80ba0ae6,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 794274428}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a53f4722e32c534d8d3096d80ba0ae6, type: 3}
 --- !u!114 &1991982921 stripped
@@ -4920,7 +4935,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 794274428}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4928,8 +4943,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingLayerID: -394678549
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!222 &1162835603003520661
 CanvasRenderer:
@@ -5061,6 +5076,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647890338618951812, guid: 0d9440c5531cb40eab0bb4559f8db170,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -835397081
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647890338618951812, guid: 0d9440c5531cb40eab0bb4559f8db170,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d9440c5531cb40eab0bb4559f8db170, type: 3}
