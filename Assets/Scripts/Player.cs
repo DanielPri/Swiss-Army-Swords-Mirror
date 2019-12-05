@@ -45,7 +45,8 @@ public class Player : MonoBehaviour
     float isHurtTimer = 0;
 
     string sceneName;
-
+    GameObject brickSword;
+    bool brickSwordHeld;
 
     void Start()
     {
@@ -69,11 +70,7 @@ public class Player : MonoBehaviour
 
         Scene currentScene = SceneManager.GetActiveScene(); // To know which level
         sceneName = currentScene.name;
-        GameObject musicGO = GameObject.FindGameObjectWithTag("Music");
-        /*if (sceneName.Contains("Level 2") && musicGO)
-            musicGO.GetComponent<PersistentMusic>().PlayMusic();
-        else if (musicGO)
-            GameObject.FindGameObjectWithTag("Music").GetComponent<PersistentMusic>().StopMusic();*/
+        brickSwordHeld = false; // for sword pickup only
     }
 
     private void addSwords()
@@ -208,6 +205,12 @@ public class Player : MonoBehaviour
         {
             // Cannot switch swords until inventory is updated
             inventory.switchSwords = false;
+            if (GameObject.Find("Brick Sword") != null) // if brick sword is active
+            {
+                brickSword = GameObject.Find("Brick Sword");
+                brickSword.SetActive(false);
+                brickSwordHeld = true;
+            }
             // Hide the player's held sword
             SpriteRenderer heldSwordSR = new SpriteRenderer();
             SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
@@ -280,6 +283,10 @@ public class Player : MonoBehaviour
             heldSwordSR.enabled = true;
         pickingUpSword = false;
         getInventorySwords(); // Get the inventory of swords again to account for new one
+        if (brickSwordHeld) // if brick sword is held upon pickup
+        {
+            brickSword.SetActive(true);
+        }
         inventory.switchSwords = true; // Able to switch swords once inventory is updated
     }
 

@@ -65,7 +65,7 @@ public class Music : MonoBehaviour
             audioSources[1].Play();
             level1 = true;
         }
-        if (scene.name == "Level 2" && !level2)
+        if (scene.name.Contains("Level 2") && !level2)
         {
             audioSources[1].Stop();
             audioSources[2].Play();

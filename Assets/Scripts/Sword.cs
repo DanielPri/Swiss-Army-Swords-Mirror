@@ -16,6 +16,7 @@ public class Sword : MonoBehaviour
     protected float damageDuration = 0.2f;
     protected float damageDelay;
     protected Player player;
+    protected SwordInventory inventory;
     protected bool isAbilityUsed;
     public bool damaging;
     int _damage = 1;
@@ -42,6 +43,7 @@ public class Sword : MonoBehaviour
         damaging = false;
         swordAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        inventory = GameObject.Find("InventoryManager").GetComponent<SwordInventory>();
         swordCollider = player.GetComponentInChildren<BoxCollider2D>();
         swordCollider.enabled = false;
         audioSource = GetComponent<AudioSource>();
@@ -53,7 +55,7 @@ public class Sword : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
 
-        if (scene.name == "Cutscene" || scene.name == "FinalCutscene") // prevent input during cutscenes
+        if (scene.name == "Cutscene" || scene.name == "FinalCutscene" || !inventory.switchSwords) // prevent input during cutscenes or pickup
         { }
         else
         { 

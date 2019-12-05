@@ -64,7 +64,10 @@ public class Mob : Enemy {
         Color firstColor = new Color(1F, 0F, 0F, 0.7F);
         Color secondColor = new Color(1F, 1F, 1F, 1F);
         hurtColor.color = Color.Lerp(firstColor, secondColor, Mathf.PingPong(Time.time * 5.0F, 1.0F));
-        hitSound.Play();
+        if (!isFrozen)
+        {
+            hitSound.Play();
+        }
         easyMobHP -= sword.damage;
         sword.damage = 1; // Reset damage back to 1 (relevant to flame sword)
     }
@@ -126,7 +129,7 @@ public class Mob : Enemy {
     {
         if (col.gameObject.tag == "Player")
         {
-            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 }
