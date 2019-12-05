@@ -3,9 +3,21 @@
 public class PersistentMusic : MonoBehaviour
 {
     private AudioSource _audioSource;
+    static PersistentMusic prefab;
+
     private void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        DontDestroyOnLoad(this);
+
+        if (prefab == null)
+        {
+            prefab = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         _audioSource = GetComponent<AudioSource>();
     }
 
