@@ -2035,7 +2035,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.009885, y: -3.4621606, z: -10}
+  m_LocalPosition: {x: -4.870373, y: -3.4632797, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1340424797}
@@ -2052,7 +2052,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 48d875e35334ccb45822fb203919444f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0587c34ddd51c8141b1645b1c3c33aeb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.064
   m_Pitch: 1
@@ -2299,6 +2299,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingMob
       objectReference: {fileID: 0}
+    - target: {fileID: 4600031521195157146, guid: 334bdc629aa6225488a71b04dc393439,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4600031521195157147, guid: 334bdc629aa6225488a71b04dc393439,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2353,11 +2358,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600031521195157146, guid: 334bdc629aa6225488a71b04dc393439,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 334bdc629aa6225488a71b04dc393439, type: 3}
@@ -3104,6 +3104,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingMob
       objectReference: {fileID: 0}
+    - target: {fileID: 4600031521195157146, guid: 334bdc629aa6225488a71b04dc393439,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4600031521195157147, guid: 334bdc629aa6225488a71b04dc393439,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3158,11 +3163,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600031521195157146, guid: 334bdc629aa6225488a71b04dc393439,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 334bdc629aa6225488a71b04dc393439, type: 3}
@@ -5893,6 +5893,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingMob
       objectReference: {fileID: 0}
+    - target: {fileID: 4600031521195157146, guid: 334bdc629aa6225488a71b04dc393439,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4600031521195157147, guid: 334bdc629aa6225488a71b04dc393439,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5947,11 +5952,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4600031521195157146, guid: 334bdc629aa6225488a71b04dc393439,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 334bdc629aa6225488a71b04dc393439, type: 3}
