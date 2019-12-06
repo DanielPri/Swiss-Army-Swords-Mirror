@@ -61,7 +61,7 @@ public class Boss : Enemy {
         audioSources = GetComponents<AudioSource>();
         music = GameObject.Find("Music").GetComponent<Music>();
         BGM = music.GetComponents<AudioSource>();
-        BGM[2].Stop();
+        BGM[1].Stop();
         audioSources[2].Play();
         projectileSound = audioSources[0];
         morphSound = audioSources[1];
@@ -81,6 +81,7 @@ public class Boss : Enemy {
 			if (hitpointBar.GetHP() < 1)
 				Die();
 		}
+
         GetDistanceFromPlayer();
 
         if (playerHPBar.PlayerHealth <= 0)
@@ -207,6 +208,8 @@ public class Boss : Enemy {
         MorphAnimation();
         Instantiate(dropSword, transform.position, Quaternion.identity);
         Destroy(gameObject);
+        audioSources[2].Stop();
+        BGM[1].Play();
         // Show some UI here maybe after a boss ?
     }
 

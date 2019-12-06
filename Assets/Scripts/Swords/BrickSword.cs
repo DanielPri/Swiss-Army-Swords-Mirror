@@ -90,7 +90,7 @@ public class BrickSword : Sword
         {
             if (rayHit.collider) // Check that it only hits a ground
             {
-                if (rayHit.collider.tag == "Ground" && player.grounded)
+                if (rayHit.collider.tag == "Ground" /*&& player.grounded*/)
                 {
                     GameObject BrickWall = Instantiate(brickWallPrefab, new Vector2(rayHit.point.x, rayHit.point.y), Quaternion.identity, wallContainer.transform) as GameObject;
                     Destroy(BrickWall, 4.0F);
