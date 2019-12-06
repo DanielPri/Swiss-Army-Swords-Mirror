@@ -16,6 +16,8 @@ TagManager:
   - IceProjectile
   - LavaDemon
   - Music
+  - Laser
+  - LavaHand
   layers:
   - Default
   - TransparentFX

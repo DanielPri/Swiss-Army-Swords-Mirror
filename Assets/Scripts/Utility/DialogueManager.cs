@@ -33,6 +33,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
         player = GameObject.Find("Player").GetComponent<Player>();
         inventory = GameObject.Find("InventoryManager").GetComponent<SwordInventory>();
+        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
     }
 
     void Update()

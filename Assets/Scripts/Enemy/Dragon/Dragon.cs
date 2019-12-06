@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Dragon : BossParent
 {
@@ -29,6 +30,7 @@ public class Dragon : BossParent
     SpriteRenderer sr;
 
     private bool oneTime;
+    Scene scene;
 
     // Use this for initialization
     public override void Start()
@@ -44,22 +46,26 @@ public class Dragon : BossParent
     // Update is called once per frame
     public override void Update()
     {
+        scene = SceneManager.GetActiveScene();
         base.Update();
         sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
 
-        if (CheckIfInRange(fightRange) && !onlyOnce)
+        if (scene.name == "DragonBoss")
         {
-            FightStart();
-        }
+            if (CheckIfInRange(fightRange) && !onlyOnce)
+            {
+                FightStart();
+            }
 
-        if (CheckIfInRange(tailWhipRange) && !isTailWhipping)
-        {
-            StartCoroutine(TailWhip());
-        }
+            if (CheckIfInRange(tailWhipRange) && !isTailWhipping)
+            {
+                StartCoroutine(TailWhip());
+            }
 
-        if (CheckIfInRange(fireBreathRange) && !isFiring && !isDark)
-        {
-            StartCoroutine(FireBreath());
+            if (CheckIfInRange(fireBreathRange) && !isFiring && !isDark)
+            {
+                StartCoroutine(FireBreath());
+            }
         }
 
         HandleTimers();

@@ -17,7 +17,6 @@ public class FireSword : Sword
         base.swordType = SwordType.FIRE;
         particleFire = GetComponentsInChildren<ParticleSystem>()[0];
         particleFire.Stop();
-        scene = SceneManager.GetActiveScene();
     }
 
     private void OnDisable()
