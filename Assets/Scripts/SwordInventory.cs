@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SwordInventory : MonoBehaviour {
     [SerializeField]
@@ -26,6 +27,9 @@ public class SwordInventory : MonoBehaviour {
     public int index;
     public bool switchSwords;
     float inventoryDistance = 80;
+    bool level2part2;
+    Scene scene;
+    public bool dialogueActive;
 
     void Start() {
         AddSlot(0);
@@ -36,11 +40,27 @@ public class SwordInventory : MonoBehaviour {
         Color color = new Color(0.368F, 0.96F, 0.13F);
         inventoryList[0].GetComponent<SpriteRenderer>().color = color;
         switchSwords = true;
-        inventoryList[0].GetComponent<SpriteRenderer>().color = color;
+        level2part2 = false;
     }
 
-    void Update() {
-        ControlInventory();
+    void Update()
+    {
+        scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 2 Part 2" && !level2part2)
+        {
+            index = 3;
+            Color color = new Color(0.368F, 0.96F, 0.13F);
+            inventoryList[0].GetComponent<SpriteRenderer>().color = Color.white;
+            inventoryList[3].GetComponent<SpriteRenderer>().color = color;
+            level2part2 = true;
+        }
+
+        if (scene.name == "Cutscene" || scene.name == "FinalCutscene" || dialogueActive) // prevent input during cutscenes
+        { }
+        else
+        {
+            ControlInventory();
+        }
     }
 
     /* Handles the addition of inventory once new sword obtained */

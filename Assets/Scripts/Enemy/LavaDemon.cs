@@ -19,13 +19,13 @@ public class LavaDemon : BossParent
 
     BossBar hitpointBar;
     SpriteRenderer sr;
+    GameObject[] lavaHands;
+    public bool fightStart;
 
-    // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player");
-        hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
         door = GameObject.Find("Door");
 		demonWall = GameObject.Find("Wall");
 		door.SetActive(false);
@@ -42,9 +42,12 @@ public class LavaDemon : BossParent
         return true;
     }
 
-    // Update is called once per frame
     new void Update()
     {
+        if (fightStart)
+        {
+            hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
+        }
         sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
 
         FaceDirection(player.transform.position);
@@ -64,11 +67,14 @@ public class LavaDemon : BossParent
 
     IEnumerator SpawnLavaHand()
     {
-        attacking1 = true;
-        yield return new WaitForSeconds(3f);
-        GameObject a = Instantiate(lavaHand) as GameObject;
-        a.transform.position = player.transform.position;
-        attacking1 = false;
+        if (!isDead)
+        {
+            attacking1 = true;
+            yield return new WaitForSeconds(3f);
+            GameObject a = Instantiate(lavaHand) as GameObject;
+            a.transform.position = player.transform.position;
+            attacking1 = false;
+        }
     }
 
     IEnumerator RamPlayer()
@@ -119,6 +125,13 @@ public class LavaDemon : BossParent
 
     public new void Die()
     {
+        lavaHands = GameObject.FindGameObjectsWithTag("LavaHand");
+
+        foreach (GameObject lavaHand in lavaHands)
+        {
+            Destroy(lavaHand);
+        }
+
         isDead = true;
         hitpointBar.index = -1;
         animator.SetBool("isDead", true);

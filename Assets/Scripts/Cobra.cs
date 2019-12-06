@@ -132,7 +132,7 @@ public class Cobra : Enemy { // Has big HP, but is annoying since it is found in
     public void OnCollisionExit2D(Collision2D col) {
         if (col.gameObject.tag == "Player")
         {
-            rigidbody.constraints = RigidbodyConstraints2D.None;
+            rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 }

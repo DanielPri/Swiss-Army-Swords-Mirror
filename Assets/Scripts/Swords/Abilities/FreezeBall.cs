@@ -18,10 +18,11 @@ public class FreezeBall : Projectile
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy" || col.gameObject.name.Contains("Wall") || col.gameObject.name.Contains("Platform"))
         {
             Destroy(gameObject);
             //Freezing is handled in the specific enemy
+            // Projectile is destroyed upon hitting a wall
         }
     }
 }

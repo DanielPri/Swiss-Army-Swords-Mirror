@@ -44,6 +44,9 @@ public class Boss : Enemy {
 
     AudioSource projectileSound;
     AudioSource morphSound;
+    AudioSource[] audioSources;
+    AudioSource[] BGM;
+    Music music;
 
     new void Start() {
         base.Start();
@@ -55,7 +58,11 @@ public class Boss : Enemy {
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
         transform.localScale = new Vector3(0, 0, 0); // Hide for the intro
         isSpawned = true;
-        AudioSource[] audioSources = GetComponents<AudioSource>();
+        audioSources = GetComponents<AudioSource>();
+        music = GameObject.Find("Music").GetComponent<Music>();
+        BGM = music.GetComponents<AudioSource>();
+        BGM[1].Stop();
+        audioSources[2].Play();
         projectileSound = audioSources[0];
         morphSound = audioSources[1];
         MorphAnimation();
@@ -74,7 +81,15 @@ public class Boss : Enemy {
 			if (hitpointBar.GetHP() < 1)
 				Die();
 		}
+
         GetDistanceFromPlayer();
+
+        if (playerHPBar.PlayerHealth <= 0)
+        {
+            audioSources[2].Stop();
+            music.level1 = false;
+            Destroy(this);
+        }
     }
 
     private void GetDistanceFromPlayer()
@@ -193,6 +208,8 @@ public class Boss : Enemy {
         MorphAnimation();
         Instantiate(dropSword, transform.position, Quaternion.identity);
         Destroy(gameObject);
+        audioSources[2].Stop();
+        BGM[1].Play();
         // Show some UI here maybe after a boss ?
     }
 

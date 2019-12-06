@@ -57,7 +57,7 @@ public class BossBar : MonoBehaviour
 
     private void DestroyHealthBar()
     {
-        if (index < 0)
+        if (index <= 0)
         {
             Destroy(gameObject);
         }

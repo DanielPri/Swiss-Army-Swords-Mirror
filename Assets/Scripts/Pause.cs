@@ -17,7 +17,9 @@ public class Pause : MonoBehaviour
     GameObject lightDescription;
     GameObject flameDescription;
     List<int> possessions;
+    Music music;
     public bool paused;
+    Scene scene;
 
     void Start()
     {
@@ -32,13 +34,15 @@ public class Pause : MonoBehaviour
         lightDescription = GameObject.Find("LightSwordDescription");
         flameDescription = GameObject.Find("FlameSwordDescription");
         possessions = GameObject.Find("Player").GetComponent<Player>().swordPossessions;
+        music = GameObject.Find("Music").GetComponent<Music>();
         pauseMenu.GetComponent<Canvas>().worldCamera = mainCamera;
         controlScheme.GetComponent<Canvas>().worldCamera = mainCamera;
         buttons.GetComponent<Canvas>().worldCamera = mainCamera;
+        scene = SceneManager.GetActiveScene();
         ui.SetActive(true);
         pauseMenu.SetActive(false);
         controlScheme.SetActive(false);
-        buttons.GetComponent<Canvas>().sortingOrder = -1;
+        buttons.SetActive(false);
         regularDescription.SetActive(false);
         iceDescription.SetActive(false);
         brickDescription.SetActive(false);
@@ -75,27 +79,32 @@ public class Pause : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && controlScheme.activeInHierarchy)
         {
             pauseMenu.SetActive(true);
-            buttons.GetComponent<Canvas>().sortingOrder = 101;
+            buttons.SetActive(true);
             controlScheme.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) 
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!pauseMenu.activeInHierarchy && controlScheme.activeInHierarchy)
-            {
-                pauseMenu.SetActive(true);
-                buttons.GetComponent<Canvas>().sortingOrder = 101;
-                controlScheme.SetActive(false);
-            }
-            else if (!pauseMenu.activeInHierarchy)
-            {
-                paused = true;
-                PauseGame();
-            }
-            else if (pauseMenu.activeInHierarchy && !controlScheme.activeInHierarchy)
-            {
-                paused = false;
-                ContinueGame();
+            if (scene.name == "Cutscene" || scene.name == "FinalCutscene") // prevent input during cutscenes
+            { }
+            else
+            { 
+                if (!pauseMenu.activeInHierarchy && controlScheme.activeInHierarchy)
+                {
+                    pauseMenu.SetActive(true);
+                    buttons.SetActive(true);
+                    controlScheme.SetActive(false);
+                }
+                else if (!pauseMenu.activeInHierarchy)
+                {
+                    paused = true;
+                    PauseGame();
+                }
+                else if (pauseMenu.activeInHierarchy && !controlScheme.activeInHierarchy)
+                {
+                    paused = false;
+                    ContinueGame();
+                }
             }
         }
     }
@@ -105,7 +114,7 @@ public class Pause : MonoBehaviour
         Time.timeScale = 0;
         ui.SetActive(false);
         pauseMenu.SetActive(true);
-        buttons.GetComponent<Canvas>().sortingOrder = 101;
+        buttons.SetActive(true);
     }
 
     public void ContinueGame()
@@ -114,7 +123,7 @@ public class Pause : MonoBehaviour
         Time.timeScale = 1;
         ui.SetActive(true);
         pauseMenu.SetActive(false);
-        buttons.GetComponent<Canvas>().sortingOrder = -1;
+        buttons.SetActive(false);
     }
     
     public void RestartLevel()
@@ -132,6 +141,8 @@ public class Pause : MonoBehaviour
         if (pauseMenu.activeInHierarchy)
         {
             string name = "MainMenu";
+            music.mainMenu = false;
+            music.cutscene = false;
             SceneManager.LoadScene(name);
             Time.timeScale = 1;
         }
@@ -142,7 +153,7 @@ public class Pause : MonoBehaviour
         if (pauseMenu.activeInHierarchy)
         {
             pauseMenu.SetActive(false);
-            buttons.GetComponent<Canvas>().sortingOrder = -1;
+            buttons.SetActive(false);
             controlScheme.SetActive(true);
         }
     }

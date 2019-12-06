@@ -11,20 +11,17 @@ public class Player : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] LayerMask platformLayerMask;
-    [SerializeField]
-    float jumpDuration;
-    [SerializeField]
-    AudioClip[] jumpsSounds;
-    [SerializeField]
-    public AudioClip[] attacksSounds;
-    [SerializeField]
-    public AudioClip[] hurtSounds;
+    [SerializeField] float jumpDuration;
+    [SerializeField] float timeJumpFactor;
+    [SerializeField] AudioClip[] jumpsSounds;
+    [SerializeField] public AudioClip[] attacksSounds;
+    [SerializeField] public AudioClip[] hurtSounds;
 
     public AudioSource audioSource;
 
     bool pickingUpSword;
     bool moving;
-    bool grounded;
+    public bool grounded;
     bool falling;
     bool jumping;
     private bool isHurt;
@@ -48,7 +45,9 @@ public class Player : MonoBehaviour
     float isHurtTimer = 0;
 
     string sceneName;
-
+    GameObject brickSword;
+    bool brickSwordHeld;
+    public bool dialogueActive;
 
     void Start()
     {
@@ -72,11 +71,7 @@ public class Player : MonoBehaviour
 
         Scene currentScene = SceneManager.GetActiveScene(); // To know which level
         sceneName = currentScene.name;
-        GameObject musicGO = GameObject.FindGameObjectWithTag("Music");
-        if (sceneName.Contains("Level 2") && musicGO)
-            musicGO.GetComponent<PersistentMusic>().PlayMusic();
-        else if (musicGO)
-            GameObject.FindGameObjectWithTag("Music").GetComponent<PersistentMusic>().StopMusic();
+        brickSwordHeld = false; // for sword pickup only
     }
 
     private void addSwords()
@@ -158,10 +153,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (scene.name == "Cutscene" || scene.name == "FinalCutscene" || dialogueActive) // prevent input during cutscenes
+        { }
+        else
+        {
+            MovePlayer();
+            SwitchSwords();
+        }
         isGrounded();
-        MovePlayer();
         CheckFalling();
-        SwitchSwords();
         playerAnimator.SetBool("isMoving", moving);
         playerAnimator.SetBool("isGrounded", grounded);
         playerAnimator.SetBool("isFalling", falling);
@@ -206,6 +206,12 @@ public class Player : MonoBehaviour
         {
             // Cannot switch swords until inventory is updated
             inventory.switchSwords = false;
+            if (GameObject.Find("Brick Sword") != null) // if brick sword is active
+            {
+                brickSword = GameObject.Find("Brick Sword");
+                brickSword.SetActive(false);
+                brickSwordHeld = true;
+            }
             // Hide the player's held sword
             SpriteRenderer heldSwordSR = new SpriteRenderer();
             SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
@@ -278,6 +284,10 @@ public class Player : MonoBehaviour
             heldSwordSR.enabled = true;
         pickingUpSword = false;
         getInventorySwords(); // Get the inventory of swords again to account for new one
+        if (brickSwordHeld) // if brick sword is held upon pickup
+        {
+            brickSword.SetActive(true);
+        }
         inventory.switchSwords = true; // Able to switch swords once inventory is updated
     }
 
@@ -330,7 +340,7 @@ public class Player : MonoBehaviour
     private void timeJump()
     {
         if(jumpTimeElapsed < jumpDuration) {
-            rb.AddForce(Vector2.up * jumpForce * (1-jumpTimeElapsed )/14 , ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce * (1-jumpTimeElapsed ) * Time.deltaTime * timeJumpFactor,  ForceMode2D.Impulse);
             jumpTimeElapsed += Time.deltaTime;
         }
         
@@ -363,6 +373,7 @@ public class Player : MonoBehaviour
         {
             if (Input.mouseScrollDelta.y > 0) // mouse scroll up
                 {
+                    swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                     swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
 
                     // Switch to next sword
@@ -379,6 +390,7 @@ public class Player : MonoBehaviour
                 }
             else if (Input.mouseScrollDelta.y < 0) // mouse scroll down
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
 
                 // Switch to next sword
@@ -395,26 +407,31 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha1)) // press 1
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false);
                 swords[0].gameObject.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2) && swords.Count >= 2) // press 2 if player has at least 2 swords
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false);
                 swords[1].gameObject.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3) && swords.Count >= 3)
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false);
                 swords[2].gameObject.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.Alpha4) && swords.Count >= 4)
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false);
                 swords[3].gameObject.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.Alpha5) && swords.Count == 5)
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false);
                 swords[4].gameObject.SetActive(true);
             }

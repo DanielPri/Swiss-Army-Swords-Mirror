@@ -22,7 +22,7 @@ public class DragonBreath : Fire
     {
         if (collision.tag.Equals("Player"))
         {
-            player.playerHPBar.DecreaseHitpoint(5);
+            player.playerHPBar.DecreaseHitpoint(7);
         }
     }
 

@@ -30,6 +30,7 @@ public class BrickSword : Sword
             indicator.transform.parent = transform;
             indicator.AddComponent<SpriteRenderer>();
             indicator.GetComponent<SpriteRenderer>().sprite = indicatorSprite;
+            indicator.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
             indicator.GetComponent<SpriteRenderer>().sortingOrder = 5;
         }
     }
@@ -89,7 +90,7 @@ public class BrickSword : Sword
         {
             if (rayHit.collider) // Check that it only hits a ground
             {
-                if (rayHit.collider.tag == "Ground")
+                if (rayHit.collider.tag == "Ground" /*&& player.grounded*/)
                 {
                     GameObject BrickWall = Instantiate(brickWallPrefab, new Vector2(rayHit.point.x, rayHit.point.y), Quaternion.identity, wallContainer.transform) as GameObject;
                     Destroy(BrickWall, 4.0F);

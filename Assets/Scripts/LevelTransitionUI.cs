@@ -10,13 +10,15 @@ public class LevelTransitionUI : MonoBehaviour {
 	float timer = 0.0F;
 	float duration = 4.0F;
 	bool timerBool;
+    CanvasRenderer panel;
 	
 	void Start() {
 		levelText = GameObject.Find("LevelTextTransitionUI").GetComponent<Text>();
 		Scene currentScene = SceneManager.GetActiveScene();
 		sceneName = currentScene.name;
 		timerBool = true;
-	}
+        panel = GameObject.Find("LevelUI").GetComponent<CanvasRenderer>();
+    }
 	
 	void Update() {
 		timer += Time.deltaTime; // only at the beginning of each level
@@ -31,6 +33,8 @@ public class LevelTransitionUI : MonoBehaviour {
 			levelText.text = sceneName + ": The Cave";
 		if (sceneName == "Level 3")
 			levelText.text = sceneName + ": The Maze";
+
+        panel.SetAlpha(0.7f);
     }
 	
 }

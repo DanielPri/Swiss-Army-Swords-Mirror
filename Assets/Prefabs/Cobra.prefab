@@ -122,7 +122,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &7900336601426012796
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -152,12 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  player: {fileID: 2110159222249153259, guid: 74c6454bd7bb901439ad715e81729d41, type: 3}
-  playerRange: 5
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  playerInRange: 0
-  mediumHP: 5
+  iceCube: {fileID: 0}
   isFrozen: 0
+  mediumHP: 5
   state: 1
