@@ -874,11 +874,41 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 2773446128328831875, guid: 8e0d83420b2c0c44e87ef58d6dfc94bd,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.121568635
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773446128328831875, guid: 8e0d83420b2c0c44e87ef58d6dfc94bd,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.121568635
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773446128328831875, guid: 8e0d83420b2c0c44e87ef58d6dfc94bd,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.121568635
+      objectReference: {fileID: 0}
     - target: {fileID: 1326673242512062073, guid: 8e0d83420b2c0c44e87ef58d6dfc94bd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2219042522672957097}
+    - target: {fileID: 6069504400710958337, guid: 8e0d83420b2c0c44e87ef58d6dfc94bd,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069504400710958337, guid: 8e0d83420b2c0c44e87ef58d6dfc94bd,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069504400710958337, guid: 8e0d83420b2c0c44e87ef58d6dfc94bd,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.1254902
+      objectReference: {fileID: 0}
     - target: {fileID: 8446285002623927457, guid: 8e0d83420b2c0c44e87ef58d6dfc94bd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2148,18 +2178,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3612268081889080233, guid: cd6febfa2c8959548a2a920f6c91ef66,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
     - target: {fileID: 7152638539875174340, guid: cd6febfa2c8959548a2a920f6c91ef66,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    m_RemovedComponents:
-    - {fileID: 8450330219457670962, guid: cd6febfa2c8959548a2a920f6c91ef66, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd6febfa2c8959548a2a920f6c91ef66, type: 3}
 --- !u!114 &2219042522672957097 stripped
 MonoBehaviour:
