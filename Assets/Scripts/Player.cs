@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     bool pickingUpSword;
     bool moving;
-    bool grounded;
+    public bool grounded;
     bool falling;
     bool jumping;
     private bool isHurt;

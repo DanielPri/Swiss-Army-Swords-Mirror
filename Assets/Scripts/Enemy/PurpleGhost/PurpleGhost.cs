@@ -16,17 +16,24 @@ public class PurpleGhost : BossParent
 
     BossBar hitpointBar;
     SpriteRenderer sr;
+    Music music;
+    AudioSource[] audioSources;
 
-    private void Start()
+    private new void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         sr = GetComponent<SpriteRenderer>();
         light = GameObject.Find("PurpleGhostLightEmission").GetComponent<Light>();
         rg = GetComponent<Rigidbody2D>();
         playerBar = GameObject.Find("HitpointBar").GetComponent<HitpointBar>();
+        music = GameObject.Find("Music").GetComponent<Music>();
+        audioSources = music.GetComponents<AudioSource>();
+        audioSources[2].Stop();
+        transform.GetComponent<AudioSource>().Play();
+        transform.GetComponent<SpriteRenderer>().flipX = true;
     }
 
-    private void Update()
+    private new void Update()
     {
         hitpointBar = GameObject.Find("BossLifeBar(Clone)").GetComponent<BossBar>();
         sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
@@ -46,13 +53,19 @@ public class PurpleGhost : BossParent
 
         GetDistanceFromPlayer();
 
+        if (playerBar.PlayerHealth <= 0)
+        {
+            transform.GetComponent<AudioSource>().Stop();
+            music.level2 = false;
+            Destroy(this);
+        }
     }
 
     IEnumerator SpawnLightningShock()
     {
         attacking1 = true;
         GameObject a = Instantiate(lightningPrefab) as GameObject;
-        a.transform.position = player.transform.position;
+        a.transform.position = transform.position;
         yield return new WaitForSeconds(3f);
         attacking1 = false;
     }
@@ -79,17 +92,19 @@ public class PurpleGhost : BossParent
             {
                 light.enabled = true;
             }
+            hitpointBar.DecreaseBossHitpoint(1);
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.name == "Player")
+        if (collision.gameObject.name == "Player")
         {
             Vector2 forceDirection = new Vector2(facingDirection.x, 1.0f);
             player.GetComponent<Rigidbody2D>().AddForce(forceDirection, ForceMode2D.Impulse);
             playerBar.DecreaseHitpoint(1);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
     }
 
     bool CheckIfInRange(float range)
@@ -103,12 +118,14 @@ public class PurpleGhost : BossParent
             Die();
     }
 
-    void Die()
+    new void Die()
     {
         isDead = true;
         Destroy(this);
         gameObject.SetActive(false);
         GameObject.Find("BlockingCrate").SetActive(false);
+        transform.GetComponent<AudioSource>().Stop();
+        music.audioSources[2].Play();
     }
 
     private void GetDistanceFromPlayer()

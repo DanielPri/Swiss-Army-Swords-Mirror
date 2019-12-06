@@ -3,12 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class Music : MonoBehaviour
 {
-    private AudioSource[] audioSources;
+    public AudioSource[] audioSources;
     Scene scene;
     public bool mainMenu;
     public bool cutscene;
-    bool level1;
-    bool level2;
+    public bool level1;
+    public bool level2;
     bool level3;
     bool finalBoss;
     static Music prefab;
