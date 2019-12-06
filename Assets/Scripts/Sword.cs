@@ -21,6 +21,7 @@ public class Sword : MonoBehaviour
     public bool damaging;
     int _damage = 1;
 
+    [SerializeField] float cooldownTimer = 2;
     
     AudioSource audioSource;
     int randomAudioIndex = -1;
@@ -54,6 +55,10 @@ public class Sword : MonoBehaviour
 
     public virtual void Update()
     {
+        if (swordType != SwordType.LIGHT || swordType != SwordType.FIRE)
+        {
+            cooldownTimer -= Time.deltaTime;
+        }
         scene = SceneManager.GetActiveScene();
 
         if (scene.name == "Cutscene" || scene.name == "FinalCutscene" || !inventory.switchSwords || dialogueActive) // prevent input during cutscenes or pickup
@@ -77,8 +82,15 @@ public class Sword : MonoBehaviour
                     swordCollider.enabled = false;
                 }
             }
-
-            if (Input.GetButtonDown("Fire2") && swordType != SwordType.FIRE)
+            if (cooldownTimer <= 0)
+            {
+                if (Input.GetButtonDown("Fire2") && swordType != SwordType.FIRE)
+                {
+                    Ability();
+                    cooldownTimer = 2;
+                }
+            }
+            if (Input.GetButtonDown("Fire2") && swordType == SwordType.LIGHT)
             {
                 Ability();
             }
