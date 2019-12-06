@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f930c923b1d9a4a2f81ac0143ac92884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
   iceCube: {fileID: 0}
   isFrozen: 0
   lightningPrefab: {fileID: 7337197086729315244, guid: c30fcf459470946e0927c1e4ed92cc94,
