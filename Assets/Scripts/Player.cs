@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
     string sceneName;
     GameObject brickSword;
     bool brickSwordHeld;
+    public bool dialogueActive;
 
     void Start()
     {
@@ -152,7 +153,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (scene.name == "Cutscene" || scene.name == "FinalCutscene") // prevent input during cutscenes
+        if (scene.name == "Cutscene" || scene.name == "FinalCutscene" || dialogueActive) // prevent input during cutscenes
         { }
         else
         {

@@ -9,6 +9,9 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
     public Animator animator;
     private Queue<string> sentences;
+    Player player;
+    Sword sword;
+    SwordInventory inventory;
 
     public static DialogueManager Instance { get { return instance; } }
 
@@ -28,10 +31,20 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
+        player = GameObject.Find("Player").GetComponent<Player>();
+        inventory = GameObject.Find("InventoryManager").GetComponent<SwordInventory>();
+    }
+
+    void Update()
+    {
+        sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Sword>();
     }
 
     public void StartDialogue (Dialogue dialogue)
     {
+        player.dialogueActive = true;
+        sword.dialogueActive = true;
+        inventory.dialogueActive = true;
         animator.SetBool("isOpen", true);
         sentences.Clear();
 
@@ -69,7 +82,9 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         animator.SetBool("isOpen", false);
-
+        player.dialogueActive = false;
+        sword.dialogueActive = false;
+        inventory.dialogueActive = false;
     }
 
 }

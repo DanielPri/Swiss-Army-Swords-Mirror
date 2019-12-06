@@ -57,7 +57,7 @@ public class Dragon : BossParent
             StartCoroutine(TailWhip());
         }
 
-        if (CheckIfInRange(fireBreathRange) && !isFiring)
+        if (CheckIfInRange(fireBreathRange) && !isFiring && !isDark)
         {
             StartCoroutine(FireBreath());
         }
@@ -154,6 +154,8 @@ public class Dragon : BossParent
 
         if (isTailWhipping)
         {
+            playerHPBar.DecreaseHitpoint(7);
+            playerHurtSound();
             isTailWhipping = !isTailWhipping;
             if(GetFacingDirection().x < 0)
             {
@@ -191,8 +193,11 @@ public class Dragon : BossParent
     {
         if (col.gameObject.name == "Player")
         {
-            playerHPBar.DecreaseHitpoint(1);
-            playerHurtSound();
+            if (!isDark)
+            {
+                playerHPBar.DecreaseHitpoint(5);
+                playerHurtSound();
+            }
             // Boss knocks back player upon collision
             Vector2 forceDirection = new Vector2(facingDirection.x, 1.0f) * 2f;
             Rigidbody2D playerRigidBody = player.GetComponent<Rigidbody2D>();

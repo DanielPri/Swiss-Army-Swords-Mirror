@@ -57,7 +57,7 @@ public class LevelStart : MonoBehaviour
         }
         if (scene.name == "DragonBoss" && !finalBoss)
         {
-            transform.position = new Vector2(-9.03f, -2.93f);
+            transform.position = new Vector2(-11.5f, -3.15f);
             finalBoss = true;
         }
     }

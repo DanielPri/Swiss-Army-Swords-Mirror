@@ -27,6 +27,7 @@ public class Sword : MonoBehaviour
     int previousAudioIndex = -1;
     GameObject pauseMenu;
     Scene scene;
+    public bool dialogueActive;
 
     public enum SwordType
     {
@@ -55,7 +56,7 @@ public class Sword : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
 
-        if (scene.name == "Cutscene" || scene.name == "FinalCutscene" || !inventory.switchSwords) // prevent input during cutscenes or pickup
+        if (scene.name == "Cutscene" || scene.name == "FinalCutscene" || !inventory.switchSwords || dialogueActive) // prevent input during cutscenes or pickup
         { }
         else
         { 

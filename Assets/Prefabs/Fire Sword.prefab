@@ -153,16 +153,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1534410554263774177}
     m_Modifications:
-    - target: {fileID: 4605818495220408996, guid: 9658999b03cd7e449922f595c03079da,
-        type: 3}
-      propertyPath: m_Name
-      value: Flames
-      objectReference: {fileID: 0}
-    - target: {fileID: 4605818495220408996, guid: 9658999b03cd7e449922f595c03079da,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 4605818495220408997, guid: 9658999b03cd7e449922f595c03079da,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -217,6 +207,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605818495220408996, guid: 9658999b03cd7e449922f595c03079da,
+        type: 3}
+      propertyPath: m_Name
+      value: Flames
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605818495220408996, guid: 9658999b03cd7e449922f595c03079da,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605818495220408998, guid: 9658999b03cd7e449922f595c03079da,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -835397081
+      objectReference: {fileID: 0}
+    - target: {fileID: 4605818495220408998, guid: 9658999b03cd7e449922f595c03079da,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9658999b03cd7e449922f595c03079da, type: 3}

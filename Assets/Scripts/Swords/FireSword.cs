@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FireSword : Sword
 {
@@ -8,13 +9,15 @@ public class FireSword : Sword
     float attackTimeElapsed;
     bool charging = false;
     [SerializeField] float chargeDuration;
-    // Start is called before the first frame update
+    Scene scene;
+
     public override void Start()
     {
         base.Start();
         base.swordType = SwordType.FIRE;
         particleFire = GetComponentsInChildren<ParticleSystem>()[0];
         particleFire.Stop();
+        scene = SceneManager.GetActiveScene();
     }
 
     private void OnDisable()
@@ -27,25 +30,30 @@ public class FireSword : Sword
     {
         base.Update();
         swordAnimator.SetBool("charging", charging);
-        if (Input.GetButtonDown("Fire2"))
+        if (scene.name == "FinalCutscene" || dialogueActive) // prevent input during cutscenes or dialogue
+        { }
+        else
         {
-            attackTimeElapsed = 0;
-            particleFire.Play();
-            charging = true;
-        }
-        if (charging && Input.GetButton("Fire2"))
-        {
-            timeCharge();
-        }
-        if (Input.GetButtonUp("Fire2"))
-        {
-            swordCollider.enabled = true;
-            makeAttackSound();
-            damage = Mathf.FloorToInt((1 + attackTimeElapsed));
-            damaging = true;
-            damageDelay = damageDuration;
-            charging = false;
-            particleFire.Stop();
+            if (Input.GetButtonDown("Fire2"))
+            {
+                attackTimeElapsed = 0;
+                particleFire.Play();
+                charging = true;
+            }
+            if (charging && Input.GetButton("Fire2"))
+            {
+                timeCharge();
+            }
+            if (Input.GetButtonUp("Fire2"))
+            {
+                swordCollider.enabled = true;
+                makeAttackSound();
+                damage = Mathf.FloorToInt((1 + attackTimeElapsed));
+                damaging = true;
+                damageDelay = damageDuration;
+                charging = false;
+                particleFire.Stop();
+            }
         }
     }
 

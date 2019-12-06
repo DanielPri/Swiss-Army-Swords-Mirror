@@ -29,6 +29,7 @@ public class SwordInventory : MonoBehaviour {
     float inventoryDistance = 80;
     bool level2part2;
     Scene scene;
+    public bool dialogueActive;
 
     void Start() {
         AddSlot(0);
@@ -53,7 +54,13 @@ public class SwordInventory : MonoBehaviour {
             inventoryList[3].GetComponent<SpriteRenderer>().color = color;
             level2part2 = true;
         }
-        ControlInventory();
+
+        if (scene.name == "Cutscene" || scene.name == "FinalCutscene" || dialogueActive) // prevent input during cutscenes
+        { }
+        else
+        {
+            ControlInventory();
+        }
     }
 
     /* Handles the addition of inventory once new sword obtained */
