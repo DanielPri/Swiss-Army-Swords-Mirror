@@ -83,17 +83,17 @@ public class Sword : MonoBehaviour
                     swordCollider.enabled = false;
                 }
             }
-            if (cooldownTimer <= 0)
+            if (Input.GetButtonDown("Fire2") && swordType == SwordType.LIGHT)
+            {
+                Ability();
+            }
+            else if (cooldownTimer <= 0)
             {
                 if (Input.GetButtonDown("Fire2") && swordType != SwordType.FIRE)
                 {
                     Ability();
                     cooldownTimer = 2;
                 }
-            }
-            if (Input.GetButtonDown("Fire2") && swordType == SwordType.LIGHT)
-            {
-                Ability();
             }
         }
     }

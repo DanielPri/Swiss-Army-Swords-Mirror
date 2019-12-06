@@ -19,8 +19,6 @@ public class SwordInventory : MonoBehaviour {
     [SerializeField]
     GameObject GuitarSwordPrefab = null;
 
-    AudioSource inventoryToggleSound;
-    AudioSource equipSound;
     AudioSource selectSound;
 
     public List<GameObject> inventoryList = new List<GameObject>(); // Keep track of the inventory
@@ -31,14 +29,13 @@ public class SwordInventory : MonoBehaviour {
     Scene scene;
     public bool dialogueActive;
 
-    void Start() {
+    void Start()
+    {
         AddSlot(0);
         index = 0;
-        // Audio
-        AudioSource[] audioSources = GetComponents<AudioSource>();
-        selectSound = audioSources[0];
+        selectSound = transform.GetComponent<AudioSource>();
         Color color = new Color(0.368F, 0.96F, 0.13F);
-        inventoryList[0].GetComponent<SpriteRenderer>().color = color;
+        inventoryList[index].GetComponent<SpriteRenderer>().color = color;
         switchSwords = true;
         level2part2 = false;
     }
@@ -46,6 +43,7 @@ public class SwordInventory : MonoBehaviour {
     void Update()
     {
         scene = SceneManager.GetActiveScene();
+        addSwords();
         if (scene.name == "Level 2 Part 2" && !level2part2)
         {
             index = 3;
@@ -62,13 +60,46 @@ public class SwordInventory : MonoBehaviour {
             ControlInventory();
         }
     }
+    private void addSwords()
+    {
+        if (scene.name == "Level 2" || scene.name == "Level 2 Puzzle")
+        {
+            if (inventoryList.Count == 1)
+            {
+                AddSlot(1);
+                AddSlot(2);
+            }
+        }
+        if (scene.name == "Level 2 Part 2" || scene.name == "Level 3")
+        {
+            if (inventoryList.Count == 1)
+            {
+                AddSlot(1);
+                AddSlot(2);
+                AddSlot(3);
+            }
+        }
+        if (scene.name == "DragonBoss" || scene.name == "LavaDemon")
+        {
+            if (inventoryList.Count == 1)
+            {
+                AddSlot(1);
+                AddSlot(2);
+                AddSlot(3);
+                AddSlot(4);
+            }
+        }
+    }
 
     /* Handles the addition of inventory once new sword obtained */
     public void AddSlot(int swordNumber) {
         Vector2 position = new Vector2(0, 0); // Initial position for first sword
         if (inventoryList.Count == 0) // Initialize
+        {
             ShowSword(inventoryList.Count, position);
-        else { // Add new
+        }
+        else // Add new
+        {
             float newPositionX = inventoryList[inventoryList.Count - 1].transform.localPosition.x + inventoryDistance;
             float newPositionY = inventoryList[inventoryList.Count - 1].transform.localPosition.y;
             position = new Vector2(newPositionX, newPositionY);
@@ -80,7 +111,8 @@ public class SwordInventory : MonoBehaviour {
         inventoryList.Add(slot);
     }
 
-    private void ShowSword(int number, Vector3 pos) {
+    private void ShowSword(int number, Vector3 pos)
+    {
         // We have to find the order of the swords we are getting
         GameObject swordPrefab = null;
         if (number == 0)
