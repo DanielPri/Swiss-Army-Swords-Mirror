@@ -21,13 +21,13 @@ public class Sword : MonoBehaviour
     public bool damaging;
     int _damage = 1;
 
-    [SerializeField] float cooldownTimer = 2;
+    public float cooldownTimer = 2;
     
     AudioSource audioSource;
     int randomAudioIndex = -1;
     int previousAudioIndex = -1;
     GameObject pauseMenu;
-    Scene scene;
+    public Scene scene;
     public bool dialogueActive;
 
     public enum SwordType
@@ -59,6 +59,7 @@ public class Sword : MonoBehaviour
         {
             cooldownTimer -= Time.deltaTime;
         }
+
         scene = SceneManager.GetActiveScene();
 
         if (scene.name == "Cutscene" || scene.name == "FinalCutscene" || !inventory.switchSwords || dialogueActive) // prevent input during cutscenes or pickup

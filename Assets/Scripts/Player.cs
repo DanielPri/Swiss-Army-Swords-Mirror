@@ -373,6 +373,7 @@ public class Player : MonoBehaviour
         {
             if (Input.mouseScrollDelta.y > 0) // mouse scroll up
                 {
+                    swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                     swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
 
                     // Switch to next sword
@@ -389,6 +390,7 @@ public class Player : MonoBehaviour
                 }
             else if (Input.mouseScrollDelta.y < 0) // mouse scroll down
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false); // Disable current sword
 
                 // Switch to next sword
@@ -405,26 +407,31 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha1)) // press 1
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false);
                 swords[0].gameObject.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2) && swords.Count >= 2) // press 2 if player has at least 2 swords
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false);
                 swords[1].gameObject.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3) && swords.Count >= 3)
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false);
                 swords[2].gameObject.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.Alpha4) && swords.Count >= 4)
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false);
                 swords[3].gameObject.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.Alpha5) && swords.Count == 5)
             {
+                swords[activeSwordIndex].GetComponent<Sword>().cooldownTimer = 0;
                 swords[activeSwordIndex].gameObject.SetActive(false);
                 swords[4].gameObject.SetActive(true);
             }

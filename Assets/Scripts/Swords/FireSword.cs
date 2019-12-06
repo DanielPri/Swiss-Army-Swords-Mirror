@@ -9,7 +9,6 @@ public class FireSword : Sword
     float attackTimeElapsed;
     bool charging = false;
     [SerializeField] float chargeDuration;
-    Scene scene;
 
     public override void Start()
     {
